@@ -232,9 +232,65 @@
     font-family:'Bungee', cursive; font-size:0.8rem; color: var(--ink); display:flex; align-items:center; gap:6px;
   }
   .clock{ background:#fff; border:2px solid var(--ink); border-radius:6px; padding:4px 10px; font-size:1rem; color: var(--ink);}
+
+  /* ---- lock screen ---- */
+  .lock-bg{
+    position:fixed; inset:0; z-index:1000; background: var(--sky);
+    background-image: radial-gradient(circle at 20% 20%, #d8f4ff 0%, transparent 40%), radial-gradient(circle at 85% 80%, #ffd3ec 0%, transparent 45%);
+    display:flex; align-items:center; justify-content:center; padding:20px;
+  }
+  .lock-window{
+    background: var(--panel); border:3px solid var(--ink); border-radius:10px; width:100%; max-width:340px;
+    box-shadow: 6px 6px 0 var(--ink); overflow:hidden;
+  }
+  .lock-body{ padding: 26px 22px; text-align:center; }
+  .lock-body .lockicon{ font-size:2.4rem; }
+  .lock-body h2{ font-family:'Bungee',cursive; font-size:1.3rem; color: var(--pink-deep); margin: 10px 0 4px; -webkit-text-stroke: 0.5px var(--ink);}
+  .lock-body p{ font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin: 0 0 18px;}
+  .lock-body input{
+    width:100%; text-align:center; letter-spacing:8px; font-size:1.4rem; font-family:'VT323',monospace;
+    border:2px solid var(--ink); border-radius:8px; padding:10px; background:#fff; color:var(--ink); margin-bottom:14px;
+  }
+  .lock-body button{
+    width:100%; background: var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:11px;
+    font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; box-shadow:3px 3px 0 var(--ink);
+  }
+  .lock-error{ font-family:'VT323',monospace; color: var(--pink-deep); font-size:0.95rem; min-height:18px; margin-top:8px;}
+
+  /* ---- identity locked badge ---- */
+  .who-locked{
+    text-align:center; font-family:'VT323', monospace; font-size:1.05rem; color:#5b4566; margin-bottom:18px;
+  }
+  .who-locked .name{ font-weight:800; color: var(--pink-deep); font-family:'Baloo 2',sans-serif; }
+  .who-locked .reset-link{ display:block; font-size:0.8rem; color:#9c8aa8; margin-top:4px; cursor:pointer; text-decoration:underline;}
+
+  /* ---- current plan (home) ---- */
+  .plan-mini{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px 14px; box-shadow:2px 2px 0 var(--ink);}
+  .plan-mini .eyebrow{ font-family:'VT323',monospace; font-size:0.8rem; color: var(--pink-deep); text-transform:uppercase; letter-spacing:1px;}
+  .plan-mini h4{ font-family:'Bungee',cursive; font-size:1.05rem; margin:6px 0; color: var(--ink);}
+  .plan-mini p{ margin:0 0 8px; font-size:0.92rem; color:#5b4566;}
+  .plan-mini .by{ font-family:'VT323',monospace; font-size:0.82rem; color:#9c8aa8;}
+  .plan-mini .accept-mini{
+    margin-top:10px; background: var(--yellow); border:2px solid var(--ink); border-radius:6px; padding:6px 14px;
+    font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.8rem; cursor:pointer;
+  }
 </style>
 </head>
 <body>
+
+<div class="lock-bg" id="lockScreen">
+  <div class="lock-window">
+    <div class="titlebar"><span class="tname">🔒 enter_passcode.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+    <div class="lock-body">
+      <div class="lockicon">💌</div>
+      <h2>SHONNA ♡ POTTI</h2>
+      <p>this one's private. enter the code.</p>
+      <input type="password" inputmode="numeric" maxlength="8" id="passInput" placeholder="••••">
+      <button id="passSubmit">unlock ♡</button>
+      <div class="lock-error" id="lockError"></div>
+    </div>
+  </div>
+</div>
 
 <div class="marquee"><span>✨ NEW DROP: MEMORIES ✨ &nbsp; ♡ MISS YOU BUTTON ONLINE ♡ &nbsp; ★ TONIGHT PLANNER v1.0 ★ &nbsp; ✨ SHONNA + POTTI FOREVER ✨ &nbsp; ♡ NEW DROP: MEMORIES ♡ &nbsp; ★ MISS YOU BUTTON ONLINE ★</span></div>
 
@@ -261,19 +317,28 @@
     <div class="window">
       <div class="titlebar"><span class="tname">💌 new_message.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
       <div class="wbody">
-        <div class="who-select">
-          <button data-who="SHONNA" class="who-btn sel">I'm Shonna</button>
+        <div id="whoPicker" class="who-select">
+          <button data-who="SHONNA" class="who-btn">I'm Shonna</button>
           <button data-who="POTTI" class="who-btn">I'm Potti</button>
+        </div>
+        <div id="whoLocked" class="who-locked" style="display:none;">
+          you're logged in as <span class="name" id="whoLockedName"></span>
+          <span class="reset-link" id="whoResetLink">not you? tap to reset</span>
         </div>
         <div class="stamp-zone">
           <div class="stamp" id="missBtn">
             <div class="icon">🫶</div>
             <div class="label">I MISS YOU</div>
           </div>
-          <div class="stamp-caption">press it. They'll know. ⋆˚꒰ঌ ໒꒱˚⋆</div>
+          <div class="stamp-caption">press it. she'll know. ⋆˚꒰ঌ ໒꒱˚⋆</div>
           <div class="status" id="missStatus"></div>
         </div>
       </div>
+    </div>
+
+    <div class="window" id="planWindow" style="display:none;">
+      <div class="titlebar"><span class="tname">🌙 tonights_plan.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+      <div class="wbody"><div id="planMini"></div></div>
     </div>
 
     <div class="window ping-feed">
@@ -375,7 +440,51 @@ const SUPABASE_URL = "https://rjgyjnrawsbyxruvelfl.supabase.co";
 const SUPABASE_KEY = "sb_publishable_FAgP2OkS8h__izEk5uAcFw_1lGJy03i";
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-let currentWho = "SHONNA";
+let currentWho = null;
+
+// ---------- PASSCODE ----------
+const PASSCODE = "2704";
+function tryUnlock(){
+  const val = document.getElementById('passInput').value.trim();
+  if(val === PASSCODE){
+    localStorage.setItem('sp_unlocked', '1');
+    document.getElementById('lockScreen').style.display = 'none';
+    startApp();
+  } else {
+    document.getElementById('lockError').textContent = "wrong code, try again";
+  }
+}
+document.getElementById('passSubmit').addEventListener('click', tryUnlock);
+document.getElementById('passInput').addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock(); });
+
+if(localStorage.getItem('sp_unlocked') === '1'){
+  document.getElementById('lockScreen').style.display = 'none';
+  startApp();
+}
+
+// ---------- IDENTITY (choose once) ----------
+function applyWhoUI(){
+  if(currentWho){
+    document.getElementById('whoPicker').style.display = 'none';
+    document.getElementById('whoLocked').style.display = 'block';
+    document.getElementById('whoLockedName').textContent = currentWho;
+  } else {
+    document.getElementById('whoPicker').style.display = 'flex';
+    document.getElementById('whoLocked').style.display = 'none';
+  }
+}
+document.querySelectorAll('.who-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    currentWho = btn.dataset.who;
+    localStorage.setItem('sp_who', currentWho);
+    applyWhoUI();
+  });
+});
+document.getElementById('whoResetLink').addEventListener('click', ()=>{
+  localStorage.removeItem('sp_who');
+  currentWho = null;
+  applyWhoUI();
+});
 
 // ---------- CLOCK ----------
 function tickClock(){
@@ -396,17 +505,10 @@ document.querySelectorAll('nav button').forEach(btn=>{
   });
 });
 
-document.querySelectorAll('.who-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.who-btn').forEach(b=>b.classList.remove('sel'));
-    btn.classList.add('sel');
-    currentWho = btn.dataset.who;
-  });
-});
-
 // ---------- I MISS YOU ----------
 document.getElementById('missBtn').addEventListener('click', async ()=>{
   const statusEl = document.getElementById('missStatus');
+  if(!currentWho){ statusEl.textContent = "pick shonna or potti first"; return; }
   statusEl.textContent = "sending...";
   const { error } = await sb.from('pings').insert({
     from_name: currentWho,
@@ -586,7 +688,7 @@ const PLANS = [
 
 document.getElementById('genBtn').addEventListener('click', renderPlan);
 
-function renderPlan(){
+async function renderPlan(){
   const result = document.getElementById('cardResult');
   if(!picked.time || !picked.meet || !picked.mood){
     result.innerHTML = `<p class="empty-note">pick a time, availability, and mood first</p>`;
@@ -610,13 +712,63 @@ function renderPlan(){
       </div>
     </div>`;
   document.getElementById('rerollPlan').addEventListener('click', renderPlan);
-  document.getElementById('acceptPlan').addEventListener('click', ()=>{
+  document.getElementById('acceptPlan').addEventListener('click', async ()=>{
     document.getElementById('acceptPlan').textContent = "you're doing this ♡";
+    await sb.from('tonight_plan').upsert({ id:1, status:'accepted' });
+    loadTonightPlan();
   });
+
+  // push this plan to the shared table so it shows on the other phone too
+  await sb.from('tonight_plan').upsert({
+    id: 1, title: plan.title, description: plan.desc, tags: plan.tags.join(','),
+    time_bucket: picked.time, meet_type: picked.meet, mood: picked.mood,
+    generated_by: currentWho || 'someone', status: 'pending'
+  });
+  loadTonightPlan();
 }
 
-// init
-loadPings();
+// ---------- SHARED TONIGHT PLAN (home widget) ----------
+async function loadTonightPlan(){
+  const win = document.getElementById('planWindow');
+  const mini = document.getElementById('planMini');
+  const { data, error } = await sb.from('tonight_plan').select('*').eq('id',1).maybeSingle();
+  if(error || !data || !data.title){ win.style.display = 'none'; return; }
+  win.style.display = 'block';
+  const isAccepted = data.status === 'accepted';
+  mini.innerHTML = `
+    <div class="plan-mini">
+      <div class="eyebrow">${isAccepted ? 'accepted ♡' : 'suggested'}</div>
+      <h4>${escapeHtml(data.title)}</h4>
+      <p>${escapeHtml(data.description||'')}</p>
+      <div class="by">suggested by ${escapeHtml(data.generated_by||'')}</div>
+      ${isAccepted ? '' : `<button class="accept-mini" id="acceptMini">accept ♡</button>`}
+    </div>`;
+  if(!isAccepted){
+    document.getElementById('acceptMini').addEventListener('click', async ()=>{
+      await sb.from('tonight_plan').upsert({ id:1, status:'accepted' });
+      loadTonightPlan();
+    });
+  }
+}
+
+// ---------- APP START (after passcode) ----------
+let pollingStarted = false;
+function startApp(){
+  const savedWho = localStorage.getItem('sp_who');
+  if(savedWho){ currentWho = savedWho; }
+  applyWhoUI();
+  loadPings();
+  loadTonightPlan();
+  if(document.getElementById('view-archive').classList.contains('active')) loadArchive();
+  if(!pollingStarted){
+    pollingStarted = true;
+    setInterval(()=>{
+      loadPings();
+      loadTonightPlan();
+      if(document.getElementById('view-archive').classList.contains('active')) loadArchive();
+    }, 6000);
+  }
+}
 </script>
 </body>
 </html>
