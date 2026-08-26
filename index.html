@@ -635,13 +635,28 @@ document.getElementById('passSubmit').addEventListener('click', tryUnlock);
 document.getElementById('passInput').addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock(); });
 
 // ---------- SUPABASE SETUP ----------
-const SUPABASE_URL = "https://rjgyjnrawsbyxruvelfl.supabase.co";
-const SUPABASE_KEY = "sb_publishable_FAgP2OkS8h__izEk5uAcFw_1lGJy03i";
+const SUPABASE_URL = "https://gnnryoxxodlnguloivba.supabase.co";
+const SUPABASE_KEY = "sb_publishable_S3JO0ptzUrhBZLKwW03_BA_cdFv9HBm";
 let sb = null;
-try{
-  sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-} catch(e){
-  console.error('Supabase failed to load — check your connection or the CDN script tag', e);
+
+function initSupabase(){
+  try{
+    sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    console.log('✅ Supabase connected successfully');
+    return true;
+  } catch(e){
+    console.error('❌ Supabase failed to load:', e);
+    showConnectionError();
+    return false;
+  }
+}
+
+function showConnectionError(){
+  const statusEl = document.getElementById('missStatus');
+  if(statusEl) {
+    statusEl.textContent = "⚠️ Database not connected. Check console for setup instructions.";
+    statusEl.style.color = '#ef4444';
+  }
 }
 
 let currentWho = null;
@@ -652,15 +667,12 @@ let notificationsEnabled = false;
 let notificationPermission = 'default';
 let lastNotificationTimes = {};
 
-// Check if notifications are supported
 const notificationsSupported = 'Notification' in window;
 
-// Load notification preference from localStorage
 if(localStorage.getItem('sp_notifications') === 'enabled') {
   notificationsEnabled = true;
 }
 
-// Update notification toggle button
 function updateNotifToggle() {
   const toggle = document.getElementById('notifToggle');
   if(notificationsEnabled) {
@@ -672,7 +684,6 @@ function updateNotifToggle() {
   }
 }
 
-// Request notification permission
 async function enableNotifications() {
   if(!notificationsSupported) {
     alert('Notifications not supported on this device/browser');
@@ -685,7 +696,6 @@ async function enableNotifications() {
       notificationsEnabled = true;
       localStorage.setItem('sp_notifications', 'enabled');
       updateNotifToggle();
-      // Send a test notification
       sendNotification('Notifications enabled! 💌', 'You\'ll now get notified about new stuff.');
       return true;
     } else {
@@ -698,14 +708,12 @@ async function enableNotifications() {
   }
 }
 
-// Disable notifications
 function disableNotifications() {
   notificationsEnabled = false;
   localStorage.setItem('sp_notifications', 'disabled');
   updateNotifToggle();
 }
 
-// Toggle notifications
 document.getElementById('notifToggle').addEventListener('click', async () => {
   if(notificationsEnabled) {
     disableNotifications();
@@ -714,15 +722,13 @@ document.getElementById('notifToggle').addEventListener('click', async () => {
   }
 });
 
-// Send notification
 function sendNotification(title, body, tag = null) {
   if(!notificationsEnabled || !notificationsSupported) return;
   
-  // Check if we've sent this notification recently (avoid spam)
   const now = Date.now();
   const key = tag || title;
   if(lastNotificationTimes[key] && (now - lastNotificationTimes[key] < 60000)) {
-    return; // Don't send same notification within 1 minute
+    return;
   }
   lastNotificationTimes[key] = now;
   
@@ -762,7 +768,6 @@ function applyWhoUI(){
     document.getElementById('whoPicker').style.display = 'none';
     document.getElementById('whoLocked').style.display = 'block';
     document.getElementById('whoLockedName').textContent = currentWho;
-    // Update miss you caption
     const caption = document.getElementById('missCaption');
     if(currentWho === 'SHONNA'){
       caption.textContent = "press it. he'll know. ⋆˚꒰ঌ ໒꒱˚⋆";
@@ -825,70 +830,114 @@ let lastTaskId = null;
 // ---------- I MISS YOU ----------
 document.getElementById('missBtn').addEventListener('click', async ()=>{
   const statusEl = document.getElementById('missStatus');
-  if(!sb){ statusEl.textContent = "not connected — check your internet"; return; }
-  if(!currentWho){ statusEl.textContent = "pick shonna or potti first"; return; }
+  
+  if(!sb){ 
+    statusEl.textContent = "❌ Database not connected. Check console.";
+    statusEl.style.color = '#ef4444';
+    return; 
+  }
+  if(!currentWho){ 
+    statusEl.textContent = "pick shonna or potti first"; 
+    return; 
+  }
+  
   statusEl.textContent = "sending...";
-  const { error } = await sb.from('pings').insert({ 
-    from_name: currentWho, 
-    message: `${currentWho} misses you.`,
-    type: 'miss'
-  });
-  if(error){ statusEl.textContent = "couldn't send — check setup"; console.error(error); }
-  else {
+  statusEl.style.color = '';
+  
+  try {
+    console.log('Sending miss you ping...');
+    console.log('From:', currentWho);
+    console.log('Message:', `${currentWho} misses you.`);
+    
+    const { data, error } = await sb.from('pings').insert({ 
+      from_name: currentWho, 
+      message: `${currentWho} misses you.`,
+      type: 'miss'
+    });
+    
+    if(error){ 
+      console.error('❌ Insert error:', error);
+      statusEl.textContent = "couldn't send — check console for details"; 
+      statusEl.style.color = '#ef4444';
+      return;
+    }
+    
+    console.log('✅ Ping sent successfully:', data);
     statusEl.textContent = "sent ♡";
-    loadPings();
+    statusEl.style.color = '';
+    await loadPings();
     setTimeout(()=>{ statusEl.textContent=""; }, 3000);
+  } catch(e) {
+    console.error('❌ Unexpected error:', e);
+    statusEl.textContent = "unexpected error — check console";
+    statusEl.style.color = '#ef4444';
   }
 });
 
 // Reply button
 document.getElementById('replyBtn').addEventListener('click', async ()=>{
   if(!sb || !currentWho) return;
-  await sb.from('pings').insert({ 
-    from_name: currentWho, 
-    message: `${currentWho} sends a hug back! 🤗`,
-    type: 'reply'
-  });
-  document.getElementById('replyZone').classList.remove('show');
-  loadPings();
+  try {
+    const { data, error } = await sb.from('pings').insert({ 
+      from_name: currentWho, 
+      message: `${currentWho} sends a hug back! 🤗`,
+      type: 'reply'
+    });
+    if(!error) {
+      document.getElementById('replyZone').classList.remove('show');
+      await loadPings();
+    }
+  } catch(e) {
+    console.error('Error sending reply:', e);
+  }
 });
 
 async function loadPings(){
   if(!sb) return;
   const list = document.getElementById('pingList');
-  const { data, error } = await sb.from('pings').select('*').order('created_at', {ascending:false}).limit(12);
-  if(error){ list.innerHTML = `<p class="empty-note">archive not connected yet</p>`; return; }
-  if(!data || data.length===0){ list.innerHTML = `<p class="empty-note">nothing yet — be the first to say it.</p>`; return; }
-  
-  // Check for new pings (for notifications)
-  if(data[0] && data[0].id !== lastPingId) {
-    const newPings = data.filter(p => p.id !== lastPingId && p.from_name !== currentWho);
-    if(newPings.length > 0 && lastPingId !== null) {
-      const latestPing = newPings[0];
-      if(latestPing.type === 'miss') {
-        sendNotification('💌 Miss You!', `${latestPing.from_name} misses you!`, 'miss-you');
-      } else if(latestPing.type === 'reply') {
-        sendNotification('🤗 Hug Back!', `${latestPing.from_name} sent a hug!`, 'hug-back');
-      } else {
-        sendNotification('💌 New Message', `${latestPing.from_name}: ${latestPing.message}`, 'new-message');
-      }
+  try {
+    const { data, error } = await sb.from('pings').select('*').order('created_at', {ascending:false}).limit(12);
+    if(error){ 
+      console.error('Error loading pings:', error);
+      list.innerHTML = `<p class="empty-note">Error loading messages. Check console.</p>`; 
+      return; 
     }
-    lastPingId = data[0].id;
-  }
-  
-  list.innerHTML = data.map(p=>{
-    const t = new Date(/[Zz+]|-\d\d:\d\d$/.test(p.created_at) ? p.created_at : p.created_at + 'Z');
-    const timeStr = t.toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
-    const replyIndicator = p.type === 'reply' ? '🤗' : '';
-    return `<div class="ping">
-      <span class="who">${p.from_name}</span> ${escapeHtml(p.message)}
-      ${replyIndicator ? `<span class="reply-indicator">${replyIndicator}</span>` : ''}
-      <span class="time">${timeStr}</span>
-    </div>`;
-  }).join('');
+    if(!data || data.length===0){ 
+      list.innerHTML = `<p class="empty-note">nothing yet — be the first to say it.</p>`; 
+      return; 
+    }
+    
+    // Check for new pings (for notifications)
+    if(data[0] && data[0].id !== lastPingId) {
+      const newPings = data.filter(p => p.id !== lastPingId && p.from_name !== currentWho);
+      if(newPings.length > 0 && lastPingId !== null) {
+        const latestPing = newPings[0];
+        if(latestPing.type === 'miss') {
+          sendNotification('💌 Miss You!', `${latestPing.from_name} misses you!`, 'miss-you');
+        } else if(latestPing.type === 'reply') {
+          sendNotification('🤗 Hug Back!', `${latestPing.from_name} sent a hug!`, 'hug-back');
+        } else {
+          sendNotification('💌 New Message', `${latestPing.from_name}: ${latestPing.message}`, 'new-message');
+        }
+      }
+      lastPingId = data[0].id;
+    }
+    
+    list.innerHTML = data.map(p=>{
+      const t = new Date(/[Zz+]|-\d\d:\d\d$/.test(p.created_at) ? p.created_at : p.created_at + 'Z');
+      const timeStr = t.toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
+      const replyIndicator = p.type === 'reply' ? '🤗' : '';
+      return `<div class="ping">
+        <span class="who">${p.from_name}</span> ${escapeHtml(p.message)}
+        ${replyIndicator ? `<span class="reply-indicator">${replyIndicator}</span>` : ''}
+        <span class="time">${timeStr}</span>
+      </div>`;
+    }).join('');
 
-  // Check if there's a miss you from the other person that hasn't been replied to
-  checkForMissYou(data);
+    checkForMissYou(data);
+  } catch(e) {
+    console.error('Unexpected error loading pings:', e);
+  }
 }
 
 function checkForMissYou(pings){
@@ -896,7 +945,6 @@ function checkForMissYou(pings){
   const other = OTHER(currentWho);
   const latestMiss = pings.find(p => p.from_name === other && p.type === 'miss');
   if(latestMiss){
-    // Check if there's a reply after this miss
     const missIndex = pings.indexOf(latestMiss);
     const hasReply = pings.slice(0, missIndex).some(p => p.from_name === currentWho && p.type === 'reply');
     if(!hasReply){
@@ -966,11 +1014,10 @@ async function loadTasks(){
     const isAssignedToMe = task.assigned_to === currentWho;
     const timeLeft = new Date(task.deadline) - new Date();
     const isExpired = timeLeft < 0;
-    const isUrgent = timeLeft > 0 && timeLeft < 60000; // less than 1 min
-    const isLongTerm = timeLeft > 3600000; // more than 1 hour
+    const isUrgent = timeLeft > 0 && timeLeft < 60000;
+    const isLongTerm = timeLeft > 3600000;
     
     if(isAssignedToMe && !isExpired && task.status === 'pending'){
-      // Start timer update
       clearInterval(taskTimers[task.id]);
       taskTimers[task.id] = setInterval(() => updateTaskTimer(task.id), isLongTerm ? 60000 : 1000);
     }
@@ -1049,7 +1096,6 @@ function updateTaskTimer(taskId){
   const timerEl = document.getElementById(`timer-${taskId}`);
   if(!timerEl) return;
   
-  // Need to fetch the task to get deadline
   sb.from('tasks').select('*').eq('id', taskId).single().then(({ data }) => {
     if(data){
       const timeLeft = new Date(data.deadline) - new Date();
@@ -1057,13 +1103,11 @@ function updateTaskTimer(taskId){
         timerEl.textContent = "time's up!";
         timerEl.classList.add('urgent');
         clearInterval(taskTimers[taskId]);
-        // Send notification for task timeout
         sendNotification('⏰ Time\'s Up!', `Task "${data.task}" time is up!`, `task-timeout-${taskId}`);
       } else {
         timerEl.textContent = formatTime(timeLeft);
         if(timeLeft < 60000) {
           timerEl.classList.add('urgent');
-          // Send urgent notification
           sendNotification('⚠️ Task Almost Due!', `Less than 1 minute left for: ${data.task}`, `task-urgent-${taskId}`);
         }
       }
@@ -1087,7 +1131,6 @@ async function deleteTask(taskId){
   loadTasks();
 }
 
-// Make functions globally accessible for onclick handlers
 window.completeTask = completeTask;
 window.deleteTask = deleteTask;
 
@@ -1133,7 +1176,6 @@ async function loadLatestMemoryNudge(){
   if(error || !data || data.length===0){ row.style.display = 'none'; return; }
   const latest = data[0];
   
-  // Check for new memories (for notifications)
   if(latest.id !== lastMemoryId) {
     if(latest.added_by && latest.added_by !== currentWho && lastMemoryId !== null) {
       sendNotification('📷 New Memory!', `${latest.added_by} added a new memory: "${latest.caption || 'untitled'}"`, 'new-memory');
@@ -1333,14 +1375,6 @@ async function loadTonightPlan(){
   const { data, error } = await sb.from('tonight_plan').select('*').eq('id',1).maybeSingle();
   if(error || !data || !data.title){ win.style.display = 'none'; return; }
   
-  // Check for new plan (for notifications)
-  if(data && (!lastPlanId || (data.updated_at && data.updated_at !== lastPlanId))) {
-    if(data.generated_by && data.generated_by !== currentWho) {
-      sendNotification('🌙 New Plan!', `${data.generated_by} suggested: ${data.title}`, 'new-plan');
-    }
-    lastPlanId = data.updated_at || data.created_at;
-  }
-  
   win.style.display = 'block';
   const isAccepted = data.status === 'accepted';
   mini.innerHTML = `
@@ -1409,52 +1443,54 @@ document.getElementById('closeSecret').addEventListener('click', ()=> document.g
 function refreshAll(){
   renderTodayDate();
   updateDaysCounter();
-  loadPings();
-  loadTonightPlan();
-  loadStatus();
-  loadLatestMemoryNudge();
-  if(document.getElementById('view-archive').classList.contains('active')) loadArchive();
-  if(document.getElementById('view-things').classList.contains('active')) loadThings();
-  if(document.getElementById('view-tasks').classList.contains('active')) loadTasks();
+  if(sb) {
+    loadPings();
+    loadTonightPlan();
+    loadStatus();
+    loadLatestMemoryNudge();
+    if(document.getElementById('view-archive').classList.contains('active')) loadArchive();
+    if(document.getElementById('view-things').classList.contains('active')) loadThings();
+    if(document.getElementById('view-tasks').classList.contains('active')) loadTasks();
+  }
 }
 
 let pollingStarted = false;
 function startApp(){
+  const connected = initSupabase();
+  
   const savedWho = localStorage.getItem('sp_who');
   if(savedWho){ currentWho = savedWho; }
   applyWhoUI();
   updateNotifToggle();
   refreshAll();
 
-  if(!pollingStarted){
+  if(!pollingStarted && connected){
     pollingStarted = true;
 
-    // instant updates via realtime
-    if(sb){
-    sb.channel('sp-live')
-      .on('postgres_changes', {event:'*', schema:'public', table:'pings'}, ()=> loadPings())
-      .on('postgres_changes', {event:'*', schema:'public', table:'memories'}, ()=> {
-        loadLatestMemoryNudge();
-        if(document.getElementById('view-archive').classList.contains('active')) loadArchive();
-      })
-      .on('postgres_changes', {event:'*', schema:'public', table:'tonight_plan'}, ()=> loadTonightPlan())
-      .on('postgres_changes', {event:'*', schema:'public', table:'status'}, ()=> loadStatus())
-      .on('postgres_changes', {event:'*', schema:'public', table:'little_things'}, ()=> {
-        if(document.getElementById('view-things').classList.contains('active')) loadThings();
-      })
-      .on('postgres_changes', {event:'*', schema:'public', table:'tasks'}, ()=> {
-        if(document.getElementById('view-tasks').classList.contains('active')) loadTasks();
-      })
-      .subscribe();
+    try {
+      sb.channel('sp-live')
+        .on('postgres_changes', {event:'*', schema:'public', table:'pings'}, ()=> loadPings())
+        .on('postgres_changes', {event:'*', schema:'public', table:'memories'}, ()=> {
+          loadLatestMemoryNudge();
+          if(document.getElementById('view-archive').classList.contains('active')) loadArchive();
+        })
+        .on('postgres_changes', {event:'*', schema:'public', table:'tonight_plan'}, ()=> loadTonightPlan())
+        .on('postgres_changes', {event:'*', schema:'public', table:'status'}, ()=> loadStatus())
+        .on('postgres_changes', {event:'*', schema:'public', table:'little_things'}, ()=> {
+          if(document.getElementById('view-things').classList.contains('active')) loadThings();
+        })
+        .on('postgres_changes', {event:'*', schema:'public', table:'tasks'}, ()=> {
+          if(document.getElementById('view-tasks').classList.contains('active')) loadTasks();
+        })
+        .subscribe();
+    } catch(e) {
+      console.error('Realtime subscription failed, using polling only:', e);
     }
 
-    // fallback polling
     setInterval(refreshAll, 6000);
 
-    // instant refresh on tab visibility
     document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refreshAll(); });
     
-    // Update days counter at midnight
     setInterval(updateDaysCounter, 60000);
   }
 }
