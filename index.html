@@ -17,6 +17,7 @@
     --panel: #f4eeff;
     --ink: #2a1a30;
     --yellow: #fff35c;
+    --green: #4ade80;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -59,13 +60,70 @@
     box-shadow: 6px 6px 0 var(--ink); margin-bottom: 26px;
   }
   .header-body h1{
-    font-family:'Bungee', cursive; font-size: 2.5rem; margin:0; line-height:1.1;
+    font-family:'Bungee', cursive; font-size: 2.2rem; margin:0; line-height:1.1;
     color: var(--pink-deep); -webkit-text-stroke: 1.5px var(--ink); text-shadow: 3px 3px 0 var(--lav);
   }
   .header-body .tag{ font-family:'VT323', monospace; font-size:1rem; letter-spacing:3px; text-transform:uppercase; margin-top:6px;}
   .sparkle{ position:absolute; font-size:1.4rem; }
   .sparkle.s1{ top:10px; left:16px; } .sparkle.s2{ top:14px; right:20px; }
   .sparkle.s3{ bottom:12px; left:26%; } .sparkle.s4{ bottom:16px; right:22%; }
+
+  /* Notification toggle */
+  .notif-toggle{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 2px 2px 0 var(--ink);
+    transition: all 0.2s ease;
+  }
+  .notif-toggle:hover {
+    background: var(--yellow);
+    transform: translateY(-1px);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .notif-toggle.enabled {
+    background: var(--green);
+    color: #fff;
+  }
+
+  /* Days Counter */
+  .days-counter{
+    margin-top: 12px;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--yellow), #ffd700);
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    padding: 10px 20px;
+    box-shadow: 3px 3px 0 var(--ink);
+    animation: glow 2s ease-in-out infinite;
+  }
+  @keyframes glow {
+    0%, 100% { box-shadow: 3px 3px 0 var(--ink), 0 0 20px rgba(255, 243, 92, 0.5); }
+    50% { box-shadow: 3px 3px 0 var(--ink), 0 0 35px rgba(255, 243, 92, 0.8); }
+  }
+  .days-counter .number{
+    font-family: 'Bungee', cursive;
+    font-size: 2.5rem;
+    color: var(--ink);
+    display: block;
+    line-height: 1;
+  }
+  .days-counter .label{
+    font-family: 'VT323', monospace;
+    font-size: 0.9rem;
+    color: #5b4566;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
 
   nav{ display:flex; justify-content:center; gap:8px; margin-bottom: 24px; flex-wrap:wrap;}
   nav button{
@@ -107,10 +165,59 @@
   .stamp-caption{ font-family:'VT323', monospace; font-size:0.95rem; color: #5b4566; margin-top: 14px; text-align:center;}
   .status{ text-align:center; font-family:'VT323', monospace; font-size:1rem; color: var(--pink-deep); margin-top:8px; min-height:18px;}
 
+  /* Reply button */
+  .reply-zone{
+    margin-top: 15px;
+    padding: 10px;
+    background: #fff;
+    border: 2px dashed var(--pink);
+    border-radius: 8px;
+    display: none;
+    animation: slideDown 0.3s ease;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reply-zone.show { display: block; }
+  .reply-btn{
+    display: inline-block;
+    background: var(--green);
+    border: 3px solid var(--ink);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    font-size: 2rem;
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform 0.12s ease;
+    margin: 0 auto;
+  }
+  .reply-btn:active { transform: scale(0.9); }
+  .reply-btn .reply-label{
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: 0.7rem;
+    display: block;
+    margin-top: 2px;
+  }
+
   .win-label{ font-family:'VT323', monospace; font-size:1rem; letter-spacing:2px; color:#5b4566; text-transform:uppercase; border-bottom: 2px dashed var(--ink); padding-bottom:6px; margin-bottom:10px;}
-  .ping{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:8px 12px; margin-bottom:10px; box-shadow: 2px 2px 0 var(--ink);}
+  .ping{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:8px 12px; margin-bottom:10px; box-shadow: 2px 2px 0 var(--ink); position: relative;}
   .ping .who{ font-weight:800; color: var(--pink-deep);}
   .ping .time{ display:block; font-family:'VT323', monospace; font-size:0.85rem; color:#7a6683; margin-top:2px;}
+  .ping .reply-indicator{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.2); }
+  }
   .empty-note{ text-align:center; color:#7a6683; font-style:italic; font-family:'VT323',monospace; font-size:1.05rem;}
 
   /* today widget */
@@ -138,6 +245,59 @@
   .polaroid img{ width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#eadfff; border:1px solid var(--ink);}
   .polaroid .cap{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.9rem; text-align:center; margin-top:8px;}
   .polaroid .meta{ font-family:'VT323',monospace; font-size:0.75rem; color:#7a6683; text-align:center; margin-top:2px;}
+
+  /* Tasks */
+  .task-form{ display:flex; gap:8px; margin-bottom:16px; flex-wrap: wrap;}
+  .task-form input{ flex:1; min-width: 150px; border:2px solid var(--ink); border-radius:8px; padding:9px 12px; font-family:'Baloo 2',sans-serif; font-size:0.95rem; background:#fff;}
+  .task-form select{ border:2px solid var(--ink); border-radius:8px; padding:9px; font-family:'Baloo 2',sans-serif; font-size:0.9rem; background:#fff;}
+  .task-form button{ background: var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:9px 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer;}
+  .task-item{
+    background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px; margin-bottom:10px;
+    box-shadow:2px 2px 0 var(--ink); position: relative;
+  }
+  .task-item .task-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap: wrap; gap: 4px;}
+  .task-item .task-title{ font-weight:700; font-size:0.95rem;}
+  .task-item .task-who{ font-family:'VT323',monospace; font-size:0.8rem; color:#7a6683;}
+  .task-item .task-timer{
+    font-family: 'Bungee', cursive;
+    font-size: 1.5rem;
+    color: var(--pink-deep);
+    margin: 8px 0;
+    text-align: center;
+  }
+  .task-item .task-timer.urgent { color: #ef4444; animation: blink 1s infinite; }
+  .task-item .task-timer.long-term { font-size: 1.1rem; color: #8b5cf6; }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .task-progress{
+    width: 100%;
+    height: 8px;
+    background: #e0d5e8;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 8px 0;
+  }
+  .task-progress-bar{
+    height: 100%;
+    background: linear-gradient(90deg, var(--pink), var(--lav));
+    transition: width 1s linear;
+  }
+  .task-actions{ display:flex; gap:6px; margin-top:8px;}
+  .task-actions button{
+    flex: 1;
+    padding: 6px;
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    font-family:'Baloo 2',sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    cursor: pointer;
+    background: #fff;
+  }
+  .task-actions .complete-btn{ background: var(--green); }
+  .task-actions .delete-btn{ background: #fecaca; }
 
   /* tonight */
   .picker-group{ margin-bottom: 20px; }
@@ -235,12 +395,22 @@
     <span class="sparkle s1">★</span><span class="sparkle s2">✦</span><span class="sparkle s3">♡</span><span class="sparkle s4">✧</span>
     <h1>SHONNA ♡ POTTI</h1>
     <div class="tag">made 4 the two of us</div>
+    <div class="days-counter">
+      <span class="number" id="daysCount">0</span>
+      <span class="label">days together</span>
+    </div>
+    <div>
+      <button class="notif-toggle" id="notifToggle">
+        🔔 notifications: off
+      </button>
+    </div>
   </div>
 
   <nav>
     <button data-view="home" class="active">🏠 home</button>
     <button data-view="archive">📷 archive</button>
     <button data-view="tonight">🌙 tonight</button>
+    <button data-view="tasks">⏰ tasks</button>
     <button data-view="things">🧸 things</button>
   </nav>
 
@@ -282,8 +452,19 @@
             <div class="icon">🫶</div>
             <div class="label">I MISS YOU</div>
           </div>
-          <div class="stamp-caption">press it. she'll know. ⋆˚꒰ঌ ໒꒱˚⋆</div>
+          <div class="stamp-caption" id="missCaption">press it. she'll know. ⋆˚꒰ঌ ໒꒱˚⋆</div>
           <div class="status" id="missStatus"></div>
+        </div>
+        <div class="reply-zone" id="replyZone">
+          <div style="text-align:center; font-family:'VT323',monospace; margin-bottom:8px;">
+            <span id="replyMessage">someone misses you!</span>
+          </div>
+          <div style="text-align:center;">
+            <button class="reply-btn" id="replyBtn">
+              🤗
+              <span class="reply-label">HUG BACK</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -355,6 +536,30 @@
     </div>
   </section>
 
+  <!-- TASKS -->
+  <section class="view" id="view-tasks">
+    <div class="window">
+      <div class="titlebar"><span class="tname">⏰ task_timer.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+      <div class="wbody">
+        <span class="win-label">give each other tasks with timers</span>
+        <div class="task-form">
+          <input type="text" id="taskInput" placeholder="e.g., drink water right now">
+          <select id="taskTimer">
+            <option value="5">5 min</option>
+            <option value="10">10 min</option>
+            <option value="15" selected>15 min</option>
+            <option value="30">30 min</option>
+            <option value="60">1 hour</option>
+            <option value="1440">1 day</option>
+            <option value="10080">1 week</option>
+          </select>
+          <button id="taskAdd">assign</button>
+        </div>
+        <div id="tasksList"><p class="empty-note">no tasks yet. assign something!</p></div>
+      </div>
+    </div>
+  </section>
+
   <!-- LITTLE THINGS -->
   <section class="view" id="view-things">
     <div class="window">
@@ -415,8 +620,7 @@
 </div>
 
 <script>
-// ---------- PASSCODE (asks every time — never persisted) ----------
-// runs first, independent of Supabase, so a slow/blocked CDN can never break unlocking
+// ---------- PASSCODE ----------
 const PASSCODE = "2704";
 function tryUnlock(){
   const val = document.getElementById('passInput').value.trim();
@@ -443,15 +647,132 @@ try{
 let currentWho = null;
 const OTHER = w => w === 'SHONNA' ? 'POTTI' : 'SHONNA';
 
-// ---------- IDENTITY (choose once, persists on this device) ----------
+// ---------- NOTIFICATIONS ----------
+let notificationsEnabled = false;
+let notificationPermission = 'default';
+let lastNotificationTimes = {};
+
+// Check if notifications are supported
+const notificationsSupported = 'Notification' in window;
+
+// Load notification preference from localStorage
+if(localStorage.getItem('sp_notifications') === 'enabled') {
+  notificationsEnabled = true;
+}
+
+// Update notification toggle button
+function updateNotifToggle() {
+  const toggle = document.getElementById('notifToggle');
+  if(notificationsEnabled) {
+    toggle.textContent = '🔔 notifications: on';
+    toggle.classList.add('enabled');
+  } else {
+    toggle.textContent = '🔔 notifications: off';
+    toggle.classList.remove('enabled');
+  }
+}
+
+// Request notification permission
+async function enableNotifications() {
+  if(!notificationsSupported) {
+    alert('Notifications not supported on this device/browser');
+    return false;
+  }
+  
+  try {
+    const permission = await Notification.requestPermission();
+    if(permission === 'granted') {
+      notificationsEnabled = true;
+      localStorage.setItem('sp_notifications', 'enabled');
+      updateNotifToggle();
+      // Send a test notification
+      sendNotification('Notifications enabled! 💌', 'You\'ll now get notified about new stuff.');
+      return true;
+    } else {
+      alert('Permission denied. You can enable notifications in your browser settings.');
+      return false;
+    }
+  } catch(e) {
+    console.error('Error requesting notification permission:', e);
+    return false;
+  }
+}
+
+// Disable notifications
+function disableNotifications() {
+  notificationsEnabled = false;
+  localStorage.setItem('sp_notifications', 'disabled');
+  updateNotifToggle();
+}
+
+// Toggle notifications
+document.getElementById('notifToggle').addEventListener('click', async () => {
+  if(notificationsEnabled) {
+    disableNotifications();
+  } else {
+    await enableNotifications();
+  }
+});
+
+// Send notification
+function sendNotification(title, body, tag = null) {
+  if(!notificationsEnabled || !notificationsSupported) return;
+  
+  // Check if we've sent this notification recently (avoid spam)
+  const now = Date.now();
+  const key = tag || title;
+  if(lastNotificationTimes[key] && (now - lastNotificationTimes[key] < 60000)) {
+    return; // Don't send same notification within 1 minute
+  }
+  lastNotificationTimes[key] = now;
+  
+  try {
+    const options = {
+      body: body,
+      icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">💕</text></svg>',
+      tag: tag || title,
+      renotify: true,
+      requireInteraction: false
+    };
+    
+    if('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.ready.then(registration => {
+        registration.showNotification(title, options);
+      });
+    } else {
+      new Notification(title, options);
+    }
+  } catch(e) {
+    console.error('Error sending notification:', e);
+  }
+}
+
+// ---------- DAYS COUNTER ----------
+function updateDaysCounter(){
+  const startDate = new Date('2026-08-10');
+  const today = new Date();
+  const diffTime = Math.abs(today - startDate);
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  document.getElementById('daysCount').textContent = diffDays;
+}
+
+// ---------- IDENTITY ----------
 function applyWhoUI(){
   if(currentWho){
     document.getElementById('whoPicker').style.display = 'none';
     document.getElementById('whoLocked').style.display = 'block';
     document.getElementById('whoLockedName').textContent = currentWho;
+    // Update miss you caption
+    const caption = document.getElementById('missCaption');
+    if(currentWho === 'SHONNA'){
+      caption.textContent = "press it. he'll know. ⋆˚꒰ঌ ໒꒱˚⋆";
+    } else {
+      caption.textContent = "press it. she'll know. ⋆˚꒰ঌ ໒꒱˚⋆";
+    }
   } else {
     document.getElementById('whoPicker').style.display = 'flex';
     document.getElementById('whoLocked').style.display = 'none';
+    document.getElementById('missCaption').textContent = "press it. she'll know. ⋆˚꒰ঌ ໒꒱˚⋆";
   }
 }
 document.querySelectorAll('.who-btn').forEach(btn=>{
@@ -490,9 +811,16 @@ document.querySelectorAll('nav button').forEach(btn=>{
     document.getElementById('view-'+btn.dataset.view).classList.add('active');
     if(btn.dataset.view === 'archive') loadArchive();
     if(btn.dataset.view === 'things') loadThings();
+    if(btn.dataset.view === 'tasks') loadTasks();
     if(btn.dataset.view === 'home') refreshAll();
   });
 });
+
+// ---------- TRACK LAST SEEN DATA ----------
+let lastPingId = null;
+let lastMemoryId = null;
+let lastPlanId = null;
+let lastTaskId = null;
 
 // ---------- I MISS YOU ----------
 document.getElementById('missBtn').addEventListener('click', async ()=>{
@@ -500,7 +828,11 @@ document.getElementById('missBtn').addEventListener('click', async ()=>{
   if(!sb){ statusEl.textContent = "not connected — check your internet"; return; }
   if(!currentWho){ statusEl.textContent = "pick shonna or potti first"; return; }
   statusEl.textContent = "sending...";
-  const { error } = await sb.from('pings').insert({ from_name: currentWho, message: `${currentWho} misses you.` });
+  const { error } = await sb.from('pings').insert({ 
+    from_name: currentWho, 
+    message: `${currentWho} misses you.`,
+    type: 'miss'
+  });
   if(error){ statusEl.textContent = "couldn't send — check setup"; console.error(error); }
   else {
     statusEl.textContent = "sent ♡";
@@ -509,18 +841,255 @@ document.getElementById('missBtn').addEventListener('click', async ()=>{
   }
 });
 
+// Reply button
+document.getElementById('replyBtn').addEventListener('click', async ()=>{
+  if(!sb || !currentWho) return;
+  await sb.from('pings').insert({ 
+    from_name: currentWho, 
+    message: `${currentWho} sends a hug back! 🤗`,
+    type: 'reply'
+  });
+  document.getElementById('replyZone').classList.remove('show');
+  loadPings();
+});
+
 async function loadPings(){
   if(!sb) return;
   const list = document.getElementById('pingList');
   const { data, error } = await sb.from('pings').select('*').order('created_at', {ascending:false}).limit(12);
   if(error){ list.innerHTML = `<p class="empty-note">archive not connected yet</p>`; return; }
   if(!data || data.length===0){ list.innerHTML = `<p class="empty-note">nothing yet — be the first to say it.</p>`; return; }
+  
+  // Check for new pings (for notifications)
+  if(data[0] && data[0].id !== lastPingId) {
+    const newPings = data.filter(p => p.id !== lastPingId && p.from_name !== currentWho);
+    if(newPings.length > 0 && lastPingId !== null) {
+      const latestPing = newPings[0];
+      if(latestPing.type === 'miss') {
+        sendNotification('💌 Miss You!', `${latestPing.from_name} misses you!`, 'miss-you');
+      } else if(latestPing.type === 'reply') {
+        sendNotification('🤗 Hug Back!', `${latestPing.from_name} sent a hug!`, 'hug-back');
+      } else {
+        sendNotification('💌 New Message', `${latestPing.from_name}: ${latestPing.message}`, 'new-message');
+      }
+    }
+    lastPingId = data[0].id;
+  }
+  
   list.innerHTML = data.map(p=>{
     const t = new Date(/[Zz+]|-\d\d:\d\d$/.test(p.created_at) ? p.created_at : p.created_at + 'Z');
     const timeStr = t.toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
-    return `<div class="ping"><span class="who">${p.from_name}</span> ${escapeHtml(p.message)}<span class="time">${timeStr}</span></div>`;
+    const replyIndicator = p.type === 'reply' ? '🤗' : '';
+    return `<div class="ping">
+      <span class="who">${p.from_name}</span> ${escapeHtml(p.message)}
+      ${replyIndicator ? `<span class="reply-indicator">${replyIndicator}</span>` : ''}
+      <span class="time">${timeStr}</span>
+    </div>`;
+  }).join('');
+
+  // Check if there's a miss you from the other person that hasn't been replied to
+  checkForMissYou(data);
+}
+
+function checkForMissYou(pings){
+  if(!currentWho) return;
+  const other = OTHER(currentWho);
+  const latestMiss = pings.find(p => p.from_name === other && p.type === 'miss');
+  if(latestMiss){
+    // Check if there's a reply after this miss
+    const missIndex = pings.indexOf(latestMiss);
+    const hasReply = pings.slice(0, missIndex).some(p => p.from_name === currentWho && p.type === 'reply');
+    if(!hasReply){
+      document.getElementById('replyZone').classList.add('show');
+      document.getElementById('replyMessage').textContent = `${other} misses you!`;
+    }
+  }
+}
+
+// ---------- TASKS ----------
+let taskTimers = {};
+
+document.getElementById('taskAdd').addEventListener('click', addTask);
+document.getElementById('taskInput').addEventListener('keydown', e=>{ if(e.key==='Enter') addTask(); });
+
+async function addTask(){
+  if(!sb || !currentWho) return;
+  const input = document.getElementById('taskInput');
+  const timerSelect = document.getElementById('taskTimer');
+  const content = input.value.trim();
+  const timerMinutes = parseInt(timerSelect.value);
+  
+  if(!content) return;
+  
+  const assignedTo = OTHER(currentWho);
+  const deadline = new Date(Date.now() + timerMinutes * 60000).toISOString();
+  
+  const { data, error } = await sb.from('tasks').insert({
+    task: content,
+    assigned_by: currentWho,
+    assigned_to: assignedTo,
+    deadline: deadline,
+    status: 'pending',
+    created_at: new Date().toISOString()
+  });
+  
+  if(!error){
+    input.value = '';
+    loadTasks();
+  }
+}
+
+async function loadTasks(){
+  if(!sb || !currentWho) return;
+  const list = document.getElementById('tasksList');
+  const { data, error } = await sb.from('tasks')
+    .select('*')
+    .or(`assigned_to.eq.${currentWho},assigned_by.eq.${currentWho}`)
+    .order('created_at', {ascending:false});
+  
+  if(error || !data || data.length===0){ 
+    list.innerHTML = `<p class="empty-note">no tasks yet. assign something!</p>`; 
+    return; 
+  }
+  
+  // Check for new tasks assigned to me (for notifications)
+  if(data[0] && data[0].id !== lastTaskId) {
+    const newTasks = data.filter(t => t.id !== lastTaskId && t.assigned_to === currentWho && t.status === 'pending');
+    if(newTasks.length > 0 && lastTaskId !== null) {
+      const latestTask = newTasks[0];
+      sendNotification('⏰ New Task!', `${latestTask.assigned_by} assigned you: ${latestTask.task}`, 'new-task');
+    }
+    lastTaskId = data[0].id;
+  }
+  
+  list.innerHTML = data.map(task => {
+    const isAssignedToMe = task.assigned_to === currentWho;
+    const timeLeft = new Date(task.deadline) - new Date();
+    const isExpired = timeLeft < 0;
+    const isUrgent = timeLeft > 0 && timeLeft < 60000; // less than 1 min
+    const isLongTerm = timeLeft > 3600000; // more than 1 hour
+    
+    if(isAssignedToMe && !isExpired && task.status === 'pending'){
+      // Start timer update
+      clearInterval(taskTimers[task.id]);
+      taskTimers[task.id] = setInterval(() => updateTaskTimer(task.id), isLongTerm ? 60000 : 1000);
+    }
+    
+    return `
+      <div class="task-item" id="task-${task.id}">
+        <div class="task-header">
+          <span class="task-title">${escapeHtml(task.task)}</span>
+          <span class="task-who">from ${task.assigned_by} → ${task.assigned_to}</span>
+        </div>
+        ${task.status === 'pending' && isAssignedToMe ? `
+          <div class="task-timer ${isUrgent ? 'urgent' : ''} ${isLongTerm ? 'long-term' : ''}" id="timer-${task.id}">
+            ${formatTime(timeLeft)}
+          </div>
+          ${!isLongTerm ? `
+            <div class="task-progress">
+              <div class="task-progress-bar" id="progress-${task.id}" style="width: ${calculateProgress(task.deadline, task.created_at)}%"></div>
+            </div>
+          ` : ''}
+        ` : ''}
+        ${task.status === 'completed' ? `<div style="color: var(--green); font-weight:700;">✓ completed!</div>` : ''}
+        ${task.status === 'pending' && isAssignedToMe ? `
+          <div class="task-actions">
+            <button class="complete-btn" onclick="completeTask('${task.id}')">✓ done</button>
+          </div>
+        ` : ''}
+        ${task.assigned_by === currentWho ? `
+          <div class="task-actions">
+            <button class="delete-btn" onclick="deleteTask('${task.id}')">delete</button>
+          </div>
+        ` : ''}
+      </div>
+    `;
   }).join('');
 }
+
+function formatTime(ms){
+  if(ms < 0) return "time's up!";
+  
+  const seconds = Math.floor(ms / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const weeks = Math.floor(days / 7);
+  
+  if(weeks > 0) {
+    const remainingDays = days % 7;
+    const remainingHours = hours % 24;
+    return `${weeks}w ${remainingDays}d ${remainingHours}h`;
+  }
+  if(days > 0) {
+    const remainingHours = hours % 24;
+    const remainingMinutes = minutes % 60;
+    return `${days}d ${remainingHours}h ${remainingMinutes}m`;
+  }
+  if(hours > 0) {
+    const remainingMinutes = minutes % 60;
+    const remainingSeconds = seconds % 60;
+    return `${hours}h ${remainingMinutes}m ${remainingSeconds}s`;
+  }
+  if(minutes > 0) {
+    const remainingSeconds = seconds % 60;
+    return `${minutes}m ${remainingSeconds}s`;
+  }
+  return `${seconds}s`;
+}
+
+function calculateProgress(deadline, createdAt){
+  const total = new Date(deadline) - new Date(createdAt);
+  const remaining = new Date(deadline) - new Date();
+  const progress = ((total - remaining) / total) * 100;
+  return Math.min(100, Math.max(0, progress));
+}
+
+function updateTaskTimer(taskId){
+  const timerEl = document.getElementById(`timer-${taskId}`);
+  if(!timerEl) return;
+  
+  // Need to fetch the task to get deadline
+  sb.from('tasks').select('*').eq('id', taskId).single().then(({ data }) => {
+    if(data){
+      const timeLeft = new Date(data.deadline) - new Date();
+      if(timeLeft < 0){
+        timerEl.textContent = "time's up!";
+        timerEl.classList.add('urgent');
+        clearInterval(taskTimers[taskId]);
+        // Send notification for task timeout
+        sendNotification('⏰ Time\'s Up!', `Task "${data.task}" time is up!`, `task-timeout-${taskId}`);
+      } else {
+        timerEl.textContent = formatTime(timeLeft);
+        if(timeLeft < 60000) {
+          timerEl.classList.add('urgent');
+          // Send urgent notification
+          sendNotification('⚠️ Task Almost Due!', `Less than 1 minute left for: ${data.task}`, `task-urgent-${taskId}`);
+        }
+      }
+      const progressEl = document.getElementById(`progress-${taskId}`);
+      if(progressEl){
+        progressEl.style.width = `${calculateProgress(data.deadline, data.created_at)}%`;
+      }
+    }
+  });
+}
+
+async function completeTask(taskId){
+  if(!sb) return;
+  await sb.from('tasks').update({ status: 'completed' }).eq('id', taskId);
+  loadTasks();
+}
+
+async function deleteTask(taskId){
+  if(!sb) return;
+  await sb.from('tasks').delete().eq('id', taskId);
+  loadTasks();
+}
+
+// Make functions globally accessible for onclick handlers
+window.completeTask = completeTask;
+window.deleteTask = deleteTask;
 
 // ---------- TODAY WIDGET ----------
 function renderTodayDate(){
@@ -563,6 +1132,15 @@ async function loadLatestMemoryNudge(){
   const { data, error } = await sb.from('memories').select('*').order('created_at', {ascending:false}).limit(1);
   if(error || !data || data.length===0){ row.style.display = 'none'; return; }
   const latest = data[0];
+  
+  // Check for new memories (for notifications)
+  if(latest.id !== lastMemoryId) {
+    if(latest.added_by && latest.added_by !== currentWho && lastMemoryId !== null) {
+      sendNotification('📷 New Memory!', `${latest.added_by} added a new memory: "${latest.caption || 'untitled'}"`, 'new-memory');
+    }
+    lastMemoryId = latest.id;
+  }
+  
   if(latest.added_by && latest.added_by !== currentWho){
     row.style.display = 'block';
     row.innerHTML = `<span class="lbl">💌 a little thing for you</span>${escapeHtml(latest.added_by)} left something in the archive: "${escapeHtml(latest.caption||'')}"`;
@@ -754,6 +1332,15 @@ async function loadTonightPlan(){
   const mini = document.getElementById('planMini');
   const { data, error } = await sb.from('tonight_plan').select('*').eq('id',1).maybeSingle();
   if(error || !data || !data.title){ win.style.display = 'none'; return; }
+  
+  // Check for new plan (for notifications)
+  if(data && (!lastPlanId || (data.updated_at && data.updated_at !== lastPlanId))) {
+    if(data.generated_by && data.generated_by !== currentWho) {
+      sendNotification('🌙 New Plan!', `${data.generated_by} suggested: ${data.title}`, 'new-plan');
+    }
+    lastPlanId = data.updated_at || data.created_at;
+  }
+  
   win.style.display = 'block';
   const isAccepted = data.status === 'accepted';
   mini.innerHTML = `
@@ -821,12 +1408,14 @@ document.getElementById('closeSecret').addEventListener('click', ()=> document.g
 // ---------- REFRESH / REALTIME / VISIBILITY ----------
 function refreshAll(){
   renderTodayDate();
+  updateDaysCounter();
   loadPings();
   loadTonightPlan();
   loadStatus();
   loadLatestMemoryNudge();
   if(document.getElementById('view-archive').classList.contains('active')) loadArchive();
   if(document.getElementById('view-things').classList.contains('active')) loadThings();
+  if(document.getElementById('view-tasks').classList.contains('active')) loadTasks();
 }
 
 let pollingStarted = false;
@@ -834,12 +1423,13 @@ function startApp(){
   const savedWho = localStorage.getItem('sp_who');
   if(savedWho){ currentWho = savedWho; }
   applyWhoUI();
+  updateNotifToggle();
   refreshAll();
 
   if(!pollingStarted){
     pollingStarted = true;
 
-    // instant updates via realtime (needs the SQL setup below)
+    // instant updates via realtime
     if(sb){
     sb.channel('sp-live')
       .on('postgres_changes', {event:'*', schema:'public', table:'pings'}, ()=> loadPings())
@@ -852,14 +1442,20 @@ function startApp(){
       .on('postgres_changes', {event:'*', schema:'public', table:'little_things'}, ()=> {
         if(document.getElementById('view-things').classList.contains('active')) loadThings();
       })
+      .on('postgres_changes', {event:'*', schema:'public', table:'tasks'}, ()=> {
+        if(document.getElementById('view-tasks').classList.contains('active')) loadTasks();
+      })
       .subscribe();
     }
 
-    // fallback polling, in case realtime isn't enabled yet
+    // fallback polling
     setInterval(refreshAll, 6000);
 
-    // instant refresh the moment the tab/app comes back into view
+    // instant refresh on tab visibility
     document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refreshAll(); });
+    
+    // Update days counter at midnight
+    setInterval(updateDaysCounter, 60000);
   }
 }
 </script>
