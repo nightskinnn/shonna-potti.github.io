@@ -415,7 +415,7 @@ async function loadPings(){
   if(error){ list.innerHTML = `<p class="empty-note">archive not connected yet</p>`; return; }
   if(!data || data.length===0){ list.innerHTML = `<p class="empty-note">nothing yet — be the first to say it.</p>`; return; }
   list.innerHTML = data.map(p=>{
-    const t = new Date(p.created_at);
+    const t = new Date(/[Zz+]|-\d\d:\d\d$/.test(p.created_at) ? p.created_at : p.created_at + 'Z');
     const timeStr = t.toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
     return `<div class="ping"><span class="who">${p.from_name}</span> <span class="msg">${escapeHtml(p.message)}</span><span class="time">${timeStr}</span></div>`;
   }).join('');
@@ -515,17 +515,60 @@ function select(group, chip){
 }
 
 const PLANS = [
-  {meet:'meet', time:'long', mood:'romantic', title:'Campus Walk', desc:'Go for a walk, get snacks, take 10 random pictures, sit somewhere and just talk.', tags:['walk','snacks','photos']},
-  {meet:'meet', time:'med', mood:'playful', title:'Photo Challenge', desc:'Walk somewhere new and take a photo every time something makes you laugh.', tags:['walk','photos']},
+  // MEET — short
+  {meet:'meet', time:'short', mood:'romantic', title:'Two-Minute Hug', desc:'Meet up, sit close, no phones. Just hold on to each other for a bit before you both have to go.', tags:['low-key','romantic']},
+  {meet:'meet', time:'short', mood:'tired', title:'Silent Snack Run', desc:'Grab something quick from the nearest stall and eat it together sitting somewhere. Talking optional.', tags:['snacks','low-effort']},
+  {meet:'meet', time:'short', mood:'playful', title:'One-Minute Dare', desc:'Take turns giving each other a silly one-minute dare on the spot. Loser buys chai.', tags:['fun','quick']},
+  {meet:'meet', time:'short', mood:'talk', title:'Bench Debrief', desc:'Find a bench and each get 5 uninterrupted minutes to talk about whatever is actually on your mind.', tags:['deep','low-key']},
   {meet:'meet', time:'short', mood:'chill', title:'Sit and Talk', desc:'Find a bench. No phones for 15 minutes. Just talk.', tags:['low-key']},
-  {meet:'call', time:'long', mood:'romantic', title:'"Open When..." Letters', desc:'Write each other a letter to open on call, then read them out loud together.', tags:['letters','call']},
-  {meet:'call', time:'med', mood:'talk', title:'20 Questions: Us Edition', desc:"Call for 30 minutes and take turns asking questions you've never asked each other. No skipping more than one.", tags:['call','deep']},
+  // MEET — med
+  {meet:'meet', time:'med', mood:'romantic', title:'Sunset Bench', desc:'Find a spot with a view, sit close, and just watch the evening happen together.', tags:['romantic','view']},
+  {meet:'meet', time:'med', mood:'tired', title:'Ice Cream, No Agenda', desc:'Get ice cream, sit somewhere quiet, and let the conversation go wherever it wants.', tags:['snacks','low-effort']},
+  {meet:'meet', time:'med', mood:'playful', title:'Photo Challenge', desc:'Walk somewhere new and take a photo every time something makes you laugh.', tags:['walk','photos']},
+  {meet:'meet', time:'med', mood:'talk', title:'The Long Way Back', desc:'Take the longest possible route back to the hostel and use the extra time to actually talk.', tags:['walk','deep']},
+  {meet:'meet', time:'med', mood:'chill', title:'Canteen Hangout', desc:'No plan, no destination — just sit at the canteen and exist near each other for a while.', tags:['low-key']},
+  // MEET — long
+  {meet:'meet', time:'long', mood:'romantic', title:'Campus Walk', desc:'Go for a walk, get snacks, take 10 random pictures, sit somewhere and just talk.', tags:['walk','snacks','photos']},
+  {meet:'meet', time:'long', mood:'tired', title:'Movie and Do Nothing', desc:'Pick something easy to watch together and dont feel obligated to do anything else.', tags:['movie','low-effort']},
+  {meet:'meet', time:'long', mood:'playful', title:'Explore Somewhere New', desc:'Pick a part of campus or town neither of you has properly explored and just wander.', tags:['explore','fun']},
+  {meet:'meet', time:'long', mood:'talk', title:'Full Debrief', desc:'Get food, sit somewhere with no time pressure, and actually catch up on everything youve been meaning to say.', tags:['deep','food']},
+  {meet:'meet', time:'long', mood:'chill', title:'Study Date, Sort Of', desc:'Bring your books, sit together, and let studying be the excuse to just be near each other.', tags:['study','low-key']},
+  // CALL — short
+  {meet:'call', time:'short', mood:'romantic', title:'One Song, One Call', desc:'Pick a song that reminds you of each other, play it together on call, say nothing until it ends.', tags:['music','romantic']},
   {meet:'call', time:'short', mood:'tired', title:'Same Song', desc:'Both put on the same song and stay on call until it ends. No talking required.', tags:['music','low-effort']},
+  {meet:'call', time:'short', mood:'playful', title:'Rapid Fire', desc:'Set a 5-minute timer and fire random would-you-rather questions at each other.', tags:['call','fun']},
+  {meet:'call', time:'short', mood:'talk', title:'Best Part of Today', desc:'Call and each share the best and worst five minutes of your day, no matter how small.', tags:['call','check-in']},
   {meet:'call', time:'short', mood:'chill', title:'Goodnight Call', desc:'Tell each other about your day, then just stay on the line until one of you falls asleep.', tags:['call','wind-down']},
-  {meet:'text', time:'short', mood:'tired', title:'Show Me Your Day', desc:'Both send 3 photos from today and explain one of them.', tags:['photos','text']},
-  {meet:'text', time:'med', mood:'playful', title:'Chaotic Idea Swap', desc:"Each of you sends your most unhinged idea for a future date. Vote on which one you're actually doing.", tags:['text','fun']},
-  {meet:'text', time:'long', mood:'talk', title:'Voice Note Marathon', desc:'Trade voice notes back and forth all evening instead of texting.', tags:['voice','text']},
+  // CALL — med
   {meet:'call', time:'med', mood:'romantic', title:'Watch the Same Sunset', desc:'Get on call, each go somewhere with a view, and watch the sunset together apart.', tags:['call','romantic']},
+  {meet:'call', time:'med', mood:'tired', title:'Low-Effort Call', desc:'Call, put each other on speaker, and each go about your own small tasks while staying on the line.', tags:['call','low-effort']},
+  {meet:'call', time:'med', mood:'playful', title:'Guess the Story', desc:'One of you describes a random memory badly and the other has to guess what actually happened.', tags:['call','fun']},
+  {meet:'call', time:'med', mood:'talk', title:'20 Questions: Us Edition', desc:"Call for 30 minutes and take turns asking questions you've never asked each other. No skipping more than one.", tags:['call','deep']},
+  {meet:'call', time:'med', mood:'chill', title:'Background Call', desc:'Call and just do your own separate things, studying, scrolling, lying down, with each other on speaker.', tags:['call','low-key']},
+  // CALL — long
+  {meet:'call', time:'long', mood:'romantic', title:'"Open When..." Letters', desc:'Write each other a letter to open on call, then read them out loud together.', tags:['letters','call']},
+  {meet:'call', time:'long', mood:'tired', title:'Fall Asleep on Call', desc:'Put on something soft in the background and just stay on the line until you both drift off.', tags:['call','wind-down']},
+  {meet:'call', time:'long', mood:'playful', title:'Watch Party', desc:'Start the same show or video at the same time on call and react to it together.', tags:['call','fun']},
+  {meet:'call', time:'long', mood:'talk', title:'No-Topic-Off-Limits Call', desc:'One long call, no set topic, just keep talking until you run out of things to say.', tags:['call','deep']},
+  {meet:'call', time:'long', mood:'chill', title:'Study Together on Call', desc:'Stay on call in silence while you both study separately, checking in every so often.', tags:['call','study']},
+  // TEXT — short
+  {meet:'text', time:'short', mood:'romantic', title:'One Nice Thing', desc:'Send each other one specific thing you appreciate about the other, right now.', tags:['text','romantic']},
+  {meet:'text', time:'short', mood:'tired', title:'Show Me Your Day', desc:'Both send 3 photos from today and explain one of them.', tags:['photos','text']},
+  {meet:'text', time:'short', mood:'playful', title:'Emoji Story', desc:'Tell each other about your day using only emojis. First one to break and use words loses.', tags:['text','fun']},
+  {meet:'text', time:'short', mood:'talk', title:'Three Questions', desc:'Each send the other one real question you actually want an answer to. No small talk.', tags:['text','deep']},
+  {meet:'text', time:'short', mood:'chill', title:'Song of the Day', desc:'Each send a song that matches your mood right now, no explanation needed.', tags:['music','text']},
+  // TEXT — med
+  {meet:'text', time:'med', mood:'romantic', title:'Memory Exchange', desc:'Each send your favorite memory of the two of you so far, and why it stuck.', tags:['text','romantic']},
+  {meet:'text', time:'med', mood:'tired', title:'Slow Texting', desc:'No pressure to reply fast, just keep a lazy back-and-forth going about nothing in particular.', tags:['text','low-effort']},
+  {meet:'text', time:'med', mood:'playful', title:'Chaotic Idea Swap', desc:"Each of you sends your most unhinged idea for a future date. Vote on which one you're actually doing.", tags:['text','fun']},
+  {meet:'text', time:'med', mood:'talk', title:'Would You Rather: Deep Cut', desc:'Text a round of would-you-rather questions that actually reveal something about each other.', tags:['text','deep']},
+  {meet:'text', time:'med', mood:'chill', title:'Playlist Building', desc:'Build a shared playlist together over text, one song each, no explanations required.', tags:['music','text']},
+  // TEXT — long
+  {meet:'text', time:'long', mood:'romantic', title:'Letter, Sent Slowly', desc:'Write out how you feel right now in one long message, and send it only when its finished.', tags:['text','romantic']},
+  {meet:'text', time:'long', mood:'tired', title:'Async Evening', desc:'Text on and off through the evening with zero obligation to reply immediately.', tags:['text','low-effort']},
+  {meet:'text', time:'long', mood:'playful', title:'Story Chain', desc:'Write a ridiculous story together, one sentence at a time, over text.', tags:['text','fun']},
+  {meet:'text', time:'long', mood:'talk', title:'Voice Note Marathon', desc:'Trade voice notes back and forth all evening instead of texting.', tags:['voice','text']},
+  {meet:'text', time:'long', mood:'chill', title:'Day in Review', desc:'Text through your whole day at the end of it, hour by hour, like narrating it to each other.', tags:['text','low-key']},
 ];
 
 document.getElementById('genBtn').addEventListener('click', renderPlan);
