@@ -282,852 +282,6 @@
             <div class="icon">🫶</div>
             <div class="label">I MISS YOU</div>
           </div>
-          <div class="stamp-caption">press it. They'll know. ⋆˚꒰ঌ ໒꒱˚⋆</div>
-          <div class="status" id="missStatus"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="window" id="planWindow" style="display:none;">
-      <div class="titlebar"><span class="tname">🌙 tonights_plan.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-      <div class="wbody"><div id="planMini"></div></div>
-    </div>
-
-    <div class="window">
-      <div class="titlebar"><span class="tname">📜 the_log.txt</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-      <div class="wbody"><div id="pingList"><p class="empty-note">nothing yet — be the first to say it.</p></div></div>
-    </div>
-  </section>
-
-  <!-- ARCHIVE -->
-  <section class="view" id="view-archive">
-    <div class="window">
-      <div class="titlebar"><span class="tname">📷 our_archive</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-      <div class="wbody">
-        <div class="archive-head">
-          <span class="counter" id="archiveCount">0 memories</span>
-          <button class="add-btn" id="openAdd">+ add memory</button>
-        </div>
-        <div class="filters">
-          <button class="filter-btn active" data-f="ALL">all</button>
-          <button class="filter-btn" data-f="SHONNA">shonna</button>
-          <button class="filter-btn" data-f="POTTI">potti</button>
-        </div>
-        <div class="roll" id="rollGrid"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TONIGHT -->
-  <section class="view" id="view-tonight">
-    <div class="window">
-      <div class="titlebar"><span class="tname">🌙 tonight.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-      <div class="wbody">
-        <div class="picker-group">
-          <span class="gl">⏱ how much time</span>
-          <div class="chip-row" id="timeChips">
-            <button class="chip" data-v="short">15 min</button>
-            <button class="chip" data-v="med">30–60 min</button>
-            <button class="chip" data-v="long">1–2 hrs</button>
-          </div>
-        </div>
-        <div class="picker-group">
-          <span class="gl">📍 can you meet?</span>
-          <div class="chip-row" id="meetChips">
-            <button class="chip" data-v="meet">can meet</button>
-            <button class="chip" data-v="call">call only</button>
-            <button class="chip" data-v="text">text only</button>
-          </div>
-        </div>
-        <div class="picker-group">
-          <span class="gl">💭 mood</span>
-          <div class="chip-row" id="moodChips">
-            <button class="chip" data-v="romantic">💗 affectionate</button>
-            <button class="chip" data-v="tired">🥱 tired</button>
-            <button class="chip" data-v="playful">🎮 playful</button>
-            <button class="chip" data-v="talk">🧠 talkative</button>
-            <button class="chip" data-v="chill">🎬 chill</button>
-          </div>
-        </div>
-        <button class="go-btn" id="genBtn">give us a plan ♡</button>
-        <div class="card-result" id="cardResult"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LITTLE THINGS -->
-  <section class="view" id="view-things">
-    <div class="window">
-      <div class="titlebar"><span class="tname">🧸 little_things.txt</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-      <div class="wbody">
-        <span class="win-label">tiny, insignificant facts about each other</span>
-        <div class="thing-form">
-          <input type="text" id="thingInput" placeholder="she always sends 😭 when she doesn't know what to say">
-          <button id="thingAdd">add</button>
-        </div>
-        <div id="thingsList"><p class="empty-note">nothing here yet.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    made by shonna, for potti · est. 2026 &nbsp;
-    <span class="secret-heart" id="secretHeart">♡</span>
-  </footer>
-</div>
-
-<div class="taskbar">
-  <div class="start-btn">♡ start</div>
-  <div class="clock" id="clock">00:00</div>
-</div>
-
-<!-- MODAL: Add memory -->
-<div class="modal-bg" id="addModalBg">
-  <div class="modal">
-    <div class="modal-wrap">
-      <button class="close-x" id="closeAdd">×</button>
-      <h3>add to the archive</h3>
-      <div class="field"><label>photo</label><input type="file" id="photoFile" accept="image/*"></div>
-      <div class="field"><label>date</label><input type="date" id="memDate"></div>
-      <div class="field"><label>caption</label><input type="text" id="memCap" placeholder="that stupid evening"></div>
-      <div class="field">
-        <label>added by</label>
-        <select id="memWho"><option value="SHONNA">Shonna</option><option value="POTTI">Potti</option></select>
-      </div>
-      <div class="modal-actions">
-        <button class="cancel" id="cancelAdd">cancel</button>
-        <button class="save" id="saveAdd">save memory</button>
-      </div>
-      <div class="status" id="addStatus"></div>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: secret -->
-<div class="modal-bg secret-modal" id="secretModalBg">
-  <div class="modal">
-    <div class="modal-wrap">
-      <button class="close-x" id="closeSecret">×</button>
-      <h3 id="secretTitle">you found it.</h3>
-      <p id="secretText">...</p>
-    </div>
-  </div>
-</div>
-
-<script>
-// ---------- SUPABASE SETUP ----------
-const SUPABASE_URL = "https://rjgyjnrawsbyxruvelfl.supabase.co";
-const SUPABASE_KEY = "sb_publishable_FAgP2OkS8h__izEk5uAcFw_1lGJy03i";
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-let currentWho = null;
-const OTHER = w => w === 'SHONNA' ? 'POTTI' : 'SHONNA';
-
-// ---------- PASSCODE (asks every time — never persisted) ----------
-const PASSCODE = "2704";
-function tryUnlock(){
-  const val = document.getElementById('passInput').value.trim();
-  if(val === PASSCODE){
-    document.getElementById('lockScreen').style.display = 'none';
-    startApp();
-  } else {
-    document.getElementById('lockError').textContent = "wrong code, try again";
-  }
-}
-document.getElementById('passSubmit').addEventListener('click', tryUnlock);
-document.getElementById('passInput').addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock(); });
-
-// ---------- IDENTITY (choose once, persists on this device) ----------
-function applyWhoUI(){
-  if(currentWho){
-    document.getElementById('whoPicker').style.display = 'none';
-    document.getElementById('whoLocked').style.display = 'block';
-    document.getElementById('whoLockedName').textContent = currentWho;
-  } else {
-    document.getElementById('whoPicker').style.display = 'flex';
-    document.getElementById('whoLocked').style.display = 'none';
-  }
-}
-document.querySelectorAll('.who-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    currentWho = btn.dataset.who;
-    localStorage.setItem('sp_who', currentWho);
-    applyWhoUI();
-    refreshAll();
-  });
-});
-document.getElementById('whoResetLink').addEventListener('click', ()=>{
-  localStorage.removeItem('sp_who');
-  currentWho = null;
-  applyWhoUI();
-});
-
-// ---------- CLOCK ----------
-function tickClock(){
-  const d = new Date();
-  document.getElementById('clock').textContent = d.toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
-}
-tickClock(); setInterval(tickClock, 1000);
-
-function escapeHtml(str){
-  const d = document.createElement('div');
-  d.textContent = str;
-  return d.innerHTML;
-}
-
-// ---------- NAV ----------
-document.querySelectorAll('nav button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    document.getElementById('view-'+btn.dataset.view).classList.add('active');
-    if(btn.dataset.view === 'archive') loadArchive();
-    if(btn.dataset.view === 'things') loadThings();
-    if(btn.dataset.view === 'home') refreshAll();
-  });
-});
-
-// ---------- I MISS YOU ----------
-document.getElementById('missBtn').addEventListener('click', async ()=>{
-  const statusEl = document.getElementById('missStatus');
-  if(!currentWho){ statusEl.textContent = "pick shonna or potti first"; return; }
-  statusEl.textContent = "sending...";
-  const { error } = await sb.from('pings').insert({ from_name: currentWho, message: `${currentWho} misses you.` });
-  if(error){ statusEl.textContent = "couldn't send — check setup"; console.error(error); }
-  else {
-    statusEl.textContent = "sent ♡";
-    loadPings();
-    setTimeout(()=>{ statusEl.textContent=""; }, 3000);
-  }
-});
-
-async function loadPings(){
-  const list = document.getElementById('pingList');
-  const { data, error } = await sb.from('pings').select('*').order('created_at', {ascending:false}).limit(12);
-  if(error){ list.innerHTML = `<p class="empty-note">archive not connected yet</p>`; return; }
-  if(!data || data.length===0){ list.innerHTML = `<p class="empty-note">nothing yet — be the first to say it.</p>`; return; }
-  list.innerHTML = data.map(p=>{
-    const t = new Date(/[Zz+]|-\d\d:\d\d$/.test(p.created_at) ? p.created_at : p.created_at + 'Z');
-    const timeStr = t.toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
-    return `<div class="ping"><span class="who">${p.from_name}</span> ${escapeHtml(p.message)}<span class="time">${timeStr}</span></div>`;
-  }).join('');
-}
-
-// ---------- TODAY WIDGET ----------
-function renderTodayDate(){
-  const d = new Date();
-  document.getElementById('todayDate').textContent = d.toLocaleDateString(undefined, {day:'2-digit', month:'long', year:'numeric'}).toUpperCase();
-}
-
-async function loadStatus(){
-  const { data, error } = await sb.from('status').select('*');
-  const row = document.getElementById('partnerStatusRow');
-  if(error || !data){ row.style.display = 'none'; }
-  else {
-    const mine = currentWho;
-    const partnerName = mine ? OTHER(mine) : null;
-    const partnerRow = data.find(r => r.who === partnerName);
-    if(partnerRow && partnerRow.message){
-      row.style.display = 'block';
-      row.innerHTML = `<span class="lbl">🌙 tonight</span>${escapeHtml(partnerName)} is ${escapeHtml(partnerRow.message)}.`;
-    } else { row.style.display = 'none'; }
-    const mineRow = data.find(r => r.who === mine);
-    document.querySelectorAll('.status-chip').forEach(c=>{
-      c.classList.toggle('sel', !!mineRow && mineRow.message === c.dataset.v);
-    });
-  }
-}
-
-document.querySelectorAll('.status-chip').forEach(chip=>{
-  chip.addEventListener('click', async ()=>{
-    if(!currentWho){ return; }
-    await sb.from('status').upsert({ who: currentWho, message: chip.dataset.v, updated_at: new Date().toISOString() });
-    loadStatus();
-  });
-});
-
-async function loadLatestMemoryNudge(){
-  const row = document.getElementById('archiveNudgeRow');
-  if(!currentWho){ row.style.display = 'none'; return; }
-  const { data, error } = await sb.from('memories').select('*').order('created_at', {ascending:false}).limit(1);
-  if(error || !data || data.length===0){ row.style.display = 'none'; return; }
-  const latest = data[0];
-  if(latest.added_by && latest.added_by !== currentWho){
-    row.style.display = 'block';
-    row.innerHTML = `<span class="lbl">💌 a little thing for you</span>${escapeHtml(latest.added_by)} left something in the archive: "${escapeHtml(latest.caption||'')}"`;
-  } else {
-    row.style.display = 'none';
-  }
-}
-
-// ---------- ARCHIVE ----------
-let archiveFilter = "ALL";
-document.querySelectorAll('.filter-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    archiveFilter = btn.dataset.f;
-    loadArchive();
-  });
-});
-
-async function loadArchive(){
-  const grid = document.getElementById('rollGrid');
-  let query = sb.from('memories').select('*').order('memory_date', {ascending:false});
-  if(archiveFilter !== "ALL") query = query.eq('added_by', archiveFilter);
-  const { data, error } = await query;
-  if(error){
-    grid.innerHTML = `<p class="empty-note">archive not connected yet — run the setup SQL in Supabase.</p>`;
-    document.getElementById('archiveCount').textContent = "0 memories";
-    return;
-  }
-  document.getElementById('archiveCount').textContent = `${data.length} ${data.length===1?'memory':'memories'}`;
-  if(data.length===0){ grid.innerHTML = `<p class="empty-note">no memories yet. add the first one.</p>`; return; }
-  grid.innerHTML = data.map(m=>{
-    const dateStr = m.memory_date ? new Date(m.memory_date).toLocaleDateString(undefined,{day:'2-digit',month:'short',year:'numeric'}) : '';
-    return `<div class="polaroid">
-      <img src="${m.photo_url || ''}" alt="" loading="lazy">
-      <div class="cap">${escapeHtml(m.caption || '')}</div>
-      <div class="meta">${dateStr} · ${m.added_by || ''}</div>
-    </div>`;
-  }).join('');
-}
-
-const addModalBg = document.getElementById('addModalBg');
-document.getElementById('openAdd').addEventListener('click', ()=>{
-  addModalBg.classList.add('show');
-  document.getElementById('memWho').value = currentWho || 'SHONNA';
-});
-document.getElementById('closeAdd').addEventListener('click', ()=> addModalBg.classList.remove('show'));
-document.getElementById('cancelAdd').addEventListener('click', ()=> addModalBg.classList.remove('show'));
-
-document.getElementById('saveAdd').addEventListener('click', async ()=>{
-  const fileInput = document.getElementById('photoFile');
-  const date = document.getElementById('memDate').value;
-  const caption = document.getElementById('memCap').value;
-  const who = document.getElementById('memWho').value;
-  const statusEl = document.getElementById('addStatus');
-
-  if(!fileInput.files[0]){ statusEl.textContent = "pick a photo first"; return; }
-  statusEl.textContent = "uploading...";
-
-  const file = fileInput.files[0];
-  const path = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.]/g,'_')}`;
-
-  const { error: upErr } = await sb.storage.from('memories').upload(path, file);
-  if(upErr){ statusEl.textContent = "upload failed — check storage bucket setup"; console.error(upErr); return; }
-
-  const { data: urlData } = sb.storage.from('memories').getPublicUrl(path);
-  const photo_url = urlData.publicUrl;
-
-  const { error: insErr } = await sb.from('memories').insert({
-    photo_url, caption, added_by: who, memory_date: date || new Date().toISOString().slice(0,10)
-  });
-  if(insErr){ statusEl.textContent = "couldn't save — check table setup"; console.error(insErr); return; }
-
-  statusEl.textContent = "saved ♡";
-  setTimeout(()=>{
-    addModalBg.classList.remove('show');
-    statusEl.textContent = "";
-    fileInput.value = ""; document.getElementById('memCap').value = ""; document.getElementById('memDate').value = "";
-    loadArchive();
-    loadLatestMemoryNudge();
-  }, 700);
-});
-
-// ---------- TONIGHT ----------
-let picked = { time:null, meet:null, mood:null };
-document.querySelectorAll('#timeChips .chip').forEach(c=>c.addEventListener('click', ()=>select('time', c)));
-document.querySelectorAll('#meetChips .chip').forEach(c=>c.addEventListener('click', ()=>select('meet', c)));
-document.querySelectorAll('#moodChips .chip').forEach(c=>c.addEventListener('click', ()=>select('mood', c)));
-
-function select(group, chip){
-  document.querySelectorAll(`#${group}Chips .chip`).forEach(c=>c.classList.remove('sel'));
-  chip.classList.add('sel');
-  picked[group] = chip.dataset.v;
-}
-
-const PLANS = [
-  {meet:'meet', time:'short', mood:'romantic', title:'Two-Minute Hug', desc:'Meet up, sit close, no phones. Just hold on to each other for a bit before you both have to go.', tags:['low-key','romantic']},
-  {meet:'meet', time:'short', mood:'tired', title:'Silent Snack Run', desc:'Grab something quick from the nearest stall and eat it together sitting somewhere. Talking optional.', tags:['snacks','low-effort']},
-  {meet:'meet', time:'short', mood:'playful', title:'One-Minute Dare', desc:'Take turns giving each other a silly one-minute dare on the spot. Loser buys chai.', tags:['fun','quick']},
-  {meet:'meet', time:'short', mood:'talk', title:'Bench Debrief', desc:'Find a bench and each get 5 uninterrupted minutes to talk about whatever is actually on your mind.', tags:['deep','low-key']},
-  {meet:'meet', time:'short', mood:'chill', title:'Sit and Talk', desc:'Find a bench. No phones for 15 minutes. Just talk.', tags:['low-key']},
-  {meet:'meet', time:'med', mood:'romantic', title:'Sunset Bench', desc:'Find a spot with a view, sit close, and just watch the evening happen together.', tags:['romantic','view']},
-  {meet:'meet', time:'med', mood:'tired', title:'Ice Cream, No Agenda', desc:'Get ice cream, sit somewhere quiet, and let the conversation go wherever it wants.', tags:['snacks','low-effort']},
-  {meet:'meet', time:'med', mood:'playful', title:'Photo Challenge', desc:'Walk somewhere new and take a photo every time something makes you laugh.', tags:['walk','photos']},
-  {meet:'meet', time:'med', mood:'talk', title:'The Long Way Back', desc:'Take the longest possible route back to the hostel and use the extra time to actually talk.', tags:['walk','deep']},
-  {meet:'meet', time:'med', mood:'chill', title:'Canteen Hangout', desc:'No plan, no destination — just sit at the canteen and exist near each other for a while.', tags:['low-key']},
-  {meet:'meet', time:'long', mood:'romantic', title:'Campus Walk', desc:'Go for a walk, get snacks, take 10 random pictures, sit somewhere and just talk.', tags:['walk','snacks','photos']},
-  {meet:'meet', time:'long', mood:'tired', title:'Movie and Do Nothing', desc:'Pick something easy to watch together and dont feel obligated to do anything else.', tags:['movie','low-effort']},
-  {meet:'meet', time:'long', mood:'playful', title:'Explore Somewhere New', desc:'Pick a part of campus or town neither of you has properly explored and just wander.', tags:['explore','fun']},
-  {meet:'meet', time:'long', mood:'talk', title:'Full Debrief', desc:'Get food, sit somewhere with no time pressure, and actually catch up on everything youve been meaning to say.', tags:['deep','food']},
-  {meet:'meet', time:'long', mood:'chill', title:'Study Date, Sort Of', desc:'Bring your books, sit together, and let studying be the excuse to just be near each other.', tags:['study','low-key']},
-  {meet:'call', time:'short', mood:'romantic', title:'One Song, One Call', desc:'Pick a song that reminds you of each other, play it together on call, say nothing until it ends.', tags:['music','romantic']},
-  {meet:'call', time:'short', mood:'tired', title:'Same Song', desc:'Both put on the same song and stay on call until it ends. No talking required.', tags:['music','low-effort']},
-  {meet:'call', time:'short', mood:'playful', title:'Rapid Fire', desc:'Set a 5-minute timer and fire random would-you-rather questions at each other.', tags:['call','fun']},
-  {meet:'call', time:'short', mood:'talk', title:'Best Part of Today', desc:'Call and each share the best and worst five minutes of your day, no matter how small.', tags:['call','check-in']},
-  {meet:'call', time:'short', mood:'chill', title:'Goodnight Call', desc:'Tell each other about your day, then just stay on the line until one of you falls asleep.', tags:['call','wind-down']},
-  {meet:'call', time:'med', mood:'romantic', title:'Watch the Same Sunset', desc:'Get on call, each go somewhere with a view, and watch the sunset together apart.', tags:['call','romantic']},
-  {meet:'call', time:'med', mood:'tired', title:'Low-Effort Call', desc:'Call, put each other on speaker, and each go about your own small tasks while staying on the line.', tags:['call','low-effort']},
-  {meet:'call', time:'med', mood:'playful', title:'Guess the Story', desc:'One of you describes a random memory badly and the other has to guess what actually happened.', tags:['call','fun']},
-  {meet:'call', time:'med', mood:'talk', title:'20 Questions: Us Edition', desc:"Call for 30 minutes and take turns asking questions you've never asked each other. No skipping more than one.", tags:['call','deep']},
-  {meet:'call', time:'med', mood:'chill', title:'Background Call', desc:'Call and just do your own separate things, studying, scrolling, lying down, with each other on speaker.', tags:['call','low-key']},
-  {meet:'call', time:'long', mood:'romantic', title:'"Open When..." Letters', desc:'Write each other a letter to open on call, then read them out loud together.', tags:['letters','call']},
-  {meet:'call', time:'long', mood:'tired', title:'Fall Asleep on Call', desc:'Put on something soft in the background and just stay on the line until you both drift off.', tags:['call','wind-down']},
-  {meet:'call', time:'long', mood:'playful', title:'Watch Party', desc:'Start the same show or video at the same time on call and react to it together.', tags:['call','fun']},
-  {meet:'call', time:'long', mood:'talk', title:'No-Topic-Off-Limits Call', desc:'One long call, no set topic, just keep talking until you run out of things to say.', tags:['call','deep']},
-  {meet:'call', time:'long', mood:'chill', title:'Study Together on Call', desc:'Stay on call in silence while you both study separately, checking in every so often.', tags:['call','study']},
-  {meet:'text', time:'short', mood:'romantic', title:'One Nice Thing', desc:'Send each other one specific thing you appreciate about the other, right now.', tags:['text','romantic']},
-  {meet:'text', time:'short', mood:'tired', title:'Show Me Your Day', desc:'Both send 3 photos from today and explain one of them.', tags:['photos','text']},
-  {meet:'text', time:'short', mood:'playful', title:'Emoji Story', desc:'Tell each other about your day using only emojis. First one to break and use words loses.', tags:['text','fun']},
-  {meet:'text', time:'short', mood:'talk', title:'Three Questions', desc:'Each send the other one real question you actually want an answer to. No small talk.', tags:['text','deep']},
-  {meet:'text', time:'short', mood:'chill', title:'Song of the Day', desc:'Each send a song that matches your mood right now, no explanation needed.', tags:['music','text']},
-  {meet:'text', time:'med', mood:'romantic', title:'Memory Exchange', desc:'Each send your favorite memory of the two of you so far, and why it stuck.', tags:['text','romantic']},
-  {meet:'text', time:'med', mood:'tired', title:'Slow Texting', desc:'No pressure to reply fast, just keep a lazy back-and-forth going about nothing in particular.', tags:['text','low-effort']},
-  {meet:'text', time:'med', mood:'playful', title:'Chaotic Idea Swap', desc:"Each of you sends your most unhinged idea for a future date. Vote on which one you're actually doing.", tags:['text','fun']},
-  {meet:'text', time:'med', mood:'talk', title:'Would You Rather: Deep Cut', desc:'Text a round of would-you-rather questions that actually reveal something about each other.', tags:['text','deep']},
-  {meet:'text', time:'med', mood:'chill', title:'Playlist Building', desc:'Build a shared playlist together over text, one song each, no explanations required.', tags:['music','text']},
-  {meet:'text', time:'long', mood:'romantic', title:'Letter, Sent Slowly', desc:'Write out how you feel right now in one long message, and send it only when its finished.', tags:['text','romantic']},
-  {meet:'text', time:'long', mood:'tired', title:'Async Evening', desc:'Text on and off through the evening with zero obligation to reply immediately.', tags:['text','low-effort']},
-  {meet:'text', time:'long', mood:'playful', title:'Story Chain', desc:'Write a ridiculous story together, one sentence at a time, over text.', tags:['text','fun']},
-  {meet:'text', time:'long', mood:'talk', title:'Voice Note Marathon', desc:'Trade voice notes back and forth all evening instead of texting.', tags:['voice','text']},
-  {meet:'text', time:'long', mood:'chill', title:'Day in Review', desc:'Text through your whole day at the end of it, hour by hour, like narrating it to each other.', tags:['text','low-key']},
-];
-
-document.getElementById('genBtn').addEventListener('click', renderPlan);
-
-async function renderPlan(){
-  const result = document.getElementById('cardResult');
-  if(!picked.time || !picked.meet || !picked.mood){
-    result.innerHTML = `<p class="empty-note">pick a time, availability, and mood first</p>`;
-    return;
-  }
-  let matches = PLANS.filter(p => p.time===picked.time && p.meet===picked.meet && p.mood===picked.mood);
-  if(matches.length===0) matches = PLANS.filter(p => p.meet===picked.meet && p.mood===picked.mood);
-  if(matches.length===0) matches = PLANS.filter(p => p.meet===picked.meet);
-  if(matches.length===0) matches = PLANS;
-
-  const plan = matches[Math.floor(Math.random()*matches.length)];
-  result.innerHTML = `
-    <div class="card">
-      <div class="eyebrow">tonight's plan</div>
-      <h3>${plan.title}</h3>
-      <p>${plan.desc}</p>
-      <div class="tags">${plan.tags.map(t=>`<span>${t}</span>`).join('')}</div>
-      <div class="card-actions">
-        <button class="accept" id="acceptPlan">accept ♡</button>
-        <button class="reroll" id="rerollPlan">reroll</button>
-      </div>
-    </div>`;
-  document.getElementById('rerollPlan').addEventListener('click', renderPlan);
-  document.getElementById('acceptPlan').addEventListener('click', async ()=>{
-    document.getElementById('acceptPlan').textContent = "you're doing this ♡";
-    await sb.from('tonight_plan').upsert({ id:1, status:'accepted' });
-    loadTonightPlan();
-  });
-
-  await sb.from('tonight_plan').upsert({
-    id: 1, title: plan.title, description: plan.desc, tags: plan.tags.join(','),
-    time_bucket: picked.time, meet_type: picked.meet, mood: picked.mood,
-    generated_by: currentWho || 'someone', status: 'pending'
-  });
-  loadTonightPlan();
-}
-
-async function loadTonightPlan(){
-  const win = document.getElementById('planWindow');
-  const mini = document.getElementById('planMini');
-  const { data, error } = await sb.from('tonight_plan').select('*').eq('id',1).maybeSingle();
-  if(error || !data || !data.title){ win.style.display = 'none'; return; }
-  win.style.display = 'block';
-  const isAccepted = data.status === 'accepted';
-  mini.innerHTML = `
-    <div class="plan-mini">
-      <div class="eyebrow">${isAccepted ? 'accepted ♡' : 'suggested'}</div>
-      <h4>${escapeHtml(data.title)}</h4>
-      <p>${escapeHtml(data.description||'')}</p>
-      <div class="by">suggested by ${escapeHtml(data.generated_by||'')}</div>
-      ${isAccepted ? '' : `<button class="accept-mini" id="acceptMini">accept ♡</button>`}
-    </div>`;
-  if(!isAccepted){
-    document.getElementById('acceptMini').addEventListener('click', async ()=>{
-      await sb.from('tonight_plan').upsert({ id:1, status:'accepted' });
-      loadTonightPlan();
-    });
-  }
-}
-
-// ---------- LITTLE THINGS ----------
-document.getElementById('thingAdd').addEventListener('click', addThing);
-document.getElementById('thingInput').addEventListener('keydown', e=>{ if(e.key==='Enter') addThing(); });
-
-async function addThing(){
-  const input = document.getElementById('thingInput');
-  const content = input.value.trim();
-  if(!content) return;
-  await sb.from('little_things').insert({ content, added_by: currentWho || 'someone' });
-  input.value = '';
-  loadThings();
-}
-
-async function loadThings(){
-  const list = document.getElementById('thingsList');
-  const { data, error } = await sb.from('little_things').select('*').order('created_at', {ascending:false}).limit(60);
-  if(error){ list.innerHTML = `<p class="empty-note">not connected yet — run the setup SQL in Supabase.</p>`; return; }
-  if(!data || data.length===0){ list.innerHTML = `<p class="empty-note">nothing here yet.</p>`; return; }
-  list.innerHTML = data.map(t=>`<div class="thing">${escapeHtml(t.content)}<span class="by">— ${escapeHtml(t.added_by||'')}</span></div>`).join('');
-}
-
-// ---------- SECRET PAGE ----------
-let secretClicks = 0;
-document.getElementById('secretHeart').addEventListener('click', async ()=>{
-  secretClicks++;
-  if(secretClicks >= 5){
-    secretClicks = 0;
-    const { data, error } = await sb.from('secrets').select('*');
-    const bg = document.getElementById('secretModalBg');
-    if(!error && data && data.length>0){
-      const pick = data[Math.floor(Math.random()*data.length)];
-      document.getElementById('secretText').textContent = pick.content;
-    } else {
-      document.getElementById('secretText').textContent = "shh. this spot is reserved for something cute — add rows to the secrets table.";
-    }
-    bg.classList.add('show');
-  }
-});
-document.getElementById('closeSecret').addEventListener('click', ()=> document.getElementById('secretModalBg').classList.remove('show'));
-
-// ---------- REFRESH / REALTIME / VISIBILITY ----------
-function refreshAll(){
-  renderTodayDate();
-  loadPings();
-  loadTonightPlan();
-  loadStatus();
-  loadLatestMemoryNudge();
-  if(document.getElementById('view-archive').classList.contains('active')) loadArchive();
-  if(document.getElementById('view-things').classList.contains('active')) loadThings();
-}
-
-let pollingStarted = false;
-function startApp(){
-  const savedWho = localStorage.getItem('sp_who');
-  if(savedWho){ currentWho = savedWho; }
-  applyWhoUI();
-  refreshAll();
-
-  if(!pollingStarted){
-    pollingStarted = true;
-
-    // instant updates via realtime (needs the SQL setup below)
-    sb.channel('sp-live')
-      .on('postgres_changes', {event:'*', schema:'public', table:'pings'}, ()=> loadPings())
-      .on('postgres_changes', {event:'*', schema:'public', table:'memories'}, ()=> {
-        loadLatestMemoryNudge();
-        if(document.getElementById('view-archive').classList.contains('active')) loadArchive();
-      })
-      .on('postgres_changes', {event:'*', schema:'public', table:'tonight_plan'}, ()=> loadTonightPlan())
-      .on('postgres_changes', {event:'*', schema:'public', table:'status'}, ()=> loadStatus())
-      .on('postgres_changes', {event:'*', schema:'public', table:'little_things'}, ()=> {
-        if(document.getElementById('view-things').classList.contains('active')) loadThings();
-      })
-      .subscribe();
-
-    // fallback polling, in case realtime isn't enabled yet
-    setInterval(refreshAll, 6000);
-
-    // instant refresh the moment the tab/app comes back into view
-    document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refreshAll(); });
-  }
-}
-</script>
-</body>
-</html>
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SHONNA ♡ POTTI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@500;700;800&family=VT323&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-<style>
-  :root{
-    --pink: #ff6fb5;
-    --pink-deep: #e0397f;
-    --lav: #b79bff;
-    --sky: #8fd9ff;
-    --cream: #fff7fa;
-    --panel: #f4eeff;
-    --ink: #2a1a30;
-    --yellow: #fff35c;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background: var(--sky);
-    background-image:
-      radial-gradient(circle at 15% 10%, #d8f4ff 0%, transparent 40%),
-      radial-gradient(circle at 90% 85%, #ffd3ec 0%, transparent 45%),
-      repeating-linear-gradient(45deg, #8fd9ff 0 2px, #86d3fb 2px 4px);
-    font-family: 'Baloo 2', sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding-bottom: 54px;
-  }
-
-  .marquee{
-    background: repeating-linear-gradient(90deg, var(--pink) 0 22px, var(--pink-deep) 22px 44px);
-    color: #fff; font-family:'VT323', monospace; font-size:1.15rem; letter-spacing:1px;
-    padding: 6px 0; overflow:hidden; white-space:nowrap; border-bottom: 3px solid var(--ink);
-  }
-  .marquee span{ display:inline-block; padding-left:100%; animation: scroll 22s linear infinite; }
-  @keyframes scroll{ from{ transform: translateX(0);} to{ transform: translateX(-100%);} }
-
-  .wrap{ max-width: 900px; margin: 0 auto; padding: 20px 14px 40px; }
-
-  .titlebar{
-    display:flex; align-items:center; justify-content:space-between;
-    background: linear-gradient(90deg, var(--pink-deep), var(--pink));
-    border: 3px solid var(--ink); border-radius: 10px 10px 0 0;
-    padding: 6px 10px; color:#fff;
-  }
-  .titlebar .tname{ font-family:'VT323', monospace; font-size:1.1rem; letter-spacing:1px; display:flex; align-items:center; gap:6px;}
-  .dots{ display:flex; gap:6px; }
-  .dots span{ width:14px; height:14px; border-radius:50%; border:2px solid var(--ink); display:inline-block;}
-  .dots .d1{ background:#ff5f57;} .dots .d2{ background:#febc2e;} .dots .d3{ background:#28c840;}
-
-  .header-body{
-    background: var(--cream); border:3px solid var(--ink); border-top:none; border-radius: 0 0 10px 10px;
-    padding: 22px 20px 26px; text-align:center; position:relative; overflow:hidden;
-    box-shadow: 6px 6px 0 var(--ink); margin-bottom: 26px;
-  }
-  .header-body h1{
-    font-family:'Bungee', cursive; font-size: 2.5rem; margin:0; line-height:1.1;
-    color: var(--pink-deep); -webkit-text-stroke: 1.5px var(--ink); text-shadow: 3px 3px 0 var(--lav);
-  }
-  .header-body .tag{ font-family:'VT323', monospace; font-size:1rem; letter-spacing:3px; text-transform:uppercase; margin-top:6px;}
-  .sparkle{ position:absolute; font-size:1.4rem; }
-  .sparkle.s1{ top:10px; left:16px; } .sparkle.s2{ top:14px; right:20px; }
-  .sparkle.s3{ bottom:12px; left:26%; } .sparkle.s4{ bottom:16px; right:22%; }
-
-  nav{ display:flex; justify-content:center; gap:8px; margin-bottom: 24px; flex-wrap:wrap;}
-  nav button{
-    background: var(--panel); border: 3px solid var(--ink); color: var(--ink);
-    font-family:'Baloo 2', sans-serif; font-weight:700; font-size: 0.88rem;
-    padding: 9px 14px; border-radius: 999px; cursor:pointer; box-shadow: 3px 3px 0 var(--ink);
-  }
-  nav button.active{ background: var(--yellow); }
-  nav button:active{ transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
-
-  .view{ display:none; animation: pop .3s ease; }
-  .view.active{ display:block; }
-  @keyframes pop{ from{opacity:0; transform: scale(0.97);} to{opacity:1; transform:none;} }
-
-  .window{ background: var(--panel); border: 3px solid var(--ink); border-radius: 10px; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 22px; overflow:hidden;}
-  .window .titlebar{ border-radius: 0; border:none; border-bottom: 3px solid var(--ink); }
-  .window .wbody{ padding: 18px 20px; }
-
-  .who-select{ display:flex; gap:10px; justify-content:center; margin-bottom: 18px;}
-  .who-select button{
-    background: #fff; border:3px solid var(--ink); color: var(--ink); font-family:'Baloo 2',sans-serif; font-weight:700;
-    padding: 6px 18px; border-radius:999px; cursor:pointer; box-shadow: 2px 2px 0 var(--ink);
-  }
-  .who-locked{ text-align:center; font-family:'VT323', monospace; font-size:1.05rem; margin-bottom:18px;}
-  .who-locked .name{ font-weight:800; color: var(--pink-deep); font-family:'Baloo 2',sans-serif; }
-  .who-locked .reset-link{ display:block; font-size:0.8rem; color:#9c8aa8; margin-top:4px; cursor:pointer; text-decoration:underline;}
-
-  .stamp-zone{ display:flex; flex-direction:column; align-items:center; padding: 6px 0 10px;}
-  .stamp{
-    width: 170px; height:170px; border-radius:50%;
-    background: radial-gradient(circle at 35% 30%, #fff, var(--pink) 75%);
-    border: 4px solid var(--ink); display:flex; align-items:center; justify-content:center; flex-direction:column;
-    cursor:pointer; user-select:none; box-shadow: 5px 5px 0 var(--ink);
-    transition: transform .12s ease, box-shadow .12s ease;
-  }
-  .stamp:active{ transform: translate(4px,4px); box-shadow: 1px 1px 0 var(--ink); }
-  .stamp .icon{ font-size: 2.4rem; }
-  .stamp .label{ font-family:'Bungee', cursive; font-size:0.85rem; margin-top:8px; }
-  .stamp-caption{ font-family:'VT323', monospace; font-size:0.95rem; color: #5b4566; margin-top: 14px; text-align:center;}
-  .status{ text-align:center; font-family:'VT323', monospace; font-size:1rem; color: var(--pink-deep); margin-top:8px; min-height:18px;}
-
-  .win-label{ font-family:'VT323', monospace; font-size:1rem; letter-spacing:2px; color:#5b4566; text-transform:uppercase; border-bottom: 2px dashed var(--ink); padding-bottom:6px; margin-bottom:10px;}
-  .ping{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:8px 12px; margin-bottom:10px; box-shadow: 2px 2px 0 var(--ink);}
-  .ping .who{ font-weight:800; color: var(--pink-deep);}
-  .ping .time{ display:block; font-family:'VT323', monospace; font-size:0.85rem; color:#7a6683; margin-top:2px;}
-  .empty-note{ text-align:center; color:#7a6683; font-style:italic; font-family:'VT323',monospace; font-size:1.05rem;}
-
-  /* today widget */
-  .today-date{ font-family:'Bungee',cursive; font-size:1.15rem; color: var(--pink-deep); text-align:center; margin-bottom:2px;}
-  .today-sub{ text-align:center; font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin-bottom:16px;}
-  .today-row{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px 12px; margin-bottom:10px; box-shadow:2px 2px 0 var(--ink); font-size:0.95rem;}
-  .today-row .lbl{ font-family:'VT323',monospace; font-size:0.78rem; color: var(--pink-deep); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:2px;}
-  .status-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
-  .status-chip{
-    background:#fff; border:2px solid var(--ink); border-radius:999px; padding:5px 12px; font-size:0.82rem;
-    font-family:'Baloo 2',sans-serif; font-weight:600; cursor:pointer;
-  }
-  .status-chip.sel{ background: var(--lav); color:#fff; }
-
-  /* archive */
-  .archive-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px; flex-wrap:wrap; gap:10px;}
-  .counter{ font-family:'VT323', monospace; font-size:0.95rem; color:#5b4566;}
-  .add-btn{ background: var(--yellow); border:3px solid var(--ink); padding:8px 16px; border-radius:8px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; box-shadow: 3px 3px 0 var(--ink);}
-  .filters{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px;}
-  .filters button{ background:#fff; border:2px solid var(--ink); color:#5b4566; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.8rem; padding:5px 12px; border-radius:999px; cursor:pointer;}
-  .filters button.active{ background: var(--sky); }
-  .roll{ display:grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 18px 14px; }
-  .polaroid{ background: #fff; border: 3px solid var(--ink); border-radius: 4px; padding: 8px 8px 14px; box-shadow: 4px 4px 0 var(--ink); transform: rotate(var(--r,-1.5deg));}
-  .polaroid:nth-child(3n){ --r: 1.6deg; } .polaroid:nth-child(3n+1){ --r: -1.8deg; }
-  .polaroid img{ width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#eadfff; border:1px solid var(--ink);}
-  .polaroid .cap{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.9rem; text-align:center; margin-top:8px;}
-  .polaroid .meta{ font-family:'VT323',monospace; font-size:0.75rem; color:#7a6683; text-align:center; margin-top:2px;}
-
-  /* tonight */
-  .picker-group{ margin-bottom: 20px; }
-  .picker-group .gl{ font-family:'VT323', monospace; font-size:0.95rem; letter-spacing:2px; text-transform:uppercase; color: var(--pink-deep); margin-bottom:8px; display:block;}
-  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chip{ background: #fff; border:2px solid var(--ink); color: var(--ink); font-family:'Baloo 2',sans-serif; font-weight:600; padding: 7px 14px; border-radius: 999px; font-size:0.9rem; cursor:pointer;}
-  .chip.sel{ background: var(--pink); color:#fff; }
-  .go-btn{ display:block; margin: 22px auto 0; background: var(--lav); color:#fff; border:3px solid var(--ink); padding: 12px 30px; border-radius:999px; font-family:'Bungee',cursive; font-size:0.9rem; cursor:pointer; box-shadow: 4px 4px 0 var(--ink);}
-  .go-btn:active{ transform: translate(3px,3px); box-shadow:1px 1px 0 var(--ink); }
-  .card-result{ margin-top: 26px; }
-  .card{ background:#fff; border: 3px solid var(--ink); border-radius: 10px; padding: 22px; text-align:center; box-shadow: 5px 5px 0 var(--ink);}
-  .card .eyebrow{ font-family:'VT323',monospace; font-size:0.85rem; letter-spacing:2px; color: var(--pink-deep); text-transform:uppercase;}
-  .card h3{ font-family:'Bungee',cursive; font-size:1.4rem; margin: 10px 0; }
-  .card p{ color:#5b4566; font-size:1rem; margin: 0 0 14px;}
-  .card .tags{ display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom: 16px;}
-  .card .tags span{ font-family:'VT323',monospace; font-size:0.8rem; border:2px solid var(--ink); padding:3px 9px; border-radius:999px; color:#5b4566;}
-  .card-actions{ display:flex; gap:10px; justify-content:center;}
-  .card-actions button{ font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.85rem; padding: 9px 18px; border-radius:8px; cursor:pointer; border:3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);}
-  .accept{ background: var(--yellow); } .reroll{ background:#fff; }
-
-  .plan-mini{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px 14px; box-shadow:2px 2px 0 var(--ink);}
-  .plan-mini .eyebrow{ font-family:'VT323',monospace; font-size:0.8rem; color: var(--pink-deep); text-transform:uppercase; letter-spacing:1px;}
-  .plan-mini h4{ font-family:'Bungee',cursive; font-size:1.05rem; margin:6px 0; }
-  .plan-mini p{ margin:0 0 8px; font-size:0.92rem; color:#5b4566;}
-  .plan-mini .by{ font-family:'VT323',monospace; font-size:0.82rem; color:#9c8aa8;}
-  .plan-mini .accept-mini{ margin-top:10px; background: var(--yellow); border:2px solid var(--ink); border-radius:6px; padding:6px 14px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.8rem; cursor:pointer;}
-
-  /* little things */
-  .thing-form{ display:flex; gap:8px; margin-bottom:16px; }
-  .thing-form input{ flex:1; border:2px solid var(--ink); border-radius:8px; padding:9px 12px; font-family:'Baloo 2',sans-serif; font-size:0.95rem; background:#fff;}
-  .thing-form button{ background: var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:0 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer;}
-  .thing{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px 12px; margin-bottom:9px; box-shadow:2px 2px 0 var(--ink); font-size:0.95rem;}
-  .thing .by{ display:block; font-family:'VT323',monospace; font-size:0.78rem; color:#9c8aa8; margin-top:3px;}
-
-  /* modal */
-  .modal-bg{ display:none; position:fixed; inset:0; background: rgba(42,26,48,0.55); z-index:900; align-items:center; justify-content:center; padding:16px;}
-  .modal-bg.show{ display:flex; }
-  .modal{ background: var(--cream); border:3px solid var(--ink); border-radius:10px; padding:22px; width:100%; max-width:380px; max-height:88vh; overflow-y:auto; box-shadow: 6px 6px 0 var(--ink);}
-  .modal h3{ font-family:'Bungee',cursive; font-size:1.2rem; margin:0 0 16px; text-align:center; color: var(--pink-deep);}
-  .field{ margin-bottom: 14px; }
-  .field label{ display:block; font-family:'VT323',monospace; font-size:0.85rem; letter-spacing:1.5px; text-transform:uppercase; color:#5b4566; margin-bottom:5px;}
-  .field input[type=text], .field input[type=date], .field select{ width:100%; background:#fff; border:2px solid var(--ink); color: var(--ink); padding:9px 10px; border-radius:6px; font-family:'Baloo 2',sans-serif; font-size:0.95rem;}
-  .field input[type=file]{ width:100%; font-size:0.85rem; }
-  .modal-actions{ display:flex; gap:10px; margin-top:6px; }
-  .modal-actions button{ flex:1; padding:10px; border-radius:8px; border:3px solid var(--ink); cursor:pointer; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.85rem;}
-  .modal-actions .save{ background: var(--yellow); } .modal-actions .cancel{ background:#fff; }
-  .close-x{ position:absolute; top:14px; right:16px; background:#fff; border:2px solid var(--ink); border-radius:50%; width:26px; height:26px; cursor:pointer; font-weight:800;}
-  .modal-wrap{ position:relative; }
-
-  /* lock screen */
-  .lock-bg{ position:fixed; inset:0; z-index:1000; background: var(--sky); background-image: radial-gradient(circle at 20% 20%, #d8f4ff 0%, transparent 40%), radial-gradient(circle at 85% 80%, #ffd3ec 0%, transparent 45%); display:flex; align-items:center; justify-content:center; padding:20px;}
-  .lock-window{ background: var(--panel); border:3px solid var(--ink); border-radius:10px; width:100%; max-width:340px; box-shadow: 6px 6px 0 var(--ink); overflow:hidden;}
-  .lock-body{ padding: 26px 22px; text-align:center; }
-  .lock-body .lockicon{ font-size:2.4rem; }
-  .lock-body h2{ font-family:'Bungee',cursive; font-size:1.3rem; color: var(--pink-deep); margin: 10px 0 4px; -webkit-text-stroke: 0.5px var(--ink);}
-  .lock-body p{ font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin: 0 0 18px;}
-  .lock-body input{ width:100%; text-align:center; letter-spacing:8px; font-size:1.4rem; font-family:'VT323',monospace; border:2px solid var(--ink); border-radius:8px; padding:10px; background:#fff; color:var(--ink); margin-bottom:14px;}
-  .lock-body button{ width:100%; background: var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:11px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; box-shadow:3px 3px 0 var(--ink);}
-  .lock-error{ font-family:'VT323',monospace; color: var(--pink-deep); font-size:0.95rem; min-height:18px; margin-top:8px;}
-
-  /* taskbar */
-  .taskbar{ position: fixed; bottom:0; left:0; right:0; height:46px; background: linear-gradient(90deg, var(--lav), var(--pink)); border-top: 3px solid var(--ink); display:flex; align-items:center; justify-content:space-between; padding: 0 12px; z-index: 800; font-family:'VT323', monospace;}
-  .start-btn{ background: var(--yellow); border:2px solid var(--ink); border-radius:6px; padding: 5px 14px; font-family:'Bungee', cursive; font-size:0.8rem; color: var(--ink); display:flex; align-items:center; gap:6px;}
-  .clock{ background:#fff; border:2px solid var(--ink); border-radius:6px; padding:4px 10px; font-size:1rem; color: var(--ink);}
-
-  footer{ text-align:center; margin-top: 30px; font-family:'VT323',monospace; font-size:0.85rem; color:#5b4566;}
-  .secret-heart{ cursor:pointer; user-select:none; }
-  .secret-modal .modal{ text-align:center; }
-  .secret-modal h3{ font-size:1.4rem; }
-  .secret-modal p{ font-family:'VT323',monospace; font-size:1.1rem; color:#5b4566; }
-</style>
-</head>
-<body>
-
-<div class="lock-bg" id="lockScreen">
-  <div class="lock-window">
-    <div class="titlebar"><span class="tname">🔒 enter_passcode.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-    <div class="lock-body">
-      <div class="lockicon">💌</div>
-      <h2>SHONNA ♡ POTTI</h2>
-      <p>this one's private. enter the code.</p>
-      <input type="password" inputmode="numeric" maxlength="8" id="passInput" placeholder="••••">
-      <button id="passSubmit">unlock ♡</button>
-      <div class="lock-error" id="lockError"></div>
-    </div>
-  </div>
-</div>
-
-<div class="marquee"><span>✨ NEW DROP: MEMORIES ✨ &nbsp; ♡ MISS YOU BUTTON ONLINE ♡ &nbsp; ★ TONIGHT PLANNER v1.0 ★ &nbsp; ✨ SHONNA + POTTI FOREVER ✨ &nbsp; ♡ NEW DROP: MEMORIES ♡ &nbsp; ★ MISS YOU BUTTON ONLINE ★</span></div>
-
-<div class="wrap">
-
-  <div class="titlebar"><span class="tname">🖥️ shonnapotti.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-  <div class="header-body">
-    <span class="sparkle s1">★</span><span class="sparkle s2">✦</span><span class="sparkle s3">♡</span><span class="sparkle s4">✧</span>
-    <h1>SHONNA ♡ POTTI</h1>
-    <div class="tag">made 4 the two of us</div>
-  </div>
-
-  <nav>
-    <button data-view="home" class="active">🏠 home</button>
-    <button data-view="archive">📷 archive</button>
-    <button data-view="tonight">🌙 tonight</button>
-    <button data-view="things">🧸 things</button>
-  </nav>
-
-  <!-- HOME -->
-  <section class="view active" id="view-home">
-
-    <div class="window">
-      <div class="titlebar"><span class="tname">📆 today.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-      <div class="wbody">
-        <div class="today-date" id="todayDate"></div>
-        <div class="today-sub">another day of us.</div>
-        <div class="today-row" id="partnerStatusRow" style="display:none;"></div>
-        <div class="today-row" id="archiveNudgeRow" style="display:none;"></div>
-        <span class="win-label" style="margin-top:14px; display:block;">set your status</span>
-        <div class="status-chips" id="statusChips">
-          <button class="status-chip" data-v="free for 15 min">free 15 min</button>
-          <button class="status-chip" data-v="free for 30–60 min">free 30–60 min</button>
-          <button class="status-chip" data-v="free for 1–2 hrs">free 1–2 hrs</button>
-          <button class="status-chip" data-v="busy right now">busy</button>
-          <button class="status-chip" data-v="free all night">free all night</button>
-          <button class="status-chip" data-v="offline / sleeping">offline</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="window">
-      <div class="titlebar"><span class="tname">💌 new_message.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-      <div class="wbody">
-        <div id="whoPicker" class="who-select">
-          <button data-who="SHONNA" class="who-btn">I'm Shonna</button>
-          <button data-who="POTTI" class="who-btn">I'm Potti</button>
-        </div>
-        <div id="whoLocked" class="who-locked" style="display:none;">
-          you're logged in as <span class="name" id="whoLockedName"></span>
-          <span class="reset-link" id="whoResetLink">not you? tap to reset</span>
-        </div>
-        <div class="stamp-zone">
-          <div class="stamp" id="missBtn">
-            <div class="icon">🫶</div>
-            <div class="label">I MISS YOU</div>
-          </div>
           <div class="stamp-caption">press it. she'll know. ⋆˚꒰ঌ ໒꒱˚⋆</div>
           <div class="status" id="missStatus"></div>
         </div>
@@ -1261,15 +415,8 @@ function startApp(){
 </div>
 
 <script>
-// ---------- SUPABASE SETUP ----------
-const SUPABASE_URL = "https://rjgyjnrawsbyxruvelfl.supabase.co";
-const SUPABASE_KEY = "sb_publishable_FAgP2OkS8h__izEk5uAcFw_1lGJy03i";
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-let currentWho = null;
-const OTHER = w => w === 'SHONNA' ? 'POTTI' : 'SHONNA';
-
 // ---------- PASSCODE (asks every time — never persisted) ----------
+// runs first, independent of Supabase, so a slow/blocked CDN can never break unlocking
 const PASSCODE = "2704";
 function tryUnlock(){
   const val = document.getElementById('passInput').value.trim();
@@ -1282,6 +429,19 @@ function tryUnlock(){
 }
 document.getElementById('passSubmit').addEventListener('click', tryUnlock);
 document.getElementById('passInput').addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock(); });
+
+// ---------- SUPABASE SETUP ----------
+const SUPABASE_URL = "https://rjgyjnrawsbyxruvelfl.supabase.co";
+const SUPABASE_KEY = "sb_publishable_FAgP2OkS8h__izEk5uAcFw_1lGJy03i";
+let sb = null;
+try{
+  sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+} catch(e){
+  console.error('Supabase failed to load — check your connection or the CDN script tag', e);
+}
+
+let currentWho = null;
+const OTHER = w => w === 'SHONNA' ? 'POTTI' : 'SHONNA';
 
 // ---------- IDENTITY (choose once, persists on this device) ----------
 function applyWhoUI(){
@@ -1337,6 +497,7 @@ document.querySelectorAll('nav button').forEach(btn=>{
 // ---------- I MISS YOU ----------
 document.getElementById('missBtn').addEventListener('click', async ()=>{
   const statusEl = document.getElementById('missStatus');
+  if(!sb){ statusEl.textContent = "not connected — check your internet"; return; }
   if(!currentWho){ statusEl.textContent = "pick shonna or potti first"; return; }
   statusEl.textContent = "sending...";
   const { error } = await sb.from('pings').insert({ from_name: currentWho, message: `${currentWho} misses you.` });
@@ -1349,6 +510,7 @@ document.getElementById('missBtn').addEventListener('click', async ()=>{
 });
 
 async function loadPings(){
+  if(!sb) return;
   const list = document.getElementById('pingList');
   const { data, error } = await sb.from('pings').select('*').order('created_at', {ascending:false}).limit(12);
   if(error){ list.innerHTML = `<p class="empty-note">archive not connected yet</p>`; return; }
@@ -1367,6 +529,7 @@ function renderTodayDate(){
 }
 
 async function loadStatus(){
+  if(!sb) return;
   const { data, error } = await sb.from('status').select('*');
   const row = document.getElementById('partnerStatusRow');
   if(error || !data){ row.style.display = 'none'; }
@@ -1387,13 +550,14 @@ async function loadStatus(){
 
 document.querySelectorAll('.status-chip').forEach(chip=>{
   chip.addEventListener('click', async ()=>{
-    if(!currentWho){ return; }
+    if(!sb || !currentWho){ return; }
     await sb.from('status').upsert({ who: currentWho, message: chip.dataset.v, updated_at: new Date().toISOString() });
     loadStatus();
   });
 });
 
 async function loadLatestMemoryNudge(){
+  if(!sb) return;
   const row = document.getElementById('archiveNudgeRow');
   if(!currentWho){ row.style.display = 'none'; return; }
   const { data, error } = await sb.from('memories').select('*').order('created_at', {ascending:false}).limit(1);
@@ -1419,6 +583,7 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
 });
 
 async function loadArchive(){
+  if(!sb) return;
   const grid = document.getElementById('rollGrid');
   let query = sb.from('memories').select('*').order('memory_date', {ascending:false});
   if(archiveFilter !== "ALL") query = query.eq('added_by', archiveFilter);
@@ -1449,11 +614,12 @@ document.getElementById('closeAdd').addEventListener('click', ()=> addModalBg.cl
 document.getElementById('cancelAdd').addEventListener('click', ()=> addModalBg.classList.remove('show'));
 
 document.getElementById('saveAdd').addEventListener('click', async ()=>{
+  const statusEl = document.getElementById('addStatus');
+  if(!sb){ statusEl.textContent = "not connected — check your internet"; return; }
   const fileInput = document.getElementById('photoFile');
   const date = document.getElementById('memDate').value;
   const caption = document.getElementById('memCap').value;
   const who = document.getElementById('memWho').value;
-  const statusEl = document.getElementById('addStatus');
 
   if(!fileInput.files[0]){ statusEl.textContent = "pick a photo first"; return; }
   statusEl.textContent = "uploading...";
@@ -1583,6 +749,7 @@ async function renderPlan(){
 }
 
 async function loadTonightPlan(){
+  if(!sb) return;
   const win = document.getElementById('planWindow');
   const mini = document.getElementById('planMini');
   const { data, error } = await sb.from('tonight_plan').select('*').eq('id',1).maybeSingle();
@@ -1610,6 +777,7 @@ document.getElementById('thingAdd').addEventListener('click', addThing);
 document.getElementById('thingInput').addEventListener('keydown', e=>{ if(e.key==='Enter') addThing(); });
 
 async function addThing(){
+  if(!sb) return;
   const input = document.getElementById('thingInput');
   const content = input.value.trim();
   if(!content) return;
@@ -1619,6 +787,7 @@ async function addThing(){
 }
 
 async function loadThings(){
+  if(!sb) return;
   const list = document.getElementById('thingsList');
   const { data, error } = await sb.from('little_things').select('*').order('created_at', {ascending:false}).limit(60);
   if(error){ list.innerHTML = `<p class="empty-note">not connected yet — run the setup SQL in Supabase.</p>`; return; }
@@ -1632,13 +801,17 @@ document.getElementById('secretHeart').addEventListener('click', async ()=>{
   secretClicks++;
   if(secretClicks >= 5){
     secretClicks = 0;
-    const { data, error } = await sb.from('secrets').select('*');
     const bg = document.getElementById('secretModalBg');
-    if(!error && data && data.length>0){
-      const pick = data[Math.floor(Math.random()*data.length)];
-      document.getElementById('secretText').textContent = pick.content;
+    if(sb){
+      const { data, error } = await sb.from('secrets').select('*');
+      if(!error && data && data.length>0){
+        const pick = data[Math.floor(Math.random()*data.length)];
+        document.getElementById('secretText').textContent = pick.content;
+      } else {
+        document.getElementById('secretText').textContent = "shh. this spot is reserved for something cute — add rows to the secrets table.";
+      }
     } else {
-      document.getElementById('secretText').textContent = "shh. this spot is reserved for something cute — add rows to the secrets table.";
+      document.getElementById('secretText').textContent = "shh. this spot is reserved for something cute.";
     }
     bg.classList.add('show');
   }
@@ -1667,6 +840,7 @@ function startApp(){
     pollingStarted = true;
 
     // instant updates via realtime (needs the SQL setup below)
+    if(sb){
     sb.channel('sp-live')
       .on('postgres_changes', {event:'*', schema:'public', table:'pings'}, ()=> loadPings())
       .on('postgres_changes', {event:'*', schema:'public', table:'memories'}, ()=> {
@@ -1679,6 +853,7 @@ function startApp(){
         if(document.getElementById('view-things').classList.contains('active')) loadThings();
       })
       .subscribe();
+    }
 
     // fallback polling, in case realtime isn't enabled yet
     setInterval(refreshAll, 6000);
