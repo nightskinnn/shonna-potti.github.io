@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
 <title>SHONNA ♡ POTTI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@500;700;800&family=VT323&display=swap" rel="stylesheet">
@@ -18,8 +18,11 @@
     --ink: #2a1a30;
     --yellow: #fff35c;
     --green: #4ade80;
+    --orange: #fb923c;
+    --purple: #a78bfa;
+    --red: #ef4444;
   }
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
   html,body{margin:0;padding:0;}
   body{
     background: var(--sky);
@@ -31,6 +34,7 @@
     color: var(--ink);
     min-height: 100vh;
     padding-bottom: 54px;
+    -webkit-font-smoothing: antialiased;
   }
 
   .marquee{
@@ -68,7 +72,6 @@
   .sparkle.s1{ top:10px; left:16px; } .sparkle.s2{ top:14px; right:20px; }
   .sparkle.s3{ bottom:12px; left:26%; } .sparkle.s4{ bottom:16px; right:22%; }
 
-  /* Notification toggle */
   .notif-toggle{
     display: inline-flex;
     align-items: center;
@@ -95,7 +98,6 @@
     color: #fff;
   }
 
-  /* Days Counter */
   .days-counter{
     margin-top: 12px;
     display: inline-block;
@@ -125,14 +127,16 @@
     text-transform: uppercase;
   }
 
-  nav{ display:flex; justify-content:center; gap:8px; margin-bottom: 24px; flex-wrap:wrap;}
+  nav{ display:flex; justify-content:center; gap:6px; margin-bottom: 24px; flex-wrap:wrap;}
   nav button{
     background: var(--panel); border: 3px solid var(--ink); color: var(--ink);
-    font-family:'Baloo 2', sans-serif; font-weight:700; font-size: 0.88rem;
-    padding: 9px 14px; border-radius: 999px; cursor:pointer; box-shadow: 3px 3px 0 var(--ink);
+    font-family:'Baloo 2', sans-serif; font-weight:700; font-size: 0.8rem;
+    padding: 8px 12px; border-radius: 999px; cursor:pointer; box-shadow: 3px 3px 0 var(--ink);
+    transition: all 0.15s ease;
+    touch-action: manipulation;
   }
-  nav button.active{ background: var(--yellow); }
   nav button:active{ transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
+  nav button.active{ background: var(--yellow); }
 
   .view{ display:none; animation: pop .3s ease; }
   .view.active{ display:block; }
@@ -140,12 +144,13 @@
 
   .window{ background: var(--panel); border: 3px solid var(--ink); border-radius: 10px; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 22px; overflow:hidden;}
   .window .titlebar{ border-radius: 0; border:none; border-bottom: 3px solid var(--ink); }
-  .window .wbody{ padding: 18px 20px; }
+  .window .wbody{ padding: 18px 16px; }
 
   .who-select{ display:flex; gap:10px; justify-content:center; margin-bottom: 18px;}
   .who-select button{
     background: #fff; border:3px solid var(--ink); color: var(--ink); font-family:'Baloo 2',sans-serif; font-weight:700;
     padding: 6px 18px; border-radius:999px; cursor:pointer; box-shadow: 2px 2px 0 var(--ink);
+    touch-action: manipulation;
   }
   .who-locked{ text-align:center; font-family:'VT323', monospace; font-size:1.05rem; margin-bottom:18px;}
   .who-locked .name{ font-weight:800; color: var(--pink-deep); font-family:'Baloo 2',sans-serif; }
@@ -158,6 +163,7 @@
     border: 4px solid var(--ink); display:flex; align-items:center; justify-content:center; flex-direction:column;
     cursor:pointer; user-select:none; box-shadow: 5px 5px 0 var(--ink);
     transition: transform .12s ease, box-shadow .12s ease;
+    touch-action: manipulation;
   }
   .stamp:active{ transform: translate(4px,4px); box-shadow: 1px 1px 0 var(--ink); }
   .stamp .icon{ font-size: 2.4rem; }
@@ -165,7 +171,6 @@
   .stamp-caption{ font-family:'VT323', monospace; font-size:0.95rem; color: #5b4566; margin-top: 14px; text-align:center;}
   .status{ text-align:center; font-family:'VT323', monospace; font-size:1rem; color: var(--pink-deep); margin-top:8px; min-height:18px;}
 
-  /* Reply button */
   .reply-zone{
     margin-top: 15px;
     padding: 10px;
@@ -192,6 +197,7 @@
     box-shadow: 3px 3px 0 var(--ink);
     transition: transform 0.12s ease;
     margin: 0 auto;
+    touch-action: manipulation;
   }
   .reply-btn:active { transform: scale(0.9); }
   .reply-btn .reply-label{
@@ -218,9 +224,8 @@
     0%, 100% { transform: translateY(-50%) scale(1); }
     50% { transform: translateY(-50%) scale(1.2); }
   }
-  .empty-note{ text-align:center; color:#7a6683; font-style:italic; font-family:'VT323',monospace; font-size:1.05rem;}
+  .empty-note{ text-align:center; color:#7a6683; font-style:italic; font-family:'VT323',monospace; font-size:1.05rem; padding:10px 0;}
 
-  /* today widget */
   .today-date{ font-family:'Bungee',cursive; font-size:1.15rem; color: var(--pink-deep); text-align:center; margin-bottom:2px;}
   .today-sub{ text-align:center; font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin-bottom:16px;}
   .today-row{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px 12px; margin-bottom:10px; box-shadow:2px 2px 0 var(--ink); font-size:0.95rem;}
@@ -229,15 +234,15 @@
   .status-chip{
     background:#fff; border:2px solid var(--ink); border-radius:999px; padding:5px 12px; font-size:0.82rem;
     font-family:'Baloo 2',sans-serif; font-weight:600; cursor:pointer;
+    touch-action: manipulation;
   }
   .status-chip.sel{ background: var(--lav); color:#fff; }
 
-  /* archive */
   .archive-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px; flex-wrap:wrap; gap:10px;}
   .counter{ font-family:'VT323', monospace; font-size:0.95rem; color:#5b4566;}
-  .add-btn{ background: var(--yellow); border:3px solid var(--ink); padding:8px 16px; border-radius:8px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; box-shadow: 3px 3px 0 var(--ink);}
+  .add-btn{ background: var(--yellow); border:3px solid var(--ink); padding:8px 16px; border-radius:8px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; box-shadow: 3px 3px 0 var(--ink); touch-action: manipulation; }
   .filters{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px;}
-  .filters button{ background:#fff; border:2px solid var(--ink); color:#5b4566; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.8rem; padding:5px 12px; border-radius:999px; cursor:pointer;}
+  .filters button{ background:#fff; border:2px solid var(--ink); color:#5b4566; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.8rem; padding:5px 12px; border-radius:999px; cursor:pointer; touch-action: manipulation; }
   .filters button.active{ background: var(--sky); }
   .roll{ display:grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 18px 14px; }
   .polaroid{ background: #fff; border: 3px solid var(--ink); border-radius: 4px; padding: 8px 8px 14px; box-shadow: 4px 4px 0 var(--ink); transform: rotate(var(--r,-1.5deg));}
@@ -246,11 +251,10 @@
   .polaroid .cap{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.9rem; text-align:center; margin-top:8px;}
   .polaroid .meta{ font-family:'VT323',monospace; font-size:0.75rem; color:#7a6683; text-align:center; margin-top:2px;}
 
-  /* Tasks */
   .task-form{ display:flex; gap:8px; margin-bottom:16px; flex-wrap: wrap;}
-  .task-form input{ flex:1; min-width: 150px; border:2px solid var(--ink); border-radius:8px; padding:9px 12px; font-family:'Baloo 2',sans-serif; font-size:0.95rem; background:#fff;}
+  .task-form input{ flex:1; min-width: 120px; border:2px solid var(--ink); border-radius:8px; padding:9px 12px; font-family:'Baloo 2',sans-serif; font-size:0.95rem; background:#fff;}
   .task-form select{ border:2px solid var(--ink); border-radius:8px; padding:9px; font-family:'Baloo 2',sans-serif; font-size:0.9rem; background:#fff;}
-  .task-form button{ background: var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:9px 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer;}
+  .task-form button{ background: var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:9px 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation; }
   .task-item{
     background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px; margin-bottom:10px;
     box-shadow:2px 2px 0 var(--ink); position: relative;
@@ -284,7 +288,7 @@
     background: linear-gradient(90deg, var(--pink), var(--lav));
     transition: width 1s linear;
   }
-  .task-actions{ display:flex; gap:6px; margin-top:8px;}
+  .task-actions{ display:flex; gap:6px; margin-top:8px; flex-wrap:wrap;}
   .task-actions button{
     flex: 1;
     padding: 6px;
@@ -295,17 +299,18 @@
     font-size: 0.75rem;
     cursor: pointer;
     background: #fff;
+    touch-action: manipulation;
+    min-height: 40px;
   }
   .task-actions .complete-btn{ background: var(--green); }
   .task-actions .delete-btn{ background: #fecaca; }
 
-  /* tonight */
   .picker-group{ margin-bottom: 20px; }
   .picker-group .gl{ font-family:'VT323', monospace; font-size:0.95rem; letter-spacing:2px; text-transform:uppercase; color: var(--pink-deep); margin-bottom:8px; display:block;}
   .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chip{ background: #fff; border:2px solid var(--ink); color: var(--ink); font-family:'Baloo 2',sans-serif; font-weight:600; padding: 7px 14px; border-radius: 999px; font-size:0.9rem; cursor:pointer;}
+  .chip{ background: #fff; border:2px solid var(--ink); color: var(--ink); font-family:'Baloo 2',sans-serif; font-weight:600; padding: 7px 14px; border-radius: 999px; font-size:0.9rem; cursor:pointer; touch-action: manipulation; }
   .chip.sel{ background: var(--pink); color:#fff; }
-  .go-btn{ display:block; margin: 22px auto 0; background: var(--lav); color:#fff; border:3px solid var(--ink); padding: 12px 30px; border-radius:999px; font-family:'Bungee',cursive; font-size:0.9rem; cursor:pointer; box-shadow: 4px 4px 0 var(--ink);}
+  .go-btn{ display:block; margin: 22px auto 0; background: var(--lav); color:#fff; border:3px solid var(--ink); padding: 12px 30px; border-radius:999px; font-family:'Bungee',cursive; font-size:0.9rem; cursor:pointer; box-shadow: 4px 4px 0 var(--ink); touch-action: manipulation; }
   .go-btn:active{ transform: translate(3px,3px); box-shadow:1px 1px 0 var(--ink); }
   .card-result{ margin-top: 26px; }
   .card{ background:#fff; border: 3px solid var(--ink); border-radius: 10px; padding: 22px; text-align:center; box-shadow: 5px 5px 0 var(--ink);}
@@ -314,8 +319,8 @@
   .card p{ color:#5b4566; font-size:1rem; margin: 0 0 14px;}
   .card .tags{ display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom: 16px;}
   .card .tags span{ font-family:'VT323',monospace; font-size:0.8rem; border:2px solid var(--ink); padding:3px 9px; border-radius:999px; color:#5b4566;}
-  .card-actions{ display:flex; gap:10px; justify-content:center;}
-  .card-actions button{ font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.85rem; padding: 9px 18px; border-radius:8px; cursor:pointer; border:3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);}
+  .card-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+  .card-actions button{ font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.85rem; padding: 9px 18px; border-radius:8px; cursor:pointer; border:3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); touch-action: manipulation; min-height:44px; }
   .accept{ background: var(--yellow); } .reroll{ background:#fff; }
 
   .plan-mini{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px 14px; box-shadow:2px 2px 0 var(--ink);}
@@ -323,31 +328,28 @@
   .plan-mini h4{ font-family:'Bungee',cursive; font-size:1.05rem; margin:6px 0; }
   .plan-mini p{ margin:0 0 8px; font-size:0.92rem; color:#5b4566;}
   .plan-mini .by{ font-family:'VT323',monospace; font-size:0.82rem; color:#9c8aa8;}
-  .plan-mini .accept-mini{ margin-top:10px; background: var(--yellow); border:2px solid var(--ink); border-radius:6px; padding:6px 14px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.8rem; cursor:pointer;}
+  .plan-mini .accept-mini{ margin-top:10px; background: var(--yellow); border:2px solid var(--ink); border-radius:6px; padding:6px 14px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.8rem; cursor:pointer; touch-action: manipulation; }
 
-  /* little things */
-  .thing-form{ display:flex; gap:8px; margin-bottom:16px; }
-  .thing-form input{ flex:1; border:2px solid var(--ink); border-radius:8px; padding:9px 12px; font-family:'Baloo 2',sans-serif; font-size:0.95rem; background:#fff;}
-  .thing-form button{ background: var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:0 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer;}
+  .thing-form{ display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+  .thing-form input{ flex:1; min-width:120px; border:2px solid var(--ink); border-radius:8px; padding:9px 12px; font-family:'Baloo 2',sans-serif; font-size:0.95rem; background:#fff;}
+  .thing-form button{ background: var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:0 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation; }
   .thing{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px 12px; margin-bottom:9px; box-shadow:2px 2px 0 var(--ink); font-size:0.95rem;}
   .thing .by{ display:block; font-family:'VT323',monospace; font-size:0.78rem; color:#9c8aa8; margin-top:3px;}
 
-  /* modal */
   .modal-bg{ display:none; position:fixed; inset:0; background: rgba(42,26,48,0.55); z-index:900; align-items:center; justify-content:center; padding:16px;}
   .modal-bg.show{ display:flex; }
   .modal{ background: var(--cream); border:3px solid var(--ink); border-radius:10px; padding:22px; width:100%; max-width:380px; max-height:88vh; overflow-y:auto; box-shadow: 6px 6px 0 var(--ink);}
   .modal h3{ font-family:'Bungee',cursive; font-size:1.2rem; margin:0 0 16px; text-align:center; color: var(--pink-deep);}
   .field{ margin-bottom: 14px; }
   .field label{ display:block; font-family:'VT323',monospace; font-size:0.85rem; letter-spacing:1.5px; text-transform:uppercase; color:#5b4566; margin-bottom:5px;}
-  .field input[type=text], .field input[type=date], .field select{ width:100%; background:#fff; border:2px solid var(--ink); color: var(--ink); padding:9px 10px; border-radius:6px; font-family:'Baloo 2',sans-serif; font-size:0.95rem;}
+  .field input[type=text], .field input[type=date], .field input[type=time], .field select{ width:100%; background:#fff; border:2px solid var(--ink); color: var(--ink); padding:9px 10px; border-radius:6px; font-family:'Baloo 2',sans-serif; font-size:0.95rem;}
   .field input[type=file]{ width:100%; font-size:0.85rem; }
   .modal-actions{ display:flex; gap:10px; margin-top:6px; }
-  .modal-actions button{ flex:1; padding:10px; border-radius:8px; border:3px solid var(--ink); cursor:pointer; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.85rem;}
+  .modal-actions button{ flex:1; padding:10px; border-radius:8px; border:3px solid var(--ink); cursor:pointer; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.85rem; touch-action: manipulation; min-height:44px; }
   .modal-actions .save{ background: var(--yellow); } .modal-actions .cancel{ background:#fff; }
-  .close-x{ position:absolute; top:14px; right:16px; background:#fff; border:2px solid var(--ink); border-radius:50%; width:26px; height:26px; cursor:pointer; font-weight:800;}
+  .close-x{ position:absolute; top:14px; right:16px; background:#fff; border:2px solid var(--ink); border-radius:50%; width:26px; height:26px; cursor:pointer; font-weight:800; touch-action: manipulation; }
   .modal-wrap{ position:relative; }
 
-  /* lock screen */
   .lock-bg{ position:fixed; inset:0; z-index:1000; background: var(--sky); background-image: radial-gradient(circle at 20% 20%, #d8f4ff 0%, transparent 40%), radial-gradient(circle at 85% 80%, #ffd3ec 0%, transparent 45%); display:flex; align-items:center; justify-content:center; padding:20px;}
   .lock-window{ background: var(--panel); border:3px solid var(--ink); border-radius:10px; width:100%; max-width:340px; box-shadow: 6px 6px 0 var(--ink); overflow:hidden;}
   .lock-body{ padding: 26px 22px; text-align:center; }
@@ -355,10 +357,9 @@
   .lock-body h2{ font-family:'Bungee',cursive; font-size:1.3rem; color: var(--pink-deep); margin: 10px 0 4px; -webkit-text-stroke: 0.5px var(--ink);}
   .lock-body p{ font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin: 0 0 18px;}
   .lock-body input{ width:100%; text-align:center; letter-spacing:8px; font-size:1.4rem; font-family:'VT323',monospace; border:2px solid var(--ink); border-radius:8px; padding:10px; background:#fff; color:var(--ink); margin-bottom:14px;}
-  .lock-body button{ width:100%; background: var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:11px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; box-shadow:3px 3px 0 var(--ink);}
+  .lock-body button{ width:100%; background: var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:11px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; box-shadow:3px 3px 0 var(--ink); touch-action: manipulation; }
   .lock-error{ font-family:'VT323',monospace; color: var(--pink-deep); font-size:0.95rem; min-height:18px; margin-top:8px;}
 
-  /* taskbar */
   .taskbar{ position: fixed; bottom:0; left:0; right:0; height:46px; background: linear-gradient(90deg, var(--lav), var(--pink)); border-top: 3px solid var(--ink); display:flex; align-items:center; justify-content:space-between; padding: 0 12px; z-index: 800; font-family:'VT323', monospace;}
   .start-btn{ background: var(--yellow); border:2px solid var(--ink); border-radius:6px; padding: 5px 14px; font-family:'Bungee', cursive; font-size:0.8rem; color: var(--ink); display:flex; align-items:center; gap:6px;}
   .clock{ background:#fff; border:2px solid var(--ink); border-radius:6px; padding:4px 10px; font-size:1rem; color: var(--ink);}
@@ -368,6 +369,256 @@
   .secret-modal .modal{ text-align:center; }
   .secret-modal h3{ font-size:1.4rem; }
   .secret-modal p{ font-family:'VT323',monospace; font-size:1.1rem; color:#5b4566; }
+
+  /* NEW FEATURE STYLES */
+  .study-session-card {
+    background: #fff;
+    border: 3px solid var(--ink);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .study-session-card .subject { font-family: 'Bungee', cursive; font-size: 1.2rem; color: var(--pink-deep); }
+  .study-session-card .participants { font-family:'VT323', monospace; font-size:0.9rem; color:#5b4566; }
+  .study-session-card .duration { font-family:'VT323', monospace; font-size:0.9rem; }
+  .study-timer {
+    font-family: 'Bungee', cursive;
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 16px 0;
+    color: var(--pink-deep);
+  }
+  .study-encourage {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 12px 0;
+  }
+  .study-encourage button {
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    touch-action: manipulation;
+    box-shadow: 2px 2px 0 var(--ink);
+    transition: all 0.12s ease;
+  }
+  .study-encourage button:active { transform: translate(2px,2px); box-shadow: none; }
+  .study-encourage button.encourage-sent { background: var(--green); color: #fff; }
+
+  .needs-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 480px) { .needs-list { grid-template-columns: 1fr; } }
+  .needs-person {
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .needs-person h4 { font-family:'Bungee', cursive; font-size:0.9rem; margin:0 0 8px; color: var(--pink-deep); }
+  .needs-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    font-size:0.9rem;
+    border-bottom: 1px solid #f0e8f5;
+  }
+  .needs-item:last-child { border-bottom: none; }
+  .needs-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--pink);
+    cursor: pointer;
+  }
+  .needs-item .completed { text-decoration: line-through; color: #9c8aa8; }
+  .needs-item .delete-need {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size:1rem;
+    color: #9c8aa8;
+    touch-action: manipulation;
+  }
+  .needs-add-form {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .needs-add-form input {
+    flex:1;
+    min-width:80px;
+    border:2px solid var(--ink);
+    border-radius:6px;
+    padding:6px 10px;
+    font-family:'Baloo 2',sans-serif;
+    font-size:0.85rem;
+    background:#fff;
+  }
+  .needs-add-form button {
+    background: var(--yellow);
+    border:2px solid var(--ink);
+    border-radius:6px;
+    padding:6px 12px;
+    font-family:'Baloo 2',sans-serif;
+    font-weight:700;
+    cursor:pointer;
+    touch-action: manipulation;
+  }
+
+  .meet-card {
+    background: #fff;
+    border: 3px solid var(--ink);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .meet-card .meet-location { font-family:'Bungee', cursive; font-size:1.2rem; color: var(--pink-deep); }
+  .meet-card .meet-timer {
+    font-family: 'Bungee', cursive;
+    font-size: 2rem;
+    padding: 12px 0;
+    color: var(--ink);
+  }
+  .meet-card .meet-actions { display: flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+  .meet-card .meet-actions button {
+    padding: 10px 20px;
+    border: 3px solid var(--ink);
+    border-radius: 8px;
+    font-family:'Baloo 2',sans-serif;
+    font-weight:800;
+    font-size:0.9rem;
+    cursor:pointer;
+    box-shadow: 3px 3px 0 var(--ink);
+    touch-action: manipulation;
+    min-height:44px;
+  }
+  .meet-card .meet-actions .accept-meet { background: var(--green); }
+  .meet-card .meet-actions .decline-meet { background: #fecaca; }
+  .meet-card .meet-actions .cancel-meet { background: #fecaca; }
+
+  .ourlist-category {
+    margin-bottom: 16px;
+  }
+  .ourlist-category h4 {
+    font-family:'Bungee', cursive;
+    font-size:0.9rem;
+    color: var(--pink-deep);
+    margin:0 0 8px;
+    border-bottom:2px solid var(--pink);
+    padding-bottom:4px;
+  }
+  .ourlist-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0e8f5;
+    font-size:0.9rem;
+    flex-wrap:wrap;
+  }
+  .ourlist-item .state-badge {
+    font-family:'VT323', monospace;
+    font-size:0.7rem;
+    padding:2px 8px;
+    border-radius:999px;
+    border:2px solid var(--ink);
+  }
+  .ourlist-item .state-badge.someday { background:#e0d5e8; }
+  .ourlist-item .state-badge.planned { background:#fde68a; }
+  .ourlist-item .state-badge.done { background:var(--green); color:#fff; }
+  .ourlist-item .ol-actions {
+    margin-left:auto;
+    display:flex;
+    gap:4px;
+    flex-wrap:wrap;
+  }
+  .ourlist-item .ol-actions button {
+    background:none;
+    border:2px solid var(--ink);
+    border-radius:4px;
+    padding:2px 8px;
+    font-family:'Baloo 2',sans-serif;
+    font-weight:600;
+    font-size:0.7rem;
+    cursor:pointer;
+    touch-action: manipulation;
+  }
+  .ourlist-item .ol-actions .state-btn { background:#f0e8f5; }
+  .ourlist-item .ol-actions .delete-ol { background:#fecaca; }
+
+  .quick-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .quick-card {
+    background: #fff;
+    border: 3px solid var(--ink);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 3px 3px 0 var(--ink);
+    cursor: pointer;
+    transition: all 0.12s ease;
+    touch-action: manipulation;
+  }
+  .quick-card:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
+  .quick-card .qc-icon { font-size: 1.8rem; display:block; }
+  .quick-card .qc-label {
+    font-family:'Baloo 2',sans-serif;
+    font-weight:700;
+    font-size:0.8rem;
+    margin-top:4px;
+  }
+  .quick-card .qc-sub {
+    font-family:'VT323',monospace;
+    font-size:0.7rem;
+    color:#7a6683;
+  }
+
+  .study-history-item {
+    background:#fff;
+    border:2px solid var(--ink);
+    border-radius:8px;
+    padding:10px 12px;
+    margin-bottom:8px;
+    box-shadow:2px 2px 0 var(--ink);
+  }
+  .study-history-item .sh-subject { font-weight:700; }
+  .study-history-item .sh-meta { font-family:'VT323',monospace; font-size:0.8rem; color:#7a6683; }
+
+  @media (max-width: 480px) {
+    .roll { grid-template-columns: repeat(auto-fill, minmax(110px,1fr)); gap: 12px; }
+    .stamp { width: 140px; height: 140px; }
+    .stamp .icon { font-size:2rem; }
+    .stamp .label { font-size:0.75rem; }
+    .header-body h1 { font-size:1.8rem; }
+    .study-timer { font-size:2rem; }
+    .meet-card .meet-timer { font-size:1.5rem; }
+    .quick-grid { grid-template-columns: 1fr 1fr; }
+    .modal { padding:16px; max-width:100%; }
+  }
+  @media (max-width: 375px) {
+    .quick-grid { grid-template-columns: 1fr 1fr; gap:6px; }
+    .quick-card { padding:8px; }
+    .quick-card .qc-icon { font-size:1.4rem; }
+    .wrap { padding: 12px 8px 40px; }
+  }
 </style>
 </head>
 <body>
@@ -408,10 +659,12 @@
 
   <nav>
     <button data-view="home" class="active">🏠 home</button>
+    <button data-view="study">📚 study</button>
+    <button data-view="needs">🎒 needs</button>
+    <button data-view="meet">🏃 meet</button>
+    <button data-view="ourlist">📦 our list</button>
     <button data-view="archive">📷 archive</button>
     <button data-view="tonight">🌙 tonight</button>
-    <button data-view="tasks">⏰ tasks</button>
-    <button data-view="things">🧸 things</button>
   </nav>
 
   <!-- HOME -->
@@ -421,9 +674,33 @@
       <div class="titlebar"><span class="tname">📆 today.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
       <div class="wbody">
         <div class="today-date" id="todayDate"></div>
-        <div class="today-sub">another day of us.</div>
+        <div class="today-sub" id="greeting">another day of us.</div>
         <div class="today-row" id="partnerStatusRow" style="display:none;"></div>
         <div class="today-row" id="archiveNudgeRow" style="display:none;"></div>
+        
+        <div class="quick-grid">
+          <div class="quick-card" onclick="navigateTo('study')">
+            <span class="qc-icon">📚</span>
+            <span class="qc-label">study together</span>
+            <span class="qc-sub" id="studyQuickStatus">idle</span>
+          </div>
+          <div class="quick-card" onclick="navigateTo('meet')">
+            <span class="qc-icon">🏃</span>
+            <span class="qc-label">meet me</span>
+            <span class="qc-sub" id="meetQuickStatus">—</span>
+          </div>
+          <div class="quick-card" onclick="navigateTo('needs')">
+            <span class="qc-icon">🎒</span>
+            <span class="qc-label">what do i need?</span>
+            <span class="qc-sub" id="needsQuickStatus">—</span>
+          </div>
+          <div class="quick-card" onclick="navigateTo('ourlist')">
+            <span class="qc-icon">📦</span>
+            <span class="qc-label">our list</span>
+            <span class="qc-sub" id="ourlistQuickStatus">—</span>
+          </div>
+        </div>
+
         <span class="win-label" style="margin-top:14px; display:block;">set your status</span>
         <div class="status-chips" id="statusChips">
           <button class="status-chip" data-v="free for 15 min">free 15 min</button>
@@ -477,6 +754,188 @@
     <div class="window">
       <div class="titlebar"><span class="tname">📜 the_log.txt</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
       <div class="wbody"><div id="pingList"><p class="empty-note">nothing yet — be the first to say it.</p></div></div>
+    </div>
+  </section>
+
+  <!-- STUDY TOGETHER -->
+  <section class="view" id="view-study">
+    <div class="window">
+      <div class="titlebar"><span class="tname">📚 study_together.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+      <div class="wbody">
+        <div id="studyStatus" class="empty-note" style="margin-bottom:12px;">Ready to study?</div>
+        
+        <div id="studySetup" style="display:block;">
+          <div class="field">
+            <label>what are you studying?</label>
+            <input type="text" id="studySubject" placeholder="e.g., Anatomy, Physiology, Assignment..." style="width:100%; background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-size:1rem;">
+          </div>
+          <div class="field">
+            <label>duration</label>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="chip study-duration-chip" data-dur="25">25 min</button>
+              <button class="chip study-duration-chip" data-dur="50">50 min</button>
+              <button class="chip study-duration-chip" data-dur="90">90 min</button>
+              <button class="chip study-duration-chip" data-dur="custom">custom</button>
+            </div>
+            <input type="number" id="studyCustomDuration" placeholder="minutes" style="display:none; margin-top:8px; width:100%; background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-size:1rem;">
+          </div>
+          <button id="startStudyBtn" class="go-btn" style="margin-top:12px; width:100%;">start study session ♡</button>
+        </div>
+
+        <div id="studyActive" style="display:none;">
+          <div style="text-align:center; font-family:'Bungee',cursive; font-size:1.1rem; color:var(--pink-deep);">
+            📚 <span id="studyParticipants">SHONNA + POTTI</span>
+          </div>
+          <div style="text-align:center; font-family:'VT323',monospace; font-size:0.9rem; color:#5b4566;">studying</div>
+          <div class="study-timer" id="studyTimerDisplay">00:00</div>
+          <div id="studySubjectDisplay" style="text-align:center; font-size:1rem;"></div>
+          
+          <div class="study-encourage" id="studyEncourage">
+            <button data-msg="♡ You got this">♡ You got this</button>
+            <button data-msg="🫂 I'm here">🫂 I'm here</button>
+            <button data-msg="🫵 Back to studying">🫵 Back to studying</button>
+            <button data-msg="☕ Break soon">☕ Break soon</button>
+          </div>
+          <div id="encourageFeed" style="font-family:'VT323',monospace; font-size:0.9rem; color:#7a6683; text-align:center; margin-top:8px; min-height:24px;"></div>
+          <button id="endStudyBtn" style="margin-top:12px; width:100%; background:#fecaca; border:3px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-weight:700; cursor:pointer; touch-action: manipulation;">end session</button>
+        </div>
+
+        <div id="studyComplete" style="display:none;">
+          <div style="text-align:center; font-family:'Bungee',cursive; font-size:1.2rem; color:var(--pink-deep);">SESSION COMPLETE ♡</div>
+          <div style="text-align:center; font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin:4px 0 12px;">"You survived."</div>
+          <div id="studySummary" style="background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px; box-shadow:2px 2px 0 var(--ink); margin-bottom:12px;"></div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+            <button id="studyAgainBtn" style="background:var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">start again</button>
+            <button id="studyDoneBtn" style="background:#fff; border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">done</button>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;">
+          <span class="win-label">study history</span>
+          <div id="studyHistory"><p class="empty-note">no study sessions yet.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT DO I NEED -->
+  <section class="view" id="view-needs">
+    <div class="window">
+      <div class="titlebar"><span class="tname">🎒 what_do_i_need.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+      <div class="wbody">
+        <div class="needs-list" id="needsContainer">
+          <div class="needs-person" id="needsPotti">
+            <h4>POTTI NEEDS</h4>
+            <div id="needsPottiList"></div>
+            <div class="needs-add-form">
+              <input type="text" id="needsPottiInput" placeholder="add item...">
+              <button onclick="addNeed('POTTI')">+</button>
+            </div>
+          </div>
+          <div class="needs-person" id="needsShonna">
+            <h4>SHONNA NEEDS</h4>
+            <div id="needsShonnaList"></div>
+            <div class="needs-add-form">
+              <input type="text" id="needsShonnaInput" placeholder="add item...">
+              <button onclick="addNeed('SHONNA')">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEET ME -->
+  <section class="view" id="view-meet">
+    <div class="window">
+      <div class="titlebar"><span class="tname">🏃 meet_me.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+      <div class="wbody">
+        <div id="meetStatus"></div>
+        
+        <div id="meetSetup" style="display:block;">
+          <div class="field">
+            <label>when?</label>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="chip meet-time-chip" data-time="now">NOW</button>
+              <button class="chip meet-time-chip" data-time="10">IN 10 MIN</button>
+              <button class="chip meet-time-chip" data-time="30">IN 30 MIN</button>
+              <button class="chip meet-time-chip" data-time="custom">CUSTOM</button>
+            </div>
+            <input type="time" id="meetCustomTime" style="display:none; margin-top:8px; width:100%; background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-size:1rem;">
+          </div>
+          <div class="field">
+            <label>where?</label>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="chip meet-location-chip" data-loc="Common Room">🏠 Common Room</button>
+              <button class="chip meet-location-chip" data-loc="Circle">⭕ Circle</button>
+              <button class="chip meet-location-chip" data-loc="Library">📚 Library</button>
+              <button class="chip meet-location-chip" data-loc="Classroom">🏫 Classroom</button>
+              <button class="chip meet-location-chip" data-loc="Hostel">🛏️ Hostel</button>
+              <button class="chip meet-location-chip" data-loc="custom">📍 Custom</button>
+            </div>
+            <input type="text" id="meetCustomLocation" placeholder="custom location" style="display:none; margin-top:8px; width:100%; background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-size:1rem;">
+          </div>
+          <button id="sendMeetBtn" class="go-btn" style="margin-top:12px; width:100%;">send to <span id="meetTargetName">POTTI</span> ♡</button>
+        </div>
+
+        <div id="meetActive" style="display:none;">
+          <div class="meet-card">
+            <div style="font-family:'VT323',monospace; font-size:0.9rem; color:#5b4566;"><span id="meetRequester">Someone</span> wants to see you.</div>
+            <div class="meet-location" id="meetLocationDisplay">📍 Location</div>
+            <div style="font-family:'VT323',monospace; font-size:1rem; color:#7a6683;">in <span id="meetTimeDisplay">—</span></div>
+            <div class="meet-timer" id="meetTimerDisplay">00:00</div>
+            <div id="meetActions" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px;">
+              <button class="accept-meet" id="meetAcceptBtn">I'M COMING ♡</button>
+              <button class="decline-meet" id="meetDeclineBtn">CAN'T RIGHT NOW</button>
+            </div>
+            <div id="meetCancelArea" style="display:none;">
+              <button class="cancel-meet" id="meetCancelBtn">cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="meetComplete" style="display:none;">
+          <div class="meet-card">
+            <div style="font-family:'Bungee',cursive; font-size:1.2rem; color:var(--green);">GO. <span id="meetCompleteWho">SHE'S</span> WAITING. 🫵</div>
+            <div style="font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin:8px 0;">
+              <span id="meetCompleteLoc">📍 Location</span>
+            </div>
+            <button id="meetCompleteDone" style="background:var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">did you meet? ♡</button>
+          </div>
+        </div>
+
+        <div id="meetDeclined" style="display:none;">
+          <div class="meet-card">
+            <div style="font-family:'VT323',monospace; font-size:1.1rem; color:#5b4566;">
+              <span id="meetDeclinedWho">POTTI</span> can't make it right now.
+            </div>
+            <button id="meetAskFree" style="margin-top:12px; background:var(--lav); border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">ask when she's free</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR LIST -->
+  <section class="view" id="view-ourlist">
+    <div class="window">
+      <div class="titlebar"><span class="tname">📦 our_list.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+      <div class="wbody">
+        <div class="field">
+          <label>add something to our list</label>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <input type="text" id="olInput" placeholder="e.g., Try that café" style="flex:1; min-width:120px; background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-size:0.95rem;">
+            <select id="olCategory" style="border:2px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-size:0.9rem; background:#fff;">
+              <option value="PLACES">📍 PLACES</option>
+              <option value="FOOD">🍜 FOOD</option>
+              <option value="THINGS">🎁 THINGS</option>
+              <option value="EXPERIENCES">✨ EXPERIENCES</option>
+            </select>
+            <button id="olAddBtn" style="background:var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:10px 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">add</button>
+          </div>
+        </div>
+        <div id="olContainer"></div>
+      </div>
     </div>
   </section>
 
@@ -536,45 +995,6 @@
     </div>
   </section>
 
-  <!-- TASKS -->
-  <section class="view" id="view-tasks">
-    <div class="window">
-      <div class="titlebar"><span class="tname">⏰ task_timer.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-      <div class="wbody">
-        <span class="win-label">give each other tasks with timers</span>
-        <div class="task-form">
-          <input type="text" id="taskInput" placeholder="e.g., drink water right now">
-          <select id="taskTimer">
-            <option value="5">5 min</option>
-            <option value="10">10 min</option>
-            <option value="15" selected>15 min</option>
-            <option value="30">30 min</option>
-            <option value="60">1 hour</option>
-            <option value="1440">1 day</option>
-            <option value="10080">1 week</option>
-          </select>
-          <button id="taskAdd">assign</button>
-        </div>
-        <div id="tasksList"><p class="empty-note">no tasks yet. assign something!</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LITTLE THINGS -->
-  <section class="view" id="view-things">
-    <div class="window">
-      <div class="titlebar"><span class="tname">🧸 little_things.txt</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-      <div class="wbody">
-        <span class="win-label">tiny, insignificant facts about each other</span>
-        <div class="thing-form">
-          <input type="text" id="thingInput" placeholder="she always sends 😭 when she doesn't know what to say">
-          <button id="thingAdd">add</button>
-        </div>
-        <div id="thingsList"><p class="empty-note">nothing here yet.</p></div>
-      </div>
-    </div>
-  </section>
-
   <footer>
     made by shonna, for potti · est. 2026 &nbsp;
     <span class="secret-heart" id="secretHeart">♡</span>
@@ -619,6 +1039,20 @@
   </div>
 </div>
 
+<!-- MODAL: meet complete -->
+<div class="modal-bg" id="meetCompleteModal">
+  <div class="modal">
+    <div class="modal-wrap">
+      <button class="close-x" id="closeMeetComplete">×</button>
+      <h3>did you meet?</h3>
+      <div style="display:flex; gap:12px; justify-content:center; margin:16px 0;">
+        <button id="meetYesSave" style="background:var(--green); border:3px solid var(--ink); border-radius:8px; padding:12px 24px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">YES ♡</button>
+        <button id="meetNoSave" style="background:#fecaca; border:3px solid var(--ink); border-radius:8px; padding:12px 24px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">not yet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 // ---------- PASSCODE ----------
 const PASSCODE = "2704";
@@ -638,6 +1072,8 @@ document.getElementById('passInput').addEventListener('keydown', e=>{ if(e.key==
 const SUPABASE_URL = "https://gnnryoxxodlnguloivba.supabase.co";
 const SUPABASE_KEY = "sb_publishable_S3JO0ptzUrhBZLKwW03_BA_cdFv9HBm";
 let sb = null;
+let currentWho = null;
+const OTHER = w => w === 'SHONNA' ? 'POTTI' : 'SHONNA';
 
 function initSupabase(){
   try{
@@ -659,13 +1095,12 @@ function showConnectionError(){
   }
 }
 
-let currentWho = null;
-const OTHER = w => w === 'SHONNA' ? 'POTTI' : 'SHONNA';
-
 // ---------- NOTIFICATIONS ----------
 let notificationsEnabled = false;
 let notificationPermission = 'default';
 let lastNotificationTimes = {};
+let notificationQueue = [];
+let isProcessingQueue = false;
 
 const notificationsSupported = 'Notification' in window;
 
@@ -673,14 +1108,22 @@ if(localStorage.getItem('sp_notifications') === 'enabled') {
   notificationsEnabled = true;
 }
 
+if(notificationsEnabled && notificationsSupported && Notification.permission === 'default') {
+  Notification.requestPermission();
+}
+
 function updateNotifToggle() {
   const toggle = document.getElementById('notifToggle');
-  if(notificationsEnabled) {
+  if(notificationsEnabled && notificationsSupported && Notification.permission === 'granted') {
     toggle.textContent = '🔔 notifications: on';
     toggle.classList.add('enabled');
   } else {
     toggle.textContent = '🔔 notifications: off';
     toggle.classList.remove('enabled');
+    if(notificationsEnabled) {
+      notificationsEnabled = false;
+      localStorage.setItem('sp_notifications', 'disabled');
+    }
   }
 }
 
@@ -691,12 +1134,20 @@ async function enableNotifications() {
   }
   
   try {
-    const permission = await Notification.requestPermission();
+    let permission = Notification.permission;
+    if(permission === 'default') {
+      permission = await Notification.requestPermission();
+    }
     if(permission === 'granted') {
       notificationsEnabled = true;
       localStorage.setItem('sp_notifications', 'enabled');
       updateNotifToggle();
-      sendNotification('Notifications enabled! 💌', 'You\'ll now get notified about new stuff.');
+      try {
+        new Notification('💌 Notifications enabled!', {
+          body: 'You\'ll now get notified about new stuff.',
+          icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">💕</text></svg>'
+        });
+      } catch(e) {}
       return true;
     } else {
       alert('Permission denied. You can enable notifications in your browser settings.');
@@ -715,7 +1166,7 @@ function disableNotifications() {
 }
 
 document.getElementById('notifToggle').addEventListener('click', async () => {
-  if(notificationsEnabled) {
+  if(notificationsEnabled && Notification.permission === 'granted') {
     disableNotifications();
   } else {
     await enableNotifications();
@@ -723,33 +1174,48 @@ document.getElementById('notifToggle').addEventListener('click', async () => {
 });
 
 function sendNotification(title, body, tag = null) {
-  if(!notificationsEnabled || !notificationsSupported) return;
+  console.log('📢 Notification attempt:', title, body);
+  
+  if(!notificationsEnabled) {
+    console.log('⚠️ Notifications disabled');
+    return;
+  }
+  if(!notificationsSupported) {
+    console.log('⚠️ Notifications not supported');
+    return;
+  }
+  if(Notification.permission !== 'granted') {
+    console.log('⚠️ Notification permission not granted:', Notification.permission);
+    return;
+  }
   
   const now = Date.now();
   const key = tag || title;
-  if(lastNotificationTimes[key] && (now - lastNotificationTimes[key] < 60000)) {
+  if(lastNotificationTimes[key] && (now - lastNotificationTimes[key] < 30000)) {
+    console.log('⏳ Notification throttled:', key);
     return;
   }
   lastNotificationTimes[key] = now;
   
   try {
     const options = {
-      body: body,
+      body: body || '',
       icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">💕</text></svg>',
       tag: tag || title,
       renotify: true,
-      requireInteraction: false
+      requireInteraction: false,
+      silent: false
     };
     
-    if('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-      navigator.serviceWorker.ready.then(registration => {
-        registration.showNotification(title, options);
-      });
-    } else {
-      new Notification(title, options);
-    }
+    const notification = new Notification(title, options);
+    notification.onclick = function() {
+      window.focus();
+      this.close();
+    };
+    
+    console.log('✅ Notification sent:', title);
   } catch(e) {
-    console.error('Error sending notification:', e);
+    console.error('❌ Error sending notification:', e);
   }
 }
 
@@ -769,17 +1235,21 @@ function applyWhoUI(){
     document.getElementById('whoLocked').style.display = 'block';
     document.getElementById('whoLockedName').textContent = currentWho;
     const caption = document.getElementById('missCaption');
+    const target = OTHER(currentWho);
     if(currentWho === 'SHONNA'){
       caption.textContent = "press it. he'll know. ⋆˚꒰ঌ ໒꒱˚⋆";
     } else {
       caption.textContent = "press it. she'll know. ⋆˚꒰ঌ ໒꒱˚⋆";
     }
+    document.getElementById('meetTargetName').textContent = target;
   } else {
     document.getElementById('whoPicker').style.display = 'flex';
     document.getElementById('whoLocked').style.display = 'none';
     document.getElementById('missCaption').textContent = "press it. she'll know. ⋆˚꒰ঌ ໒꒱˚⋆";
+    document.getElementById('meetTargetName').textContent = 'POTTI';
   }
 }
+
 document.querySelectorAll('.who-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     currentWho = btn.dataset.who;
@@ -788,10 +1258,40 @@ document.querySelectorAll('.who-btn').forEach(btn=>{
     refreshAll();
   });
 });
+
 document.getElementById('whoResetLink').addEventListener('click', ()=>{
   localStorage.removeItem('sp_who');
   currentWho = null;
   applyWhoUI();
+});
+
+// ---------- NAVIGATION ----------
+function navigateTo(view) {
+  const navBtn = document.querySelector(`nav button[data-view="${view}"]`);
+  if(navBtn) {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    navBtn.classList.add('active');
+  }
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const targetView = document.getElementById('view-' + view);
+  if(targetView) {
+    targetView.classList.add('active');
+  }
+  
+  // Load data for the view
+  if(view === 'archive') loadArchive();
+  if(view === 'study') loadStudyHistory();
+  if(view === 'needs') loadNeeds();
+  if(view === 'ourlist') loadOurList();
+  if(view === 'home') refreshAll();
+  if(view === 'meet') checkMeetStatus();
+}
+window.navigateTo = navigateTo;
+
+document.querySelectorAll('nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    navigateTo(btn.dataset.view);
+  });
 });
 
 // ---------- CLOCK ----------
@@ -802,35 +1302,25 @@ function tickClock(){
 tickClock(); setInterval(tickClock, 1000);
 
 function escapeHtml(str){
+  if(!str) return '';
   const d = document.createElement('div');
   d.textContent = str;
   return d.innerHTML;
 }
-
-// ---------- NAV ----------
-document.querySelectorAll('nav button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    document.getElementById('view-'+btn.dataset.view).classList.add('active');
-    if(btn.dataset.view === 'archive') loadArchive();
-    if(btn.dataset.view === 'things') loadThings();
-    if(btn.dataset.view === 'tasks') loadTasks();
-    if(btn.dataset.view === 'home') refreshAll();
-  });
-});
 
 // ---------- TRACK LAST SEEN DATA ----------
 let lastPingId = null;
 let lastMemoryId = null;
 let lastPlanId = null;
 let lastTaskId = null;
+let lastMeetId = null;
+let lastStudyId = null;
 
 // ---------- I MISS YOU ----------
+let isSubmittingMiss = false;
 document.getElementById('missBtn').addEventListener('click', async ()=>{
   const statusEl = document.getElementById('missStatus');
-  
+  if(isSubmittingMiss) return;
   if(!sb){ 
     statusEl.textContent = "❌ Database not connected. Check console.";
     statusEl.style.color = '#ef4444';
@@ -841,37 +1331,39 @@ document.getElementById('missBtn').addEventListener('click', async ()=>{
     return; 
   }
   
+  isSubmittingMiss = true;
   statusEl.textContent = "sending...";
   statusEl.style.color = '';
   
   try {
-    console.log('Sending miss you ping...');
-    console.log('From:', currentWho);
-    console.log('Message:', `${currentWho} misses you.`);
-    
+    const target = OTHER(currentWho);
     const { data, error } = await sb.from('pings').insert({ 
       from_name: currentWho, 
       message: `${currentWho} misses you.`,
       type: 'miss'
     });
-    
     if(error){ 
       console.error('❌ Insert error:', error);
       statusEl.textContent = "couldn't send — check console for details"; 
       statusEl.style.color = '#ef4444';
+      isSubmittingMiss = false;
       return;
     }
-    
-    console.log('✅ Ping sent successfully:', data);
     statusEl.textContent = "sent ♡";
     statusEl.style.color = '';
     await loadPings();
+    if(currentWho === 'SHONNA') {
+      sendNotification('💌 Miss You!', 'Shonna misses you!', 'miss-you');
+    } else {
+      sendNotification('💌 Miss You!', 'Potti misses you!', 'miss-you');
+    }
     setTimeout(()=>{ statusEl.textContent=""; }, 3000);
   } catch(e) {
     console.error('❌ Unexpected error:', e);
     statusEl.textContent = "unexpected error — check console";
     statusEl.style.color = '#ef4444';
   }
+  isSubmittingMiss = false;
 });
 
 // Reply button
@@ -886,6 +1378,11 @@ document.getElementById('replyBtn').addEventListener('click', async ()=>{
     if(!error) {
       document.getElementById('replyZone').classList.remove('show');
       await loadPings();
+      if(currentWho === 'SHONNA') {
+        sendNotification('🤗 Hug Back!', 'Shonna sent a hug!', 'hug-back');
+      } else {
+        sendNotification('🤗 Hug Back!', 'Potti sent a hug!', 'hug-back');
+      }
     }
   } catch(e) {
     console.error('Error sending reply:', e);
@@ -895,6 +1392,7 @@ document.getElementById('replyBtn').addEventListener('click', async ()=>{
 async function loadPings(){
   if(!sb) return;
   const list = document.getElementById('pingList');
+  if(!list) return;
   try {
     const { data, error } = await sb.from('pings').select('*').order('created_at', {ascending:false}).limit(12);
     if(error){ 
@@ -907,7 +1405,6 @@ async function loadPings(){
       return; 
     }
     
-    // Check for new pings (for notifications)
     if(data[0] && data[0].id !== lastPingId) {
       const newPings = data.filter(p => p.id !== lastPingId && p.from_name !== currentWho);
       if(newPings.length > 0 && lastPingId !== null) {
@@ -948,8 +1445,11 @@ function checkForMissYou(pings){
     const missIndex = pings.indexOf(latestMiss);
     const hasReply = pings.slice(0, missIndex).some(p => p.from_name === currentWho && p.type === 'reply');
     if(!hasReply){
-      document.getElementById('replyZone').classList.add('show');
-      document.getElementById('replyMessage').textContent = `${other} misses you!`;
+      const replyZone = document.getElementById('replyZone');
+      if(replyZone) {
+        replyZone.classList.add('show');
+        document.getElementById('replyMessage').textContent = `${other} misses you!`;
+      }
     }
   }
 }
@@ -957,13 +1457,21 @@ function checkForMissYou(pings){
 // ---------- TASKS ----------
 let taskTimers = {};
 
-document.getElementById('taskAdd').addEventListener('click', addTask);
-document.getElementById('taskInput').addEventListener('keydown', e=>{ if(e.key==='Enter') addTask(); });
+function cleanupTaskTimers() {
+  Object.values(taskTimers).forEach(timer => clearInterval(timer));
+  taskTimers = {};
+}
+
+const taskAddBtn = document.getElementById('taskAdd');
+if(taskAddBtn) taskAddBtn.addEventListener('click', addTask);
+const taskInput = document.getElementById('taskInput');
+if(taskInput) taskInput.addEventListener('keydown', e=>{ if(e.key==='Enter') addTask(); });
 
 async function addTask(){
   if(!sb || !currentWho) return;
   const input = document.getElementById('taskInput');
   const timerSelect = document.getElementById('taskTimer');
+  if(!input || !timerSelect) return;
   const content = input.value.trim();
   const timerMinutes = parseInt(timerSelect.value);
   
@@ -984,12 +1492,14 @@ async function addTask(){
   if(!error){
     input.value = '';
     loadTasks();
+    sendNotification('⏰ New Task!', `${currentWho} assigned you: ${content}`, 'new-task');
   }
 }
 
 async function loadTasks(){
   if(!sb || !currentWho) return;
   const list = document.getElementById('tasksList');
+  if(!list) return;
   const { data, error } = await sb.from('tasks')
     .select('*')
     .or(`assigned_to.eq.${currentWho},assigned_by.eq.${currentWho}`)
@@ -998,16 +1508,6 @@ async function loadTasks(){
   if(error || !data || data.length===0){ 
     list.innerHTML = `<p class="empty-note">no tasks yet. assign something!</p>`; 
     return; 
-  }
-  
-  // Check for new tasks assigned to me (for notifications)
-  if(data[0] && data[0].id !== lastTaskId) {
-    const newTasks = data.filter(t => t.id !== lastTaskId && t.assigned_to === currentWho && t.status === 'pending');
-    if(newTasks.length > 0 && lastTaskId !== null) {
-      const latestTask = newTasks[0];
-      sendNotification('⏰ New Task!', `${latestTask.assigned_by} assigned you: ${latestTask.task}`, 'new-task');
-    }
-    lastTaskId = data[0].id;
   }
   
   list.innerHTML = data.map(task => {
@@ -1137,22 +1637,35 @@ window.deleteTask = deleteTask;
 // ---------- TODAY WIDGET ----------
 function renderTodayDate(){
   const d = new Date();
-  document.getElementById('todayDate').textContent = d.toLocaleDateString(undefined, {day:'2-digit', month:'long', year:'numeric'}).toUpperCase();
+  const options = { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' };
+  document.getElementById('todayDate').textContent = d.toLocaleDateString('en-IN', options).toUpperCase();
+  
+  const hour = d.getHours();
+  let greeting = 'another day of us.';
+  if(hour < 12) greeting = 'good morning, you two. ♡';
+  else if(hour < 17) greeting = 'good afternoon, my loves. ♡';
+  else if(hour < 21) greeting = 'good evening, almost night. ♡';
+  else greeting = 'late night, but we\'re still here. ♡';
+  document.getElementById('greeting').textContent = greeting;
 }
 
 async function loadStatus(){
   if(!sb) return;
   const { data, error } = await sb.from('status').select('*');
   const row = document.getElementById('partnerStatusRow');
-  if(error || !data){ row.style.display = 'none'; }
+  if(error || !data){ 
+    if(row) row.style.display = 'none';
+  }
   else {
     const mine = currentWho;
     const partnerName = mine ? OTHER(mine) : null;
     const partnerRow = data.find(r => r.who === partnerName);
-    if(partnerRow && partnerRow.message){
-      row.style.display = 'block';
-      row.innerHTML = `<span class="lbl">🌙 tonight</span>${escapeHtml(partnerName)} is ${escapeHtml(partnerRow.message)}.`;
-    } else { row.style.display = 'none'; }
+    if(row) {
+      if(partnerRow && partnerRow.message){
+        row.style.display = 'block';
+        row.innerHTML = `<span class="lbl">🌙 tonight</span>${escapeHtml(partnerName)} is ${escapeHtml(partnerRow.message)}.`;
+      } else { row.style.display = 'none'; }
+    }
     const mineRow = data.find(r => r.who === mine);
     document.querySelectorAll('.status-chip').forEach(c=>{
       c.classList.toggle('sel', !!mineRow && mineRow.message === c.dataset.v);
@@ -1171,6 +1684,7 @@ document.querySelectorAll('.status-chip').forEach(chip=>{
 async function loadLatestMemoryNudge(){
   if(!sb) return;
   const row = document.getElementById('archiveNudgeRow');
+  if(!row) return;
   if(!currentWho){ row.style.display = 'none'; return; }
   const { data, error } = await sb.from('memories').select('*').order('created_at', {ascending:false}).limit(1);
   if(error || !data || data.length===0){ row.style.display = 'none'; return; }
@@ -1193,6 +1707,7 @@ async function loadLatestMemoryNudge(){
 
 // ---------- ARCHIVE ----------
 let archiveFilter = "ALL";
+
 document.querySelectorAll('.filter-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
@@ -1205,6 +1720,7 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
 async function loadArchive(){
   if(!sb) return;
   const grid = document.getElementById('rollGrid');
+  if(!grid) return;
   let query = sb.from('memories').select('*').order('memory_date', {ascending:false});
   if(archiveFilter !== "ALL") query = query.eq('added_by', archiveFilter);
   const { data, error } = await query;
@@ -1226,12 +1742,14 @@ async function loadArchive(){
 }
 
 const addModalBg = document.getElementById('addModalBg');
-document.getElementById('openAdd').addEventListener('click', ()=>{
-  addModalBg.classList.add('show');
-  document.getElementById('memWho').value = currentWho || 'SHONNA';
-});
-document.getElementById('closeAdd').addEventListener('click', ()=> addModalBg.classList.remove('show'));
-document.getElementById('cancelAdd').addEventListener('click', ()=> addModalBg.classList.remove('show'));
+if(addModalBg) {
+  document.getElementById('openAdd').addEventListener('click', ()=>{
+    addModalBg.classList.add('show');
+    document.getElementById('memWho').value = currentWho || 'SHONNA';
+  });
+  document.getElementById('closeAdd').addEventListener('click', ()=> addModalBg.classList.remove('show'));
+  document.getElementById('cancelAdd').addEventListener('click', ()=> addModalBg.classList.remove('show'));
+}
 
 document.getElementById('saveAdd').addEventListener('click', async ()=>{
   const statusEl = document.getElementById('addStatus');
@@ -1242,9 +1760,21 @@ document.getElementById('saveAdd').addEventListener('click', async ()=>{
   const who = document.getElementById('memWho').value;
 
   if(!fileInput.files[0]){ statusEl.textContent = "pick a photo first"; return; }
+  
+  const file = fileInput.files[0];
+  const MAX_SIZE = 5 * 1024 * 1024;
+  const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+  if(!ALLOWED_TYPES.includes(file.type)) {
+    statusEl.textContent = "Please upload a JPEG, PNG, GIF, or WEBP image";
+    return;
+  }
+  if(file.size > MAX_SIZE) {
+    statusEl.textContent = "Image too large. Max 5MB.";
+    return;
+  }
+  
   statusEl.textContent = "uploading...";
 
-  const file = fileInput.files[0];
   const path = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.]/g,'_')}`;
 
   const { error: upErr } = await sb.storage.from('memories').upload(path, file);
@@ -1270,12 +1800,20 @@ document.getElementById('saveAdd').addEventListener('click', async ()=>{
 
 // ---------- TONIGHT ----------
 let picked = { time:null, meet:null, mood:null };
-document.querySelectorAll('#timeChips .chip').forEach(c=>c.addEventListener('click', ()=>select('time', c)));
-document.querySelectorAll('#meetChips .chip').forEach(c=>c.addEventListener('click', ()=>select('meet', c)));
-document.querySelectorAll('#moodChips .chip').forEach(c=>c.addEventListener('click', ()=>select('mood', c)));
 
-function select(group, chip){
-  document.querySelectorAll(`#${group}Chips .chip`).forEach(c=>c.classList.remove('sel'));
+const timeChips = document.querySelectorAll('#timeChips .chip');
+const meetChips = document.querySelectorAll('#meetChips .chip');
+const moodChips = document.querySelectorAll('#moodChips .chip');
+
+timeChips.forEach(c=>c.addEventListener('click', ()=>selectChip('time', c)));
+meetChips.forEach(c=>c.addEventListener('click', ()=>selectChip('meet', c)));
+moodChips.forEach(c=>c.addEventListener('click', ()=>selectChip('mood', c)));
+
+function selectChip(group, chip){
+  const container = document.getElementById(`${group}Chips`);
+  if(container) {
+    container.querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));
+  }
   chip.classList.add('sel');
   picked[group] = chip.dataset.v;
 }
@@ -1372,6 +1910,7 @@ async function loadTonightPlan(){
   if(!sb) return;
   const win = document.getElementById('planWindow');
   const mini = document.getElementById('planMini');
+  if(!win || !mini) return;
   const { data, error } = await sb.from('tonight_plan').select('*').eq('id',1).maybeSingle();
   if(error || !data || !data.title){ win.style.display = 'none'; return; }
   
@@ -1389,13 +1928,21 @@ async function loadTonightPlan(){
     document.getElementById('acceptMini').addEventListener('click', async ()=>{
       await sb.from('tonight_plan').upsert({ id:1, status:'accepted' });
       loadTonightPlan();
+      sendNotification('🌙 Plan Accepted!', 'The tonight plan has been accepted!', 'plan-accepted');
     });
   }
 }
 
 // ---------- LITTLE THINGS ----------
-document.getElementById('thingAdd').addEventListener('click', addThing);
-document.getElementById('thingInput').addEventListener('keydown', e=>{ if(e.key==='Enter') addThing(); });
+const thingAdd = document.getElementById('thingAdd');
+const thingInput = document.getElementById('thingInput');
+
+if (thingAdd) {
+    thingAdd.addEventListener('click', addThing);
+}
+if (thingInput) {
+    thingInput.addEventListener('keydown', e=>{ if(e.key==='Enter') addThing(); });
+}
 
 async function addThing(){
   if(!sb) return;
@@ -1410,6 +1957,7 @@ async function addThing(){
 async function loadThings(){
   if(!sb) return;
   const list = document.getElementById('thingsList');
+  if(!list) return;
   const { data, error } = await sb.from('little_things').select('*').order('created_at', {ascending:false}).limit(60);
   if(error){ list.innerHTML = `<p class="empty-note">not connected yet — run the setup SQL in Supabase.</p>`; return; }
   if(!data || data.length===0){ list.innerHTML = `<p class="empty-note">nothing here yet.</p>`; return; }
@@ -1439,7 +1987,854 @@ document.getElementById('secretHeart').addEventListener('click', async ()=>{
 });
 document.getElementById('closeSecret').addEventListener('click', ()=> document.getElementById('secretModalBg').classList.remove('show'));
 
-// ---------- REFRESH / REALTIME / VISIBILITY ----------
+// ============================================================
+// 1. STUDY TOGETHER
+// ============================================================
+let studyTimerInterval = null;
+let studySeconds = 0;
+let studyTotalSeconds = 0;
+let studySessionId = null;
+let studyActive = false;
+
+document.querySelectorAll('.study-duration-chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    document.querySelectorAll('.study-duration-chip').forEach(c => c.classList.remove('sel'));
+    this.classList.add('sel');
+    const dur = this.dataset.dur;
+    const customInput = document.getElementById('studyCustomDuration');
+    if(dur === 'custom') {
+      if(customInput) customInput.style.display = 'block';
+    } else {
+      if(customInput) customInput.style.display = 'none';
+    }
+  });
+});
+
+document.getElementById('startStudyBtn').addEventListener('click', startStudy);
+
+async function startStudy() {
+  if(!sb || !currentWho) {
+    alert('Please select who you are first.');
+    return;
+  }
+  
+  const subject = document.getElementById('studySubject').value.trim();
+  if(!subject) {
+    alert('Please enter what you\'re studying.');
+    return;
+  }
+  
+  let duration = 25;
+  const selectedChip = document.querySelector('.study-duration-chip.sel');
+  if(selectedChip) {
+    if(selectedChip.dataset.dur === 'custom') {
+      const customVal = parseInt(document.getElementById('studyCustomDuration').value);
+      if(customVal && customVal > 0) duration = customVal;
+      else { alert('Please enter a valid duration in minutes.'); return; }
+    } else {
+      duration = parseInt(selectedChip.dataset.dur);
+    }
+  }
+  
+  const target = OTHER(currentWho);
+  const { data, error } = await sb.from('study_sessions').insert({
+    subject: subject,
+    duration_minutes: duration,
+    created_by: currentWho,
+    status: 'pending',
+    participants: [currentWho],
+    created_at: new Date().toISOString()
+  }).select().single();
+  
+  if(error) {
+    console.error('Error creating study session:', error);
+    alert('Could not start study session. Check console.');
+    return;
+  }
+  
+  studySessionId = data.id;
+  document.getElementById('studyStatus').textContent = `📚 Waiting for ${target} to accept...`;
+  document.getElementById('studySetup').style.display = 'none';
+  
+  sendNotification('📚 Study Invitation!', `${currentWho} wants to study "${subject}" with you.`, 'study-invite');
+  
+  checkStudyAcceptance(studySessionId);
+}
+
+async function checkStudyAcceptance(sessionId) {
+  const checkInterval = setInterval(async () => {
+    if(!sb) return;
+    const { data, error } = await sb.from('study_sessions').select('*').eq('id', sessionId).single();
+    if(error || !data) return;
+    
+    if(data.status === 'accepted') {
+      clearInterval(checkInterval);
+      startStudyTimer(data);
+    } else if(data.status === 'declined') {
+      clearInterval(checkInterval);
+      document.getElementById('studyStatus').textContent = '❌ Session declined.';
+      document.getElementById('studySetup').style.display = 'block';
+      studySessionId = null;
+    }
+  }, 3000);
+}
+
+async function startStudyTimer(sessionData) {
+  studyActive = true;
+  studyTotalSeconds = sessionData.duration_minutes * 60;
+  studySeconds = 0;
+  
+  document.getElementById('studySetup').style.display = 'none';
+  document.getElementById('studyActive').style.display = 'block';
+  document.getElementById('studyComplete').style.display = 'none';
+  document.getElementById('studyStatus').textContent = '📚 Session in progress...';
+  
+  const subject = sessionData.subject;
+  document.getElementById('studySubjectDisplay').textContent = `📖 ${subject}`;
+  document.getElementById('studyParticipants').textContent = `${currentWho} + ${OTHER(currentWho)}`;
+  
+  await sb.from('study_sessions').update({ 
+    status: 'active', 
+    started_at: new Date().toISOString(),
+    participants: [currentWho, OTHER(currentWho)]
+  }).eq('id', studySessionId);
+  
+  studyTimerInterval = setInterval(() => {
+    studySeconds++;
+    const remaining = studyTotalSeconds - studySeconds;
+    if(remaining <= 0) {
+      clearInterval(studyTimerInterval);
+      completeStudy();
+      return;
+    }
+    updateStudyDisplay(remaining);
+  }, 1000);
+  
+  setupStudyEncouragement();
+}
+
+function updateStudyDisplay(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  document.getElementById('studyTimerDisplay').textContent = 
+    `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}
+
+async function completeStudy() {
+  studyActive = false;
+  if(studyTimerInterval) {
+    clearInterval(studyTimerInterval);
+    studyTimerInterval = null;
+  }
+  
+  document.getElementById('studyActive').style.display = 'none';
+  document.getElementById('studyComplete').style.display = 'block';
+  document.getElementById('studyStatus').textContent = '✅ Session complete!';
+  
+  const { data } = await sb.from('study_sessions').select('*').eq('id', studySessionId).single();
+  if(data) {
+    document.getElementById('studySummary').innerHTML = `
+      <div><strong>📖 ${escapeHtml(data.subject)}</strong></div>
+      <div style="font-family:'VT323',monospace; color:#5b4566;">
+        ${data.duration_minutes} minutes · ${currentWho} + ${OTHER(currentWho)}
+      </div>
+      <div style="font-family:'VT323',monospace; font-size:0.8rem; color:#7a6683;">
+        ${new Date().toLocaleString()}
+      </div>
+    `;
+    
+    await sb.from('study_sessions').update({ 
+      status: 'completed', 
+      completed_at: new Date().toISOString()
+    }).eq('id', studySessionId);
+    
+    loadStudyHistory();
+  }
+  
+  sendNotification('📚 Study Complete!', 'You survived! ♡', 'study-complete');
+}
+
+document.getElementById('studyAgainBtn').addEventListener('click', () => {
+  document.getElementById('studyComplete').style.display = 'none';
+  document.getElementById('studySetup').style.display = 'block';
+  document.getElementById('studySubject').value = '';
+  document.getElementById('studyCustomDuration').style.display = 'none';
+  document.querySelectorAll('.study-duration-chip').forEach(c => c.classList.remove('sel'));
+  studySessionId = null;
+});
+
+document.getElementById('studyDoneBtn').addEventListener('click', () => {
+  document.getElementById('studyComplete').style.display = 'none';
+  document.getElementById('studySetup').style.display = 'block';
+  document.getElementById('studySubject').value = '';
+  document.querySelectorAll('.study-duration-chip').forEach(c => c.classList.remove('sel'));
+  studySessionId = null;
+});
+
+document.getElementById('endStudyBtn').addEventListener('click', () => {
+  if(confirm('End the study session early?')) {
+    clearInterval(studyTimerInterval);
+    studyTimerInterval = null;
+    studyActive = false;
+    document.getElementById('studyActive').style.display = 'none';
+    document.getElementById('studySetup').style.display = 'block';
+    document.getElementById('studyStatus').textContent = '⏹️ Session ended early.';
+    if(studySessionId) {
+      sb.from('study_sessions').update({ status: 'cancelled' }).eq('id', studySessionId);
+    }
+    studySessionId = null;
+  }
+});
+
+function setupStudyEncouragement() {
+  document.querySelectorAll('#studyEncourage button').forEach(btn => {
+    btn.removeEventListener('click', sendEncouragement);
+    btn.addEventListener('click', sendEncouragement);
+  });
+  
+  if(sb) {
+    try {
+      sb.channel('study-encourage')
+        .on('postgres_changes', {event:'INSERT', schema:'public', table:'study_encouragements'}, (payload) => {
+          const msg = payload.new;
+          if(msg.target === currentWho && msg.session_id === studySessionId) {
+            const feed = document.getElementById('encourageFeed');
+            feed.innerHTML = `✨ ${msg.from} says: "${msg.message}"`;
+            setTimeout(() => feed.innerHTML = '', 5000);
+            sendNotification('📚 Encouragement!', `${msg.from} says: "${msg.message}"`, 'study-encourage');
+          }
+        })
+        .subscribe();
+    } catch(e) {
+      console.error('Error subscribing to encouragements:', e);
+    }
+  }
+}
+
+async function sendEncouragement(e) {
+  if(!sb || !studySessionId || !currentWho) return;
+  const msg = this.dataset.msg;
+  const target = OTHER(currentWho);
+  
+  const { error } = await sb.from('study_encouragements').insert({
+    session_id: studySessionId,
+    from: currentWho,
+    target: target,
+    message: msg,
+    created_at: new Date().toISOString()
+  });
+  
+  if(!error) {
+    this.classList.add('encourage-sent');
+    setTimeout(() => this.classList.remove('encourage-sent'), 2000);
+    const feed = document.getElementById('encourageFeed');
+    feed.innerHTML = `✨ You encouraged ${target}!`;
+    setTimeout(() => feed.innerHTML = '', 3000);
+  }
+}
+
+async function loadStudyHistory() {
+  if(!sb) return;
+  const container = document.getElementById('studyHistory');
+  if(!container) return;
+  const { data, error } = await sb.from('study_sessions')
+    .select('*')
+    .eq('status', 'completed')
+    .order('completed_at', {ascending: false})
+    .limit(20);
+  
+  if(error || !data || data.length === 0) {
+    container.innerHTML = `<p class="empty-note">no study sessions yet.</p>`;
+    return;
+  }
+  
+  const totalSessions = data.length;
+  const totalMinutes = data.reduce((sum, s) => sum + (s.duration_minutes || 0), 0);
+  const hours = Math.floor(totalMinutes / 60);
+  const mins = totalMinutes % 60;
+  
+  let html = `<div style="font-family:'VT323',monospace; font-size:0.9rem; color:#5b4566; margin-bottom:10px;">
+    ${totalSessions} sessions · ${hours}h ${mins}m together
+  </div>`;
+  
+  const months = {};
+  data.forEach(s => {
+    if(s.completed_at) {
+      const d = new Date(s.completed_at);
+      const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+      if(!months[key]) months[key] = [];
+      months[key].push(s);
+    }
+  });
+  
+  for(const [month, sessions] of Object.entries(months)) {
+    const [year, monthNum] = month.split('-');
+    const monthName = new Date(parseInt(year), parseInt(monthNum)-1, 1).toLocaleString('default', {month:'long'});
+    html += `<div style="font-family:'Bungee',cursive; font-size:0.9rem; color:var(--pink-deep); margin-top:12px;">${monthName} ${year}</div>`;
+    sessions.forEach(s => {
+      const d = new Date(s.completed_at);
+      const day = d.getDate();
+      html += `<div class="study-history-item">
+        <div class="sh-subject">📚 ${escapeHtml(s.subject)}</div>
+        <div class="sh-meta">${day} ${monthName} · ${s.duration_minutes} minutes · ${s.participants ? s.participants.join(' + ') : '—'}</div>
+      </div>`;
+    });
+  }
+  
+  container.innerHTML = html;
+  
+  document.getElementById('studyQuickStatus').textContent = 
+    `${totalSessions} sessions · ${hours}h ${mins}m`;
+}
+
+// ============================================================
+// 2. WHAT DO I NEED
+// ============================================================
+async function loadNeeds() {
+  if(!sb) return;
+  
+  const { data, error } = await sb.from('needs_items')
+    .select('*')
+    .order('created_at', {ascending: true});
+  
+  if(error) {
+    console.error('Error loading needs:', error);
+    return;
+  }
+  
+  const pottiItems = data?.filter(i => i.person === 'POTTI') || [];
+  const shonnaItems = data?.filter(i => i.person === 'SHONNA') || [];
+  
+  renderNeedsList('needsPottiList', pottiItems, 'POTTI');
+  renderNeedsList('needsShonnaList', shonnaItems, 'SHONNA');
+  
+  const total = (pottiItems.length + shonnaItems.length);
+  const pending = data?.filter(i => !i.completed).length || 0;
+  document.getElementById('needsQuickStatus').textContent = 
+    pending > 0 ? `${pending} things waiting` : 'all done! 🎉';
+}
+
+function renderNeedsList(containerId, items, person) {
+  const container = document.getElementById(containerId);
+  if(!container) return;
+  
+  if(!items || items.length === 0) {
+    container.innerHTML = `<div style="color:#9c8aa8; font-family:'VT323',monospace; font-size:0.85rem;">nothing yet</div>`;
+    return;
+  }
+  
+  container.innerHTML = items.map(item => `
+    <div class="needs-item">
+      <input type="checkbox" ${item.completed ? 'checked' : ''} 
+        onchange="toggleNeed('${item.id}', this.checked)">
+      <span class="${item.completed ? 'completed' : ''}">${escapeHtml(item.item)}</span>
+      <button class="delete-need" onclick="deleteNeed('${item.id}')">×</button>
+    </div>
+  `).join('');
+}
+
+async function addNeed(person) {
+  if(!sb || !currentWho) return;
+  const input = document.getElementById(`needs${person}Input`);
+  if(!input) return;
+  const item = input.value.trim();
+  if(!item) return;
+  
+  const { error } = await sb.from('needs_items').insert({
+    item: item,
+    person: person,
+    added_by: currentWho,
+    completed: false,
+    created_at: new Date().toISOString()
+  });
+  
+  if(!error) {
+    input.value = '';
+    loadNeeds();
+    if(currentWho !== person) {
+      sendNotification('🎒 New Need!', `${currentWho} added "${item}" for ${person}`, 'new-need');
+    }
+  }
+}
+window.addNeed = addNeed;
+
+async function toggleNeed(id, checked) {
+  if(!sb) return;
+  await sb.from('needs_items').update({ completed: checked }).eq('id', id);
+  if(checked) {
+    const { data } = await sb.from('needs_items').select('*').eq('id', id).single();
+    if(data) {
+      sendNotification('✅ Item Done!', `${data.person} completed: "${data.item}"`, 'need-done');
+    }
+  }
+  loadNeeds();
+}
+window.toggleNeed = toggleNeed;
+
+async function deleteNeed(id) {
+  if(!sb) return;
+  await sb.from('needs_items').delete().eq('id', id);
+  loadNeeds();
+}
+window.deleteNeed = deleteNeed;
+
+// ============================================================
+// 3. MEET ME
+// ============================================================
+let meetData = null;
+let meetTimerInterval = null;
+
+document.querySelectorAll('.meet-time-chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    document.querySelectorAll('.meet-time-chip').forEach(c => c.classList.remove('sel'));
+    this.classList.add('sel');
+    const customInput = document.getElementById('meetCustomTime');
+    if(this.dataset.time === 'custom') {
+      if(customInput) customInput.style.display = 'block';
+    } else {
+      if(customInput) customInput.style.display = 'none';
+    }
+  });
+});
+
+document.querySelectorAll('.meet-location-chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    document.querySelectorAll('.meet-location-chip').forEach(c => c.classList.remove('sel'));
+    this.classList.add('sel');
+    const customInput = document.getElementById('meetCustomLocation');
+    if(this.dataset.loc === 'custom') {
+      if(customInput) customInput.style.display = 'block';
+    } else {
+      if(customInput) customInput.style.display = 'none';
+    }
+  });
+});
+
+document.getElementById('sendMeetBtn').addEventListener('click', sendMeetRequest);
+
+async function sendMeetRequest() {
+  if(!sb || !currentWho) {
+    alert('Please select who you are first.');
+    return;
+  }
+  
+  let timeValue = null;
+  const selectedTime = document.querySelector('.meet-time-chip.sel');
+  if(selectedTime) {
+    if(selectedTime.dataset.time === 'custom') {
+      const custom = document.getElementById('meetCustomTime').value;
+      if(!custom) { alert('Please select a time.'); return; }
+      timeValue = custom;
+    } else {
+      timeValue = selectedTime.dataset.time;
+    }
+  } else {
+    alert('Please select a time.');
+    return;
+  }
+  
+  let locationValue = null;
+  const selectedLoc = document.querySelector('.meet-location-chip.sel');
+  if(selectedLoc) {
+    if(selectedLoc.dataset.loc === 'custom') {
+      const custom = document.getElementById('meetCustomLocation').value.trim();
+      if(!custom) { alert('Please enter a location.'); return; }
+      locationValue = custom;
+    } else {
+      locationValue = selectedLoc.dataset.loc;
+    }
+  } else {
+    alert('Please select a location.');
+    return;
+  }
+  
+  const target = OTHER(currentWho);
+  
+  let meetTime = new Date();
+  if(timeValue === 'now') {
+    meetTime.setMinutes(meetTime.getMinutes() + 1);
+  } else if(timeValue === '10') {
+    meetTime.setMinutes(meetTime.getMinutes() + 10);
+  } else if(timeValue === '30') {
+    meetTime.setMinutes(meetTime.getMinutes() + 30);
+  } else if(timeValue.includes(':')) {
+    const [hours, mins] = timeValue.split(':').map(Number);
+    meetTime.setHours(hours, mins, 0, 0);
+    if(meetTime < new Date()) meetTime.setDate(meetTime.getDate() + 1);
+  }
+  
+  const { data, error } = await sb.from('meet_requests').insert({
+    requester: currentWho,
+    target: target,
+    location: locationValue,
+    meet_time: meetTime.toISOString(),
+    status: 'pending',
+    created_at: new Date().toISOString()
+  }).select().single();
+  
+  if(error) {
+    console.error('Error sending meet request:', error);
+    alert('Could not send meet request.');
+    return;
+  }
+  
+  meetData = data;
+  document.getElementById('meetSetup').style.display = 'none';
+  document.getElementById('meetActive').style.display = 'block';
+  document.getElementById('meetRequester').textContent = currentWho;
+  document.getElementById('meetLocationDisplay').textContent = `📍 ${locationValue}`;
+  document.getElementById('meetTimeDisplay').textContent = formatMeetTime(meetTime);
+  document.getElementById('meetActions').style.display = 'flex';
+  document.getElementById('meetCancelArea').style.display = 'none';
+  document.getElementById('meetStatus').textContent = `⏳ Waiting for ${target} to respond...`;
+  
+  sendNotification('🏃 Meet Request!', `${currentWho} wants to meet you at ${locationValue}`, 'meet-request');
+  
+  checkMeetResponse(data.id);
+}
+
+function formatMeetTime(date) {
+  const now = new Date();
+  const diff = Math.floor((date - now) / 60000);
+  if(diff <= 0) return 'now';
+  if(diff < 60) return `${diff} minutes`;
+  const hours = Math.floor(diff / 60);
+  const mins = diff % 60;
+  if(hours < 24) return `${hours}h ${mins}m`;
+  return date.toLocaleString();
+}
+
+async function checkMeetResponse(requestId) {
+  const checkInterval = setInterval(async () => {
+    if(!sb) return;
+    const { data, error } = await sb.from('meet_requests').select('*').eq('id', requestId).single();
+    if(error || !data) return;
+    
+    if(data.status === 'accepted') {
+      clearInterval(checkInterval);
+      startMeetTimer(data);
+    } else if(data.status === 'declined') {
+      clearInterval(checkInterval);
+      showMeetDeclined(data);
+    } else if(data.status === 'cancelled') {
+      clearInterval(checkInterval);
+      document.getElementById('meetSetup').style.display = 'block';
+      document.getElementById('meetActive').style.display = 'none';
+      document.getElementById('meetStatus').textContent = '❌ Request cancelled.';
+      meetData = null;
+    }
+  }, 3000);
+}
+
+function startMeetTimer(requestData) {
+  meetData = requestData;
+  document.getElementById('meetStatus').textContent = '✅ Accepted!';
+  document.getElementById('meetActions').style.display = 'none';
+  document.getElementById('meetCancelArea').style.display = 'block';
+  
+  const meetTime = new Date(requestData.meet_time);
+  const target = OTHER(currentWho);
+  
+  meetTimerInterval = setInterval(() => {
+    const now = new Date();
+    const diff = Math.floor((meetTime - now) / 1000);
+    
+    if(diff <= 0) {
+      clearInterval(meetTimerInterval);
+      meetTimerInterval = null;
+      showMeetComplete();
+      return;
+    }
+    
+    const mins = Math.floor(diff / 60);
+    const secs = diff % 60;
+    document.getElementById('meetTimerDisplay').textContent = 
+      `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }, 1000);
+  
+  sendNotification('🏃 Meeting Confirmed!', `${requestData.requester} is coming! See you at ${requestData.location}`, 'meet-accepted');
+}
+
+function showMeetComplete() {
+  document.getElementById('meetActive').style.display = 'none';
+  document.getElementById('meetComplete').style.display = 'block';
+  const target = OTHER(currentWho);
+  document.getElementById('meetCompleteWho').textContent = target === 'SHONNA' ? 'SHE\'S' : 'HE\'S';
+  document.getElementById('meetCompleteLoc').textContent = `📍 ${meetData.location}`;
+  
+  sendNotification('🏃 GO!', `Time to meet! ${meetData.location}`, 'meet-go');
+}
+
+document.getElementById('meetCancelBtn').addEventListener('click', async () => {
+  if(!meetData || !sb) return;
+  await sb.from('meet_requests').update({ status: 'cancelled' }).eq('id', meetData.id);
+  clearInterval(meetTimerInterval);
+  meetTimerInterval = null;
+  document.getElementById('meetActive').style.display = 'none';
+  document.getElementById('meetSetup').style.display = 'block';
+  document.getElementById('meetStatus').textContent = '⏹️ Meeting cancelled.';
+  meetData = null;
+});
+
+document.getElementById('meetAcceptBtn').addEventListener('click', async () => {
+  if(!meetData || !sb || !currentWho) return;
+  await sb.from('meet_requests').update({ status: 'accepted' }).eq('id', meetData.id);
+});
+
+document.getElementById('meetDeclineBtn').addEventListener('click', async () => {
+  if(!meetData || !sb || !currentWho) return;
+  await sb.from('meet_requests').update({ status: 'declined' }).eq('id', meetData.id);
+});
+
+function showMeetDeclined(data) {
+  document.getElementById('meetActive').style.display = 'none';
+  document.getElementById('meetDeclined').style.display = 'block';
+  document.getElementById('meetDeclinedWho').textContent = data.requester;
+  
+  sendNotification('❌ Meeting Declined', `${data.requester} can't make it right now.`, 'meet-declined');
+}
+
+document.getElementById('meetAskFree').addEventListener('click', () => {
+  document.getElementById('meetDeclined').style.display = 'none';
+  document.getElementById('meetSetup').style.display = 'block';
+  document.getElementById('meetStatus').textContent = '💬 Check their status on the home page.';
+});
+
+document.getElementById('meetCompleteDone').addEventListener('click', () => {
+  document.getElementById('meetCompleteModal').classList.add('show');
+});
+
+document.getElementById('meetYesSave').addEventListener('click', async () => {
+  if(!meetData || !sb) return;
+  const { error } = await sb.from('memories').insert({
+    caption: `Met at ${meetData.location} ♡`,
+    added_by: currentWho || 'SHONNA',
+    memory_date: new Date().toISOString().slice(0,10),
+    photo_url: ''
+  });
+  if(!error) {
+    await sb.from('meet_requests').update({ status: 'completed' }).eq('id', meetData.id);
+    document.getElementById('meetCompleteModal').classList.remove('show');
+    document.getElementById('meetComplete').style.display = 'none';
+    document.getElementById('meetSetup').style.display = 'block';
+    document.getElementById('meetStatus').textContent = '📸 Saved to archive! ♡';
+    meetData = null;
+    loadArchive();
+    sendNotification('📸 Memory Saved!', 'Your meeting was saved to the archive.', 'meet-saved');
+  }
+});
+
+document.getElementById('meetNoSave').addEventListener('click', () => {
+  document.getElementById('meetCompleteModal').classList.remove('show');
+  document.getElementById('meetComplete').style.display = 'none';
+  document.getElementById('meetSetup').style.display = 'block';
+  meetData = null;
+});
+
+document.getElementById('closeMeetComplete').addEventListener('click', () => {
+  document.getElementById('meetCompleteModal').classList.remove('show');
+});
+
+async function checkMeetStatus() {
+  if(!sb || !currentWho) return;
+  
+  const { data, error } = await sb.from('meet_requests')
+    .select('*')
+    .eq('target', currentWho)
+    .eq('status', 'pending')
+    .order('created_at', {ascending: false})
+    .limit(1);
+  
+  if(data && data.length > 0) {
+    const request = data[0];
+    meetData = request;
+    document.getElementById('meetSetup').style.display = 'none';
+    document.getElementById('meetActive').style.display = 'block';
+    document.getElementById('meetRequester').textContent = request.requester;
+    document.getElementById('meetLocationDisplay').textContent = `📍 ${request.location}`;
+    const meetTime = new Date(request.meet_time);
+    document.getElementById('meetTimeDisplay').textContent = formatMeetTime(meetTime);
+    document.getElementById('meetActions').style.display = 'flex';
+    document.getElementById('meetCancelArea').style.display = 'none';
+    document.getElementById('meetStatus').textContent = `📩 ${request.requester} wants to meet you!`;
+    return;
+  }
+  
+  const { data: activeData } = await sb.from('meet_requests')
+    .select('*')
+    .eq('status', 'accepted')
+    .or(`requester.eq.${currentWho},target.eq.${currentWho}`)
+    .order('created_at', {ascending: false})
+    .limit(1);
+  
+  if(activeData && activeData.length > 0) {
+    const request = activeData[0];
+    const meetTime = new Date(request.meet_time);
+    if(meetTime > new Date()) {
+      meetData = request;
+      document.getElementById('meetSetup').style.display = 'none';
+      document.getElementById('meetActive').style.display = 'block';
+      document.getElementById('meetRequester').textContent = request.requester;
+      document.getElementById('meetLocationDisplay').textContent = `📍 ${request.location}`;
+      document.getElementById('meetTimeDisplay').textContent = formatMeetTime(meetTime);
+      document.getElementById('meetActions').style.display = 'none';
+      document.getElementById('meetCancelArea').style.display = 'block';
+      document.getElementById('meetStatus').textContent = '⏳ Meeting in progress...';
+      
+      if(meetTimerInterval) clearInterval(meetTimerInterval);
+      meetTimerInterval = setInterval(() => {
+        const now = new Date();
+        const diff = Math.floor((meetTime - now) / 1000);
+        if(diff <= 0) {
+          clearInterval(meetTimerInterval);
+          meetTimerInterval = null;
+          showMeetComplete();
+          return;
+        }
+        const mins = Math.floor(diff / 60);
+        const secs = diff % 60;
+        document.getElementById('meetTimerDisplay').textContent = 
+          `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }, 1000);
+      
+      return;
+    }
+  }
+  
+  document.getElementById('meetSetup').style.display = 'block';
+  document.getElementById('meetActive').style.display = 'none';
+  document.getElementById('meetComplete').style.display = 'none';
+  document.getElementById('meetDeclined').style.display = 'none';
+  document.getElementById('meetStatus').textContent = 'Ready to meet? ♡';
+  
+  document.getElementById('meetQuickStatus').textContent = 'ready';
+}
+
+// ============================================================
+// 4. OUR LIST
+// ============================================================
+document.getElementById('olAddBtn').addEventListener('click', addOurListItem);
+document.getElementById('olInput').addEventListener('keydown', e => {
+  if(e.key === 'Enter') addOurListItem();
+});
+
+async function addOurListItem() {
+  if(!sb || !currentWho) return;
+  const input = document.getElementById('olInput');
+  const category = document.getElementById('olCategory');
+  if(!input || !category) return;
+  const item = input.value.trim();
+  if(!item) return;
+  
+  const { error } = await sb.from('our_list').insert({
+    item: item,
+    category: category.value,
+    state: 'someday',
+    added_by: currentWho,
+    created_at: new Date().toISOString()
+  });
+  
+  if(!error) {
+    input.value = '';
+    loadOurList();
+    sendNotification('📦 New List Item!', `${currentWho} added "${item}" to our list`, 'new-list');
+  }
+}
+
+async function loadOurList() {
+  if(!sb) return;
+  const container = document.getElementById('olContainer');
+  if(!container) return;
+  const { data, error } = await sb.from('our_list')
+    .select('*')
+    .order('created_at', {ascending: false});
+  
+  if(error || !data || data.length === 0) {
+    container.innerHTML = `<p class="empty-note">nothing here yet. add something you want to do together. ♡</p>`;
+    document.getElementById('ourlistQuickStatus').textContent = 'empty';
+    return;
+  }
+  
+  const categories = {};
+  data.forEach(item => {
+    if(!categories[item.category]) categories[item.category] = [];
+    categories[item.category].push(item);
+  });
+  
+  let html = '';
+  for(const [cat, items] of Object.entries(categories)) {
+    const catLabel = {
+      'PLACES': '📍 PLACES',
+      'FOOD': '🍜 FOOD',
+      'THINGS': '🎁 THINGS',
+      'EXPERIENCES': '✨ EXPERIENCES'
+    }[cat] || cat;
+    
+    html += `<div class="ourlist-category"><h4>${catLabel}</h4>`;
+    const sortedItems = items.sort((a,b) => {
+      const order = { 'someday':0, 'planned':1, 'done':2 };
+      return order[a.state] - order[b.state];
+    });
+    sortedItems.forEach(item => {
+      const isDone = item.state === 'done';
+      html += `
+        <div class="ourlist-item">
+          <span class="${isDone ? 'completed' : ''}">${escapeHtml(item.item)}</span>
+          <span class="state-badge ${item.state}">${item.state}</span>
+          <div class="ol-actions">
+            ${!isDone ? `<button class="state-btn" onclick="changeOurListState('${item.id}', 'planned')">plan</button>` : ''}
+            ${!isDone ? `<button class="state-btn" onclick="changeOurListState('${item.id}', 'done')">done</button>` : ''}
+            ${isDone ? `<button class="state-btn" onclick="changeOurListState('${item.id}', 'someday')">↩️</button>` : ''}
+            <button class="delete-ol" onclick="deleteOurListItem('${item.id}')">×</button>
+          </div>
+        </div>
+      `;
+    });
+    html += `</div>`;
+  }
+  
+  container.innerHTML = html;
+  
+  const pending = data.filter(i => i.state !== 'done').length;
+  const done = data.filter(i => i.state === 'done').length;
+  document.getElementById('ourlistQuickStatus').textContent = 
+    `${pending} pending · ${done} done`;
+}
+
+async function changeOurListState(id, newState) {
+  if(!sb) return;
+  await sb.from('our_list').update({ state: newState }).eq('id', id);
+  
+  if(newState === 'done') {
+    const { data } = await sb.from('our_list').select('*').eq('id', id).single();
+    if(data) {
+      sendNotification('🎉 Done!', `You completed: "${data.item}"`, 'list-done');
+      if(confirm(`You did it! ♡\n"${data.item}"\n\nAdd to archive?`)) {
+        await sb.from('memories').insert({
+          caption: `Completed: ${data.item}`,
+          added_by: currentWho || 'SHONNA',
+          memory_date: new Date().toISOString().slice(0,10),
+          photo_url: ''
+        });
+        loadArchive();
+        sendNotification('📸 Archived!', `"${data.item}" saved to archive.`, 'archive-saved');
+      }
+    }
+  }
+  loadOurList();
+}
+window.changeOurListState = changeOurListState;
+
+async function deleteOurListItem(id) {
+  if(!sb || !confirm('Delete this item?')) return;
+  await sb.from('our_list').delete().eq('id', id);
+  loadOurList();
+}
+window.deleteOurListItem = deleteOurListItem;
+
+// ============================================================
+// 5. REFRESH / REALTIME
+// ============================================================
 function refreshAll(){
   renderTodayDate();
   updateDaysCounter();
@@ -1448,9 +2843,13 @@ function refreshAll(){
     loadTonightPlan();
     loadStatus();
     loadLatestMemoryNudge();
-    if(document.getElementById('view-archive').classList.contains('active')) loadArchive();
-    if(document.getElementById('view-things').classList.contains('active')) loadThings();
-    if(document.getElementById('view-tasks').classList.contains('active')) loadTasks();
+    if(document.getElementById('view-archive')?.classList.contains('active')) loadArchive();
+    if(document.getElementById('view-things')?.classList.contains('active')) loadThings();
+    if(document.getElementById('view-tasks')?.classList.contains('active')) loadTasks();
+    if(document.getElementById('view-study')?.classList.contains('active')) loadStudyHistory();
+    if(document.getElementById('view-needs')?.classList.contains('active')) loadNeeds();
+    if(document.getElementById('view-ourlist')?.classList.contains('active')) loadOurList();
+    if(document.getElementById('view-meet')?.classList.contains('active')) checkMeetStatus();
   }
 }
 
@@ -1464,6 +2863,12 @@ function startApp(){
   updateNotifToggle();
   refreshAll();
 
+  if(notificationsSupported && Notification.permission === 'granted') {
+    notificationsEnabled = true;
+    localStorage.setItem('sp_notifications', 'enabled');
+    updateNotifToggle();
+  }
+
   if(!pollingStarted && connected){
     pollingStarted = true;
 
@@ -1472,27 +2877,59 @@ function startApp(){
         .on('postgres_changes', {event:'*', schema:'public', table:'pings'}, ()=> loadPings())
         .on('postgres_changes', {event:'*', schema:'public', table:'memories'}, ()=> {
           loadLatestMemoryNudge();
-          if(document.getElementById('view-archive').classList.contains('active')) loadArchive();
+          if(document.getElementById('view-archive')?.classList.contains('active')) loadArchive();
         })
         .on('postgres_changes', {event:'*', schema:'public', table:'tonight_plan'}, ()=> loadTonightPlan())
         .on('postgres_changes', {event:'*', schema:'public', table:'status'}, ()=> loadStatus())
         .on('postgres_changes', {event:'*', schema:'public', table:'little_things'}, ()=> {
-          if(document.getElementById('view-things').classList.contains('active')) loadThings();
+          if(document.getElementById('view-things')?.classList.contains('active')) loadThings();
         })
         .on('postgres_changes', {event:'*', schema:'public', table:'tasks'}, ()=> {
-          if(document.getElementById('view-tasks').classList.contains('active')) loadTasks();
+          if(document.getElementById('view-tasks')?.classList.contains('active')) loadTasks();
+        })
+        .on('postgres_changes', {event:'*', schema:'public', table:'study_sessions'}, ()=> {
+          if(document.getElementById('view-study')?.classList.contains('active')) loadStudyHistory();
+        })
+        .on('postgres_changes', {event:'*', schema:'public', table:'needs_items'}, ()=> {
+          if(document.getElementById('view-needs')?.classList.contains('active')) loadNeeds();
+        })
+        .on('postgres_changes', {event:'*', schema:'public', table:'meet_requests'}, ()=> {
+          if(document.getElementById('view-meet')?.classList.contains('active')) checkMeetStatus();
+        })
+        .on('postgres_changes', {event:'*', schema:'public', table:'our_list'}, ()=> {
+          if(document.getElementById('view-ourlist')?.classList.contains('active')) loadOurList();
         })
         .subscribe();
     } catch(e) {
       console.error('Realtime subscription failed, using polling only:', e);
     }
 
+    setInterval(() => {
+      if(document.getElementById('view-meet')?.classList.contains('active')) {
+        checkMeetStatus();
+      }
+    }, 5000);
+    
+    setInterval(() => {
+      if(document.getElementById('view-study')?.classList.contains('active')) {
+        loadStudyHistory();
+      }
+    }, 10000);
+
     setInterval(refreshAll, 6000);
 
-    document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refreshAll(); });
+    document.addEventListener('visibilitychange', ()=>{ 
+      if(!document.hidden) refreshAll(); 
+    });
     
     setInterval(updateDaysCounter, 60000);
   }
+}
+
+if(document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', startApp);
+} else {
+  startApp();
 }
 </script>
 </body>
