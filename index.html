@@ -130,8 +130,8 @@
   nav{ display:flex; justify-content:center; gap:6px; margin-bottom: 24px; flex-wrap:wrap;}
   nav button{
     background: var(--panel); border: 3px solid var(--ink); color: var(--ink);
-    font-family:'Baloo 2', sans-serif; font-weight:700; font-size: 0.8rem;
-    padding: 8px 12px; border-radius: 999px; cursor:pointer; box-shadow: 3px 3px 0 var(--ink);
+    font-family:'Baloo 2', sans-serif; font-weight:700; font-size: 0.75rem;
+    padding: 6px 10px; border-radius: 999px; cursor:pointer; box-shadow: 3px 3px 0 var(--ink);
     transition: all 0.15s ease;
     touch-action: manipulation;
   }
@@ -612,6 +612,7 @@
     .meet-card .meet-timer { font-size:1.5rem; }
     .quick-grid { grid-template-columns: 1fr 1fr; }
     .modal { padding:16px; max-width:100%; }
+    nav button { font-size:0.7rem; padding:5px 8px; }
   }
   @media (max-width: 375px) {
     .quick-grid { grid-template-columns: 1fr 1fr; gap:6px; }
@@ -665,6 +666,8 @@
     <button data-view="ourlist">📦 our list</button>
     <button data-view="archive">📷 archive</button>
     <button data-view="tonight">🌙 tonight</button>
+    <button data-view="tasks">⏰ tasks</button>
+    <button data-view="things">🧸 things</button>
   </nav>
 
   <!-- HOME -->
@@ -991,6 +994,45 @@
         </div>
         <button class="go-btn" id="genBtn">give us a plan ♡</button>
         <div class="card-result" id="cardResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TASKS -->
+  <section class="view" id="view-tasks">
+    <div class="window">
+      <div class="titlebar"><span class="tname">⏰ task_timer.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+      <div class="wbody">
+        <span class="win-label">give each other tasks with timers</span>
+        <div class="task-form">
+          <input type="text" id="taskInput" placeholder="e.g., drink water right now">
+          <select id="taskTimer">
+            <option value="5">5 min</option>
+            <option value="10">10 min</option>
+            <option value="15" selected>15 min</option>
+            <option value="30">30 min</option>
+            <option value="60">1 hour</option>
+            <option value="1440">1 day</option>
+            <option value="10080">1 week</option>
+          </select>
+          <button id="taskAdd">assign</button>
+        </div>
+        <div id="tasksList"><p class="empty-note">no tasks yet. assign something!</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THINGS -->
+  <section class="view" id="view-things">
+    <div class="window">
+      <div class="titlebar"><span class="tname">🧸 little_things.txt</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+      <div class="wbody">
+        <span class="win-label">tiny, insignificant facts about each other</span>
+        <div class="thing-form">
+          <input type="text" id="thingInput" placeholder="she always sends 😭 when she doesn't know what to say">
+          <button id="thingAdd">add</button>
+        </div>
+        <div id="thingsList"><p class="empty-note">nothing here yet.</p></div>
       </div>
     </div>
   </section>
