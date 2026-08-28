@@ -2973,6 +2973,16 @@ if(document.readyState === 'loading') {
 } else {
   startApp();
 }
+  // Re-attach meet button listener (safety)
+document.addEventListener('DOMContentLoaded', function() {
+    const meetBtn = document.getElementById('sendMeetBtn');
+    if (meetBtn) {
+        meetBtn.addEventListener('click', sendMeetRequest);
+        console.log('Meet button attached');
+    } else {
+        console.error('sendMeetBtn not found!');
+    }
+});
 </script>
 </body>
 </html>
