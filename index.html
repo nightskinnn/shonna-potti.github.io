@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@500;700;800&family=VT323&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <style>
+  /* ===== COMPLETE CSS – Y2K PINK ===== */
   :root{
     --pink: #ff6fb5;
     --pink-deep: #e0397f;
@@ -18,25 +19,17 @@
     --ink: #2a1a30;
     --yellow: #fff35c;
     --green: #4ade80;
-    --orange: #fb923c;
-    --purple: #a78bfa;
-    --red: #ef4444;
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
   html,body{margin:0;padding:0;}
   body{
     background: var(--sky);
-    background-image:
-      radial-gradient(circle at 15% 10%, #d8f4ff 0%, transparent 40%),
-      radial-gradient(circle at 90% 85%, #ffd3ec 0%, transparent 45%),
-      repeating-linear-gradient(45deg, #8fd9ff 0 2px, #86d3fb 2px 4px);
+    background-image: radial-gradient(circle at 15% 10%, #d8f4ff 0%, transparent 40%), radial-gradient(circle at 90% 85%, #ffd3ec 0%, transparent 45%), repeating-linear-gradient(45deg, #8fd9ff 0 2px, #86d3fb 2px 4px);
     font-family: 'Baloo 2', sans-serif;
     color: var(--ink);
     min-height: 100vh;
     padding-bottom: 54px;
-    -webkit-font-smoothing: antialiased;
   }
-
   .marquee{
     background: repeating-linear-gradient(90deg, var(--pink) 0 22px, var(--pink-deep) 22px 44px);
     color: #fff; font-family:'VT323', monospace; font-size:1.15rem; letter-spacing:1px;
@@ -44,9 +37,7 @@
   }
   .marquee span{ display:inline-block; padding-left:100%; animation: scroll 22s linear infinite; }
   @keyframes scroll{ from{ transform: translateX(0);} to{ transform: translateX(-100%);} }
-
   .wrap{ max-width: 900px; margin: 0 auto; padding: 20px 14px 40px; }
-
   .titlebar{
     display:flex; align-items:center; justify-content:space-between;
     background: linear-gradient(90deg, var(--pink-deep), var(--pink));
@@ -57,7 +48,6 @@
   .dots{ display:flex; gap:6px; }
   .dots span{ width:14px; height:14px; border-radius:50%; border:2px solid var(--ink); display:inline-block;}
   .dots .d1{ background:#ff5f57;} .dots .d2{ background:#febc2e;} .dots .d3{ background:#28c840;}
-
   .header-body{
     background: var(--cream); border:3px solid var(--ink); border-top:none; border-radius: 0 0 10px 10px;
     padding: 22px 20px 26px; text-align:center; position:relative; overflow:hidden;
@@ -71,555 +61,220 @@
   .sparkle{ position:absolute; font-size:1.4rem; }
   .sparkle.s1{ top:10px; left:16px; } .sparkle.s2{ top:14px; right:20px; }
   .sparkle.s3{ bottom:12px; left:26%; } .sparkle.s4{ bottom:16px; right:22%; }
-
   .notif-toggle{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 12px;
-    padding: 8px 16px;
-    background: #fff;
-    border: 2px solid var(--ink);
-    border-radius: 999px;
-    cursor: pointer;
-    font-family: 'Baloo 2', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    box-shadow: 2px 2px 0 var(--ink);
-    transition: all 0.2s ease;
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 12px;
+    padding: 8px 16px; background: #fff; border: 2px solid var(--ink); border-radius: 999px;
+    cursor: pointer; font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 0.85rem;
+    box-shadow: 2px 2px 0 var(--ink); transition: all 0.2s ease;
   }
-  .notif-toggle:hover {
-    background: var(--yellow);
-    transform: translateY(-1px);
-    box-shadow: 3px 3px 0 var(--ink);
-  }
-  .notif-toggle.enabled {
-    background: var(--green);
-    color: #fff;
-  }
-
+  .notif-toggle.enabled { background: var(--green); color: #fff; }
   .days-counter{
-    margin-top: 12px;
-    display: inline-block;
+    margin-top: 12px; display: inline-block;
     background: linear-gradient(135deg, var(--yellow), #ffd700);
-    border: 3px solid var(--ink);
-    border-radius: 12px;
-    padding: 10px 20px;
-    box-shadow: 3px 3px 0 var(--ink);
-    animation: glow 2s ease-in-out infinite;
+    border: 3px solid var(--ink); border-radius: 12px; padding: 10px 20px;
+    box-shadow: 3px 3px 0 var(--ink); animation: glow 2s ease-in-out infinite;
   }
-  @keyframes glow {
-    0%, 100% { box-shadow: 3px 3px 0 var(--ink), 0 0 20px rgba(255, 243, 92, 0.5); }
-    50% { box-shadow: 3px 3px 0 var(--ink), 0 0 35px rgba(255, 243, 92, 0.8); }
-  }
-  .days-counter .number{
-    font-family: 'Bungee', cursive;
-    font-size: 2.5rem;
-    color: var(--ink);
-    display: block;
-    line-height: 1;
-  }
-  .days-counter .label{
-    font-family: 'VT323', monospace;
-    font-size: 0.9rem;
-    color: #5b4566;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  nav{ display:flex; justify-content:center; gap:6px; margin-bottom: 24px; flex-wrap:wrap;}
+  @keyframes glow { 0%,100%{box-shadow:3px 3px 0 var(--ink),0 0 20px rgba(255,243,92,0.5);}50%{box-shadow:3px 3px 0 var(--ink),0 0 35px rgba(255,243,92,0.8);} }
+  .days-counter .number{ font-family:'Bungee', cursive; font-size:2.5rem; color:var(--ink); display:block; line-height:1; }
+  .days-counter .label{ font-family:'VT323', monospace; font-size:0.9rem; color:#5b4566; letter-spacing:2px; text-transform:uppercase; }
+  nav{ display:flex; justify-content:center; gap:6px; margin-bottom:24px; flex-wrap:wrap; }
   nav button{
     background: var(--panel); border: 3px solid var(--ink); color: var(--ink);
-    font-family:'Baloo 2', sans-serif; font-weight:700; font-size: 0.75rem;
-    padding: 6px 10px; border-radius: 999px; cursor:pointer; box-shadow: 3px 3px 0 var(--ink);
-    transition: all 0.15s ease;
-    touch-action: manipulation;
+    font-family:'Baloo 2', sans-serif; font-weight:700; font-size:0.7rem;
+    padding:6px 8px; border-radius:999px; cursor:pointer; box-shadow:3px 3px 0 var(--ink);
+    transition:all 0.15s ease; touch-action:manipulation;
   }
-  nav button:active{ transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
+  nav button:active{ transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
   nav button.active{ background: var(--yellow); }
-
   .view{ display:none; animation: pop .3s ease; }
   .view.active{ display:block; }
   @keyframes pop{ from{opacity:0; transform: scale(0.97);} to{opacity:1; transform:none;} }
-
-  .window{ background: var(--panel); border: 3px solid var(--ink); border-radius: 10px; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 22px; overflow:hidden;}
-  .window .titlebar{ border-radius: 0; border:none; border-bottom: 3px solid var(--ink); }
+  .window{ background: var(--panel); border: 3px solid var(--ink); border-radius: 10px; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 22px; overflow:hidden; }
+  .window .titlebar{ border-radius:0; border:none; border-bottom:3px solid var(--ink); }
   .window .wbody{ padding: 18px 16px; }
-
-  .who-select{ display:flex; gap:10px; justify-content:center; margin-bottom: 18px;}
+  .who-select{ display:flex; gap:10px; justify-content:center; margin-bottom:18px; }
   .who-select button{
-    background: #fff; border:3px solid var(--ink); color: var(--ink); font-family:'Baloo 2',sans-serif; font-weight:700;
-    padding: 6px 18px; border-radius:999px; cursor:pointer; box-shadow: 2px 2px 0 var(--ink);
-    touch-action: manipulation;
+    background:#fff; border:3px solid var(--ink); color:var(--ink); font-family:'Baloo 2',sans-serif; font-weight:700;
+    padding:6px 18px; border-radius:999px; cursor:pointer; box-shadow:2px 2px 0 var(--ink);
+    touch-action:manipulation;
   }
-  .who-locked{ text-align:center; font-family:'VT323', monospace; font-size:1.05rem; margin-bottom:18px;}
+  .who-locked{ text-align:center; font-family:'VT323', monospace; font-size:1.05rem; margin-bottom:18px; }
   .who-locked .name{ font-weight:800; color: var(--pink-deep); font-family:'Baloo 2',sans-serif; }
-  .who-locked .reset-link{ display:block; font-size:0.8rem; color:#9c8aa8; margin-top:4px; cursor:pointer; text-decoration:underline;}
-
-  .stamp-zone{ display:flex; flex-direction:column; align-items:center; padding: 6px 0 10px;}
+  .who-locked .reset-link{ display:block; font-size:0.8rem; color:#9c8aa8; margin-top:4px; cursor:pointer; text-decoration:underline; }
+  .stamp-zone{ display:flex; flex-direction:column; align-items:center; padding:6px 0 10px; }
   .stamp{
-    width: 170px; height:170px; border-radius:50%;
-    background: radial-gradient(circle at 35% 30%, #fff, var(--pink) 75%);
-    border: 4px solid var(--ink); display:flex; align-items:center; justify-content:center; flex-direction:column;
-    cursor:pointer; user-select:none; box-shadow: 5px 5px 0 var(--ink);
-    transition: transform .12s ease, box-shadow .12s ease;
-    touch-action: manipulation;
+    width:170px; height:170px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #fff, var(--pink) 75%);
+    border:4px solid var(--ink); display:flex; align-items:center; justify-content:center; flex-direction:column;
+    cursor:pointer; user-select:none; box-shadow:5px 5px 0 var(--ink);
+    transition:transform .12s ease, box-shadow .12s ease; touch-action:manipulation;
   }
-  .stamp:active{ transform: translate(4px,4px); box-shadow: 1px 1px 0 var(--ink); }
-  .stamp .icon{ font-size: 2.4rem; }
+  .stamp:active{ transform:translate(4px,4px); box-shadow:1px 1px 0 var(--ink); }
+  .stamp .icon{ font-size:2.4rem; }
   .stamp .label{ font-family:'Bungee', cursive; font-size:0.85rem; margin-top:8px; }
-  .stamp-caption{ font-family:'VT323', monospace; font-size:0.95rem; color: #5b4566; margin-top: 14px; text-align:center;}
-  .status{ text-align:center; font-family:'VT323', monospace; font-size:1rem; color: var(--pink-deep); margin-top:8px; min-height:18px;}
-
-  .reply-zone{
-    margin-top: 15px;
-    padding: 10px;
-    background: #fff;
-    border: 2px dashed var(--pink);
-    border-radius: 8px;
-    display: none;
-    animation: slideDown 0.3s ease;
-  }
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .reply-zone.show { display: block; }
+  .stamp-caption{ font-family:'VT323', monospace; font-size:0.95rem; color:#5b4566; margin-top:14px; text-align:center; }
+  .status{ text-align:center; font-family:'VT323', monospace; font-size:1rem; color:var(--pink-deep); margin-top:8px; min-height:18px; }
+  .reply-zone{ margin-top:15px; padding:10px; background:#fff; border:2px dashed var(--pink); border-radius:8px; display:none; animation:slideDown .3s ease; }
+  @keyframes slideDown{ from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);} }
+  .reply-zone.show{ display:block; }
   .reply-btn{
-    display: inline-block;
-    background: var(--green);
-    border: 3px solid var(--ink);
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    font-size: 2rem;
-    box-shadow: 3px 3px 0 var(--ink);
-    transition: transform 0.12s ease;
-    margin: 0 auto;
-    touch-action: manipulation;
+    display:inline-block; background:var(--green); border:3px solid var(--ink); border-radius:50%;
+    width:80px; height:80px; cursor:pointer; font-size:2rem; box-shadow:3px 3px 0 var(--ink);
+    transition:transform .12s ease; margin:0 auto; touch-action:manipulation;
   }
-  .reply-btn:active { transform: scale(0.9); }
-  .reply-btn .reply-label{
-    font-family: 'Baloo 2', sans-serif;
-    font-weight: 800;
-    font-size: 0.7rem;
-    display: block;
-    margin-top: 2px;
-  }
-
-  .win-label{ font-family:'VT323', monospace; font-size:1rem; letter-spacing:2px; color:#5b4566; text-transform:uppercase; border-bottom: 2px dashed var(--ink); padding-bottom:6px; margin-bottom:10px;}
-  .ping{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:8px 12px; margin-bottom:10px; box-shadow: 2px 2px 0 var(--ink); position: relative;}
-  .ping .who{ font-weight:800; color: var(--pink-deep);}
-  .ping .time{ display:block; font-family:'VT323', monospace; font-size:0.85rem; color:#7a6683; margin-top:2px;}
-  .ping .reply-indicator{
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    animation: pulse 1s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { transform: translateY(-50%) scale(1); }
-    50% { transform: translateY(-50%) scale(1.2); }
-  }
-  .empty-note{ text-align:center; color:#7a6683; font-style:italic; font-family:'VT323',monospace; font-size:1.05rem; padding:10px 0;}
-
-  .today-date{ font-family:'Bungee',cursive; font-size:1.15rem; color: var(--pink-deep); text-align:center; margin-bottom:2px;}
-  .today-sub{ text-align:center; font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin-bottom:16px;}
-  .today-row{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px 12px; margin-bottom:10px; box-shadow:2px 2px 0 var(--ink); font-size:0.95rem;}
-  .today-row .lbl{ font-family:'VT323',monospace; font-size:0.78rem; color: var(--pink-deep); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:2px;}
-  .status-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
-  .status-chip{
-    background:#fff; border:2px solid var(--ink); border-radius:999px; padding:5px 12px; font-size:0.82rem;
-    font-family:'Baloo 2',sans-serif; font-weight:600; cursor:pointer;
-    touch-action: manipulation;
-  }
-  .status-chip.sel{ background: var(--lav); color:#fff; }
-
-  .archive-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px; flex-wrap:wrap; gap:10px;}
-  .counter{ font-family:'VT323', monospace; font-size:0.95rem; color:#5b4566;}
-  .add-btn{ background: var(--yellow); border:3px solid var(--ink); padding:8px 16px; border-radius:8px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; box-shadow: 3px 3px 0 var(--ink); touch-action: manipulation; }
-  .filters{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px;}
-  .filters button{ background:#fff; border:2px solid var(--ink); color:#5b4566; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.8rem; padding:5px 12px; border-radius:999px; cursor:pointer; touch-action: manipulation; }
-  .filters button.active{ background: var(--sky); }
-  .roll{ display:grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 18px 14px; }
-  .polaroid{ background: #fff; border: 3px solid var(--ink); border-radius: 4px; padding: 8px 8px 14px; box-shadow: 4px 4px 0 var(--ink); transform: rotate(var(--r,-1.5deg));}
-  .polaroid:nth-child(3n){ --r: 1.6deg; } .polaroid:nth-child(3n+1){ --r: -1.8deg; }
-  .polaroid img{ width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#eadfff; border:1px solid var(--ink);}
-  .polaroid .cap{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.9rem; text-align:center; margin-top:8px;}
-  .polaroid .meta{ font-family:'VT323',monospace; font-size:0.75rem; color:#7a6683; text-align:center; margin-top:2px;}
-
-  .task-form{ display:flex; gap:8px; margin-bottom:16px; flex-wrap: wrap;}
-  .task-form input{ flex:1; min-width: 120px; border:2px solid var(--ink); border-radius:8px; padding:9px 12px; font-family:'Baloo 2',sans-serif; font-size:0.95rem; background:#fff;}
-  .task-form select{ border:2px solid var(--ink); border-radius:8px; padding:9px; font-family:'Baloo 2',sans-serif; font-size:0.9rem; background:#fff;}
-  .task-form button{ background: var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:9px 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation; }
-  .task-item{
-    background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px; margin-bottom:10px;
-    box-shadow:2px 2px 0 var(--ink); position: relative;
-  }
-  .task-item .task-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap: wrap; gap: 4px;}
-  .task-item .task-title{ font-weight:700; font-size:0.95rem;}
-  .task-item .task-who{ font-family:'VT323',monospace; font-size:0.8rem; color:#7a6683;}
-  .task-item .task-timer{
-    font-family: 'Bungee', cursive;
-    font-size: 1.5rem;
-    color: var(--pink-deep);
-    margin: 8px 0;
-    text-align: center;
-  }
-  .task-item .task-timer.urgent { color: #ef4444; animation: blink 1s infinite; }
-  .task-item .task-timer.long-term { font-size: 1.1rem; color: #8b5cf6; }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-  .task-progress{
-    width: 100%;
-    height: 8px;
-    background: #e0d5e8;
-    border-radius: 4px;
-    overflow: hidden;
-    margin: 8px 0;
-  }
-  .task-progress-bar{
-    height: 100%;
-    background: linear-gradient(90deg, var(--pink), var(--lav));
-    transition: width 1s linear;
-  }
-  .task-actions{ display:flex; gap:6px; margin-top:8px; flex-wrap:wrap;}
-  .task-actions button{
-    flex: 1;
-    padding: 6px;
-    border: 2px solid var(--ink);
-    border-radius: 6px;
-    font-family:'Baloo 2',sans-serif;
-    font-weight: 700;
-    font-size: 0.75rem;
-    cursor: pointer;
-    background: #fff;
-    touch-action: manipulation;
-    min-height: 40px;
-  }
-  .task-actions .complete-btn{ background: var(--green); }
-  .task-actions .delete-btn{ background: #fecaca; }
-
-  .picker-group{ margin-bottom: 20px; }
-  .picker-group .gl{ font-family:'VT323', monospace; font-size:0.95rem; letter-spacing:2px; text-transform:uppercase; color: var(--pink-deep); margin-bottom:8px; display:block;}
+  .reply-btn:active{ transform:scale(0.9); }
+  .reply-btn .reply-label{ font-family:'Baloo 2', sans-serif; font-weight:800; font-size:0.7rem; display:block; margin-top:2px; }
+  .win-label{ font-family:'VT323', monospace; font-size:1rem; letter-spacing:2px; color:#5b4566; text-transform:uppercase; border-bottom:2px dashed var(--ink); padding-bottom:6px; margin-bottom:10px; }
+  .ping{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:8px 12px; margin-bottom:10px; box-shadow:2px 2px 0 var(--ink); position:relative; }
+  .ping .who{ font-weight:800; color:var(--pink-deep); }
+  .ping .time{ display:block; font-family:'VT323', monospace; font-size:0.85rem; color:#7a6683; margin-top:2px; }
+  .empty-note{ text-align:center; color:#7a6683; font-style:italic; font-family:'VT323',monospace; font-size:1.05rem; padding:10px 0; }
+  .today-date{ font-family:'Bungee',cursive; font-size:1.15rem; color:var(--pink-deep); text-align:center; margin-bottom:2px; }
+  .today-sub{ text-align:center; font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin-bottom:16px; }
+  .today-row{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px 12px; margin-bottom:10px; box-shadow:2px 2px 0 var(--ink); font-size:0.95rem; }
+  .today-row .lbl{ font-family:'VT323',monospace; font-size:0.78rem; color:var(--pink-deep); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:2px; }
+  .status-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+  .status-chip{ background:#fff; border:2px solid var(--ink); border-radius:999px; padding:5px 12px; font-size:0.82rem; font-family:'Baloo 2',sans-serif; font-weight:600; cursor:pointer; touch-action:manipulation; }
+  .status-chip.sel{ background:var(--lav); color:#fff; }
+  .archive-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; flex-wrap:wrap; gap:10px; }
+  .counter{ font-family:'VT323', monospace; font-size:0.95rem; color:#5b4566; }
+  .add-btn{ background:var(--yellow); border:3px solid var(--ink); padding:8px 16px; border-radius:8px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; box-shadow:3px 3px 0 var(--ink); touch-action:manipulation; }
+  .filters{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+  .filters button{ background:#fff; border:2px solid var(--ink); color:#5b4566; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.8rem; padding:5px 12px; border-radius:999px; cursor:pointer; touch-action:manipulation; }
+  .filters button.active{ background:var(--sky); }
+  .roll{ display:grid; grid-template-columns:repeat(auto-fill, minmax(140px,1fr)); gap:18px 14px; }
+  .polaroid{ background:#fff; border:3px solid var(--ink); border-radius:4px; padding:8px 8px 14px; box-shadow:4px 4px 0 var(--ink); transform:rotate(var(--r,-1.5deg)); }
+  .polaroid:nth-child(3n){ --r:1.6deg; } .polaroid:nth-child(3n+1){ --r:-1.8deg; }
+  .polaroid img{ width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#eadfff; border:1px solid var(--ink); }
+  .polaroid .cap{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.9rem; text-align:center; margin-top:8px; }
+  .polaroid .meta{ font-family:'VT323',monospace; font-size:0.75rem; color:#7a6683; text-align:center; margin-top:2px; }
+  .task-form{ display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+  .task-form input{ flex:1; min-width:120px; border:2px solid var(--ink); border-radius:8px; padding:9px 12px; font-family:'Baloo 2',sans-serif; font-size:0.95rem; background:#fff; }
+  .task-form select{ border:2px solid var(--ink); border-radius:8px; padding:9px; font-family:'Baloo 2',sans-serif; font-size:0.9rem; background:#fff; }
+  .task-form button{ background:var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:9px 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action:manipulation; }
+  .task-item{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px; margin-bottom:10px; box-shadow:2px 2px 0 var(--ink); position:relative; }
+  .task-item .task-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:4px; }
+  .task-item .task-title{ font-weight:700; font-size:0.95rem; }
+  .task-item .task-who{ font-family:'VT323',monospace; font-size:0.8rem; color:#7a6683; }
+  .task-item .task-timer{ font-family:'Bungee', cursive; font-size:1.5rem; color:var(--pink-deep); margin:8px 0; text-align:center; }
+  .task-item .task-timer.urgent{ color:#ef4444; animation:blink 1s infinite; }
+  .task-item .task-timer.long-term{ font-size:1.1rem; color:#8b5cf6; }
+  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:0.5;} }
+  .task-progress{ width:100%; height:8px; background:#e0d5e8; border-radius:4px; overflow:hidden; margin:8px 0; }
+  .task-progress-bar{ height:100%; background:linear-gradient(90deg, var(--pink), var(--lav)); transition:width 1s linear; }
+  .task-actions{ display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+  .task-actions button{ flex:1; padding:6px; border:2px solid var(--ink); border-radius:6px; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.75rem; cursor:pointer; background:#fff; touch-action:manipulation; min-height:40px; }
+  .task-actions .complete-btn{ background:var(--green); }
+  .task-actions .delete-btn{ background:#fecaca; }
+  .picker-group{ margin-bottom:20px; }
+  .picker-group .gl{ font-family:'VT323', monospace; font-size:0.95rem; letter-spacing:2px; text-transform:uppercase; color:var(--pink-deep); margin-bottom:8px; display:block; }
   .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chip{ background: #fff; border:2px solid var(--ink); color: var(--ink); font-family:'Baloo 2',sans-serif; font-weight:600; padding: 7px 14px; border-radius: 999px; font-size:0.9rem; cursor:pointer; touch-action: manipulation; }
-  .chip.sel{ background: var(--pink); color:#fff; }
-  .go-btn{ display:block; margin: 22px auto 0; background: var(--lav); color:#fff; border:3px solid var(--ink); padding: 12px 30px; border-radius:999px; font-family:'Bungee',cursive; font-size:0.9rem; cursor:pointer; box-shadow: 4px 4px 0 var(--ink); touch-action: manipulation; }
-  .go-btn:active{ transform: translate(3px,3px); box-shadow:1px 1px 0 var(--ink); }
-  .card-result{ margin-top: 26px; }
-  .card{ background:#fff; border: 3px solid var(--ink); border-radius: 10px; padding: 22px; text-align:center; box-shadow: 5px 5px 0 var(--ink);}
-  .card .eyebrow{ font-family:'VT323',monospace; font-size:0.85rem; letter-spacing:2px; color: var(--pink-deep); text-transform:uppercase;}
-  .card h3{ font-family:'Bungee',cursive; font-size:1.4rem; margin: 10px 0; }
-  .card p{ color:#5b4566; font-size:1rem; margin: 0 0 14px;}
-  .card .tags{ display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom: 16px;}
-  .card .tags span{ font-family:'VT323',monospace; font-size:0.8rem; border:2px solid var(--ink); padding:3px 9px; border-radius:999px; color:#5b4566;}
-  .card-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
-  .card-actions button{ font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.85rem; padding: 9px 18px; border-radius:8px; cursor:pointer; border:3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); touch-action: manipulation; min-height:44px; }
-  .accept{ background: var(--yellow); } .reroll{ background:#fff; }
-
-  .plan-mini{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px 14px; box-shadow:2px 2px 0 var(--ink);}
-  .plan-mini .eyebrow{ font-family:'VT323',monospace; font-size:0.8rem; color: var(--pink-deep); text-transform:uppercase; letter-spacing:1px;}
+  .chip{ background:#fff; border:2px solid var(--ink); color:var(--ink); font-family:'Baloo 2',sans-serif; font-weight:600; padding:7px 14px; border-radius:999px; font-size:0.9rem; cursor:pointer; touch-action:manipulation; }
+  .chip.sel{ background:var(--pink); color:#fff; }
+  .go-btn{ display:block; margin:22px auto 0; background:var(--lav); color:#fff; border:3px solid var(--ink); padding:12px 30px; border-radius:999px; font-family:'Bungee',cursive; font-size:0.9rem; cursor:pointer; box-shadow:4px 4px 0 var(--ink); touch-action:manipulation; }
+  .go-btn:active{ transform:translate(3px,3px); box-shadow:1px 1px 0 var(--ink); }
+  .card-result{ margin-top:26px; }
+  .card{ background:#fff; border:3px solid var(--ink); border-radius:10px; padding:22px; text-align:center; box-shadow:5px 5px 0 var(--ink); }
+  .card .eyebrow{ font-family:'VT323',monospace; font-size:0.85rem; letter-spacing:2px; color:var(--pink-deep); text-transform:uppercase; }
+  .card h3{ font-family:'Bungee',cursive; font-size:1.4rem; margin:10px 0; }
+  .card p{ color:#5b4566; font-size:1rem; margin:0 0 14px; }
+  .card .tags{ display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .card .tags span{ font-family:'VT323',monospace; font-size:0.8rem; border:2px solid var(--ink); padding:3px 9px; border-radius:999px; color:#5b4566; }
+  .card-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .card-actions button{ font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.85rem; padding:9px 18px; border-radius:8px; cursor:pointer; border:3px solid var(--ink); box-shadow:3px 3px 0 var(--ink); touch-action:manipulation; min-height:44px; }
+  .accept{ background:var(--yellow); } .reroll{ background:#fff; }
+  .plan-mini{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px 14px; box-shadow:2px 2px 0 var(--ink); }
+  .plan-mini .eyebrow{ font-family:'VT323',monospace; font-size:0.8rem; color:var(--pink-deep); text-transform:uppercase; letter-spacing:1px; }
   .plan-mini h4{ font-family:'Bungee',cursive; font-size:1.05rem; margin:6px 0; }
-  .plan-mini p{ margin:0 0 8px; font-size:0.92rem; color:#5b4566;}
-  .plan-mini .by{ font-family:'VT323',monospace; font-size:0.82rem; color:#9c8aa8;}
-  .plan-mini .accept-mini{ margin-top:10px; background: var(--yellow); border:2px solid var(--ink); border-radius:6px; padding:6px 14px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.8rem; cursor:pointer; touch-action: manipulation; }
-
+  .plan-mini p{ margin:0 0 8px; font-size:0.92rem; color:#5b4566; }
+  .plan-mini .by{ font-family:'VT323',monospace; font-size:0.82rem; color:#9c8aa8; }
+  .plan-mini .accept-mini{ margin-top:10px; background:var(--yellow); border:2px solid var(--ink); border-radius:6px; padding:6px 14px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.8rem; cursor:pointer; touch-action:manipulation; }
   .thing-form{ display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
-  .thing-form input{ flex:1; min-width:120px; border:2px solid var(--ink); border-radius:8px; padding:9px 12px; font-family:'Baloo 2',sans-serif; font-size:0.95rem; background:#fff;}
-  .thing-form button{ background: var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:0 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation; }
-  .thing{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px 12px; margin-bottom:9px; box-shadow:2px 2px 0 var(--ink); font-size:0.95rem;}
-  .thing .by{ display:block; font-family:'VT323',monospace; font-size:0.78rem; color:#9c8aa8; margin-top:3px;}
-
-  .modal-bg{ display:none; position:fixed; inset:0; background: rgba(42,26,48,0.55); z-index:900; align-items:center; justify-content:center; padding:16px;}
+  .thing-form input{ flex:1; min-width:120px; border:2px solid var(--ink); border-radius:8px; padding:9px 12px; font-family:'Baloo 2',sans-serif; font-size:0.95rem; background:#fff; }
+  .thing-form button{ background:var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:0 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action:manipulation; }
+  .thing{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px 12px; margin-bottom:9px; box-shadow:2px 2px 0 var(--ink); font-size:0.95rem; }
+  .thing .by{ display:block; font-family:'VT323',monospace; font-size:0.78rem; color:#9c8aa8; margin-top:3px; }
+  .modal-bg{ display:none; position:fixed; inset:0; background:rgba(42,26,48,0.55); z-index:900; align-items:center; justify-content:center; padding:16px; }
   .modal-bg.show{ display:flex; }
-  .modal{ background: var(--cream); border:3px solid var(--ink); border-radius:10px; padding:22px; width:100%; max-width:380px; max-height:88vh; overflow-y:auto; box-shadow: 6px 6px 0 var(--ink);}
-  .modal h3{ font-family:'Bungee',cursive; font-size:1.2rem; margin:0 0 16px; text-align:center; color: var(--pink-deep);}
-  .field{ margin-bottom: 14px; }
-  .field label{ display:block; font-family:'VT323',monospace; font-size:0.85rem; letter-spacing:1.5px; text-transform:uppercase; color:#5b4566; margin-bottom:5px;}
-  .field input[type=text], .field input[type=date], .field input[type=time], .field select{ width:100%; background:#fff; border:2px solid var(--ink); color: var(--ink); padding:9px 10px; border-radius:6px; font-family:'Baloo 2',sans-serif; font-size:0.95rem;}
+  .modal{ background:var(--cream); border:3px solid var(--ink); border-radius:10px; padding:22px; width:100%; max-width:380px; max-height:88vh; overflow-y:auto; box-shadow:6px 6px 0 var(--ink); }
+  .modal h3{ font-family:'Bungee',cursive; font-size:1.2rem; margin:0 0 16px; text-align:center; color:var(--pink-deep); }
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-family:'VT323',monospace; font-size:0.85rem; letter-spacing:1.5px; text-transform:uppercase; color:#5b4566; margin-bottom:5px; }
+  .field input[type=text], .field input[type=date], .field input[type=time], .field select{ width:100%; background:#fff; border:2px solid var(--ink); color:var(--ink); padding:9px 10px; border-radius:6px; font-family:'Baloo 2',sans-serif; font-size:0.95rem; }
   .field input[type=file]{ width:100%; font-size:0.85rem; }
   .modal-actions{ display:flex; gap:10px; margin-top:6px; }
-  .modal-actions button{ flex:1; padding:10px; border-radius:8px; border:3px solid var(--ink); cursor:pointer; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.85rem; touch-action: manipulation; min-height:44px; }
-  .modal-actions .save{ background: var(--yellow); } .modal-actions .cancel{ background:#fff; }
-  .close-x{ position:absolute; top:14px; right:16px; background:#fff; border:2px solid var(--ink); border-radius:50%; width:26px; height:26px; cursor:pointer; font-weight:800; touch-action: manipulation; }
+  .modal-actions button{ flex:1; padding:10px; border-radius:8px; border:3px solid var(--ink); cursor:pointer; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.85rem; touch-action:manipulation; min-height:44px; }
+  .modal-actions .save{ background:var(--yellow); } .modal-actions .cancel{ background:#fff; }
+  .close-x{ position:absolute; top:14px; right:16px; background:#fff; border:2px solid var(--ink); border-radius:50%; width:26px; height:26px; cursor:pointer; font-weight:800; touch-action:manipulation; }
   .modal-wrap{ position:relative; }
-
-  .lock-bg{ position:fixed; inset:0; z-index:1000; background: var(--sky); background-image: radial-gradient(circle at 20% 20%, #d8f4ff 0%, transparent 40%), radial-gradient(circle at 85% 80%, #ffd3ec 0%, transparent 45%); display:flex; align-items:center; justify-content:center; padding:20px;}
-  .lock-window{ background: var(--panel); border:3px solid var(--ink); border-radius:10px; width:100%; max-width:340px; box-shadow: 6px 6px 0 var(--ink); overflow:hidden;}
-  .lock-body{ padding: 26px 22px; text-align:center; }
+  .lock-bg{ position:fixed; inset:0; z-index:1000; background:var(--sky); background-image:radial-gradient(circle at 20% 20%, #d8f4ff 0%, transparent 40%), radial-gradient(circle at 85% 80%, #ffd3ec 0%, transparent 45%); display:flex; align-items:center; justify-content:center; padding:20px; }
+  .lock-window{ background:var(--panel); border:3px solid var(--ink); border-radius:10px; width:100%; max-width:340px; box-shadow:6px 6px 0 var(--ink); overflow:hidden; }
+  .lock-body{ padding:26px 22px; text-align:center; }
   .lock-body .lockicon{ font-size:2.4rem; }
-  .lock-body h2{ font-family:'Bungee',cursive; font-size:1.3rem; color: var(--pink-deep); margin: 10px 0 4px; -webkit-text-stroke: 0.5px var(--ink);}
-  .lock-body p{ font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin: 0 0 18px;}
-  .lock-body input{ width:100%; text-align:center; letter-spacing:8px; font-size:1.4rem; font-family:'VT323',monospace; border:2px solid var(--ink); border-radius:8px; padding:10px; background:#fff; color:var(--ink); margin-bottom:14px;}
-  .lock-body button{ width:100%; background: var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:11px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; box-shadow:3px 3px 0 var(--ink); touch-action: manipulation; }
-  .lock-error{ font-family:'VT323',monospace; color: var(--pink-deep); font-size:0.95rem; min-height:18px; margin-top:8px;}
-
-  .taskbar{ position: fixed; bottom:0; left:0; right:0; height:46px; background: linear-gradient(90deg, var(--lav), var(--pink)); border-top: 3px solid var(--ink); display:flex; align-items:center; justify-content:space-between; padding: 0 12px; z-index: 800; font-family:'VT323', monospace;}
-  .start-btn{ background: var(--yellow); border:2px solid var(--ink); border-radius:6px; padding: 5px 14px; font-family:'Bungee', cursive; font-size:0.8rem; color: var(--ink); display:flex; align-items:center; gap:6px;}
-  .clock{ background:#fff; border:2px solid var(--ink); border-radius:6px; padding:4px 10px; font-size:1rem; color: var(--ink);}
-
-  footer{ text-align:center; margin-top: 30px; font-family:'VT323',monospace; font-size:0.85rem; color:#5b4566;}
+  .lock-body h2{ font-family:'Bungee',cursive; font-size:1.3rem; color:var(--pink-deep); margin:10px 0 4px; -webkit-text-stroke:0.5px var(--ink); }
+  .lock-body p{ font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin:0 0 18px; }
+  .lock-body input{ width:100%; text-align:center; letter-spacing:8px; font-size:1.4rem; font-family:'VT323',monospace; border:2px solid var(--ink); border-radius:8px; padding:10px; background:#fff; color:var(--ink); margin-bottom:14px; }
+  .lock-body button{ width:100%; background:var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:11px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; box-shadow:3px 3px 0 var(--ink); touch-action:manipulation; }
+  .lock-error{ font-family:'VT323',monospace; color:var(--pink-deep); font-size:0.95rem; min-height:18px; margin-top:8px; }
+  .taskbar{ position:fixed; bottom:0; left:0; right:0; height:46px; background:linear-gradient(90deg, var(--lav), var(--pink)); border-top:3px solid var(--ink); display:flex; align-items:center; justify-content:space-between; padding:0 12px; z-index:800; font-family:'VT323', monospace; }
+  .start-btn{ background:var(--yellow); border:2px solid var(--ink); border-radius:6px; padding:5px 14px; font-family:'Bungee', cursive; font-size:0.8rem; color:var(--ink); display:flex; align-items:center; gap:6px; }
+  .clock{ background:#fff; border:2px solid var(--ink); border-radius:6px; padding:4px 10px; font-size:1rem; color:var(--ink); }
+  footer{ text-align:center; margin-top:30px; font-family:'VT323',monospace; font-size:0.85rem; color:#5b4566; }
   .secret-heart{ cursor:pointer; user-select:none; }
   .secret-modal .modal{ text-align:center; }
   .secret-modal h3{ font-size:1.4rem; }
   .secret-modal p{ font-family:'VT323',monospace; font-size:1.1rem; color:#5b4566; }
-
-  /* NEW FEATURE STYLES */
-  .study-session-card {
-    background: #fff;
-    border: 3px solid var(--ink);
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 12px;
-    box-shadow: 4px 4px 0 var(--ink);
-  }
-  .study-session-card .subject { font-family: 'Bungee', cursive; font-size: 1.2rem; color: var(--pink-deep); }
-  .study-session-card .participants { font-family:'VT323', monospace; font-size:0.9rem; color:#5b4566; }
-  .study-session-card .duration { font-family:'VT323', monospace; font-size:0.9rem; }
-  .study-timer {
-    font-family: 'Bungee', cursive;
-    font-size: 2.5rem;
-    text-align: center;
-    padding: 16px 0;
-    color: var(--pink-deep);
-  }
-  .study-encourage {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 12px 0;
-  }
-  .study-encourage button {
-    background: #fff;
-    border: 2px solid var(--ink);
-    border-radius: 999px;
-    padding: 6px 14px;
-    font-family: 'Baloo 2', sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
-    cursor: pointer;
-    touch-action: manipulation;
-    box-shadow: 2px 2px 0 var(--ink);
-    transition: all 0.12s ease;
-  }
-  .study-encourage button:active { transform: translate(2px,2px); box-shadow: none; }
-  .study-encourage button.encourage-sent { background: var(--green); color: #fff; }
-
-  .needs-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  @media (max-width: 480px) { .needs-list { grid-template-columns: 1fr; } }
-  .needs-person {
-    background: #fff;
-    border: 2px solid var(--ink);
-    border-radius: 8px;
-    padding: 12px;
-    box-shadow: 3px 3px 0 var(--ink);
-  }
-  .needs-person h4 { font-family:'Bungee', cursive; font-size:0.9rem; margin:0 0 8px; color: var(--pink-deep); }
-  .needs-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 0;
-    font-size:0.9rem;
-    border-bottom: 1px solid #f0e8f5;
-  }
-  .needs-item:last-child { border-bottom: none; }
-  .needs-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--pink);
-    cursor: pointer;
-  }
-  .needs-item .completed { text-decoration: line-through; color: #9c8aa8; }
-  .needs-item .delete-need {
-    margin-left: auto;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size:1rem;
-    color: #9c8aa8;
-    touch-action: manipulation;
-  }
-  .needs-add-form {
-    display: flex;
-    gap: 6px;
-    margin-top: 8px;
-    flex-wrap: wrap;
-  }
-  .needs-add-form input {
-    flex:1;
-    min-width:80px;
-    border:2px solid var(--ink);
-    border-radius:6px;
-    padding:6px 10px;
-    font-family:'Baloo 2',sans-serif;
-    font-size:0.85rem;
-    background:#fff;
-  }
-  .needs-add-form button {
-    background: var(--yellow);
-    border:2px solid var(--ink);
-    border-radius:6px;
-    padding:6px 12px;
-    font-family:'Baloo 2',sans-serif;
-    font-weight:700;
-    cursor:pointer;
-    touch-action: manipulation;
-  }
-
-  .meet-card {
-    background: #fff;
-    border: 3px solid var(--ink);
-    border-radius: 10px;
-    padding: 16px;
-    text-align: center;
-    box-shadow: 4px 4px 0 var(--ink);
-  }
-  .meet-card .meet-location { font-family:'Bungee', cursive; font-size:1.2rem; color: var(--pink-deep); }
-  .meet-card .meet-timer {
-    font-family: 'Bungee', cursive;
-    font-size: 2rem;
-    padding: 12px 0;
-    color: var(--ink);
-  }
-  .meet-card .meet-actions { display: flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
-  .meet-card .meet-actions button {
-    padding: 10px 20px;
-    border: 3px solid var(--ink);
-    border-radius: 8px;
-    font-family:'Baloo 2',sans-serif;
-    font-weight:800;
-    font-size:0.9rem;
-    cursor:pointer;
-    box-shadow: 3px 3px 0 var(--ink);
-    touch-action: manipulation;
-    min-height:44px;
-  }
-  .meet-card .meet-actions .accept-meet { background: var(--green); }
-  .meet-card .meet-actions .decline-meet { background: #fecaca; }
-  .meet-card .meet-actions .cancel-meet { background: #fecaca; }
-
-  .ourlist-category {
-    margin-bottom: 16px;
-  }
-  .ourlist-category h4 {
-    font-family:'Bungee', cursive;
-    font-size:0.9rem;
-    color: var(--pink-deep);
-    margin:0 0 8px;
-    border-bottom:2px solid var(--pink);
-    padding-bottom:4px;
-  }
-  .ourlist-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 0;
-    border-bottom: 1px solid #f0e8f5;
-    font-size:0.9rem;
-    flex-wrap:wrap;
-  }
-  .ourlist-item .state-badge {
-    font-family:'VT323', monospace;
-    font-size:0.7rem;
-    padding:2px 8px;
-    border-radius:999px;
-    border:2px solid var(--ink);
-  }
-  .ourlist-item .state-badge.someday { background:#e0d5e8; }
-  .ourlist-item .state-badge.planned { background:#fde68a; }
-  .ourlist-item .state-badge.done { background:var(--green); color:#fff; }
-  .ourlist-item .ol-actions {
-    margin-left:auto;
-    display:flex;
-    gap:4px;
-    flex-wrap:wrap;
-  }
-  .ourlist-item .ol-actions button {
-    background:none;
-    border:2px solid var(--ink);
-    border-radius:4px;
-    padding:2px 8px;
-    font-family:'Baloo 2',sans-serif;
-    font-weight:600;
-    font-size:0.7rem;
-    cursor:pointer;
-    touch-action: manipulation;
-  }
-  .ourlist-item .ol-actions .state-btn { background:#f0e8f5; }
-  .ourlist-item .ol-actions .delete-ol { background:#fecaca; }
-
-  .quick-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 12px;
-  }
-  .quick-card {
-    background: #fff;
-    border: 3px solid var(--ink);
-    border-radius: 8px;
-    padding: 12px;
-    text-align: center;
-    box-shadow: 3px 3px 0 var(--ink);
-    cursor: pointer;
-    transition: all 0.12s ease;
-    touch-action: manipulation;
-  }
-  .quick-card:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
-  .quick-card .qc-icon { font-size: 1.8rem; display:block; }
-  .quick-card .qc-label {
-    font-family:'Baloo 2',sans-serif;
-    font-weight:700;
-    font-size:0.8rem;
-    margin-top:4px;
-  }
-  .quick-card .qc-sub {
-    font-family:'VT323',monospace;
-    font-size:0.7rem;
-    color:#7a6683;
-  }
-
-  .study-history-item {
-    background:#fff;
-    border:2px solid var(--ink);
-    border-radius:8px;
-    padding:10px 12px;
-    margin-bottom:8px;
-    box-shadow:2px 2px 0 var(--ink);
-  }
-  .study-history-item .sh-subject { font-weight:700; }
-  .study-history-item .sh-meta { font-family:'VT323',monospace; font-size:0.8rem; color:#7a6683; }
-
-  @media (max-width: 480px) {
-    .roll { grid-template-columns: repeat(auto-fill, minmax(110px,1fr)); gap: 12px; }
-    .stamp { width: 140px; height: 140px; }
-    .stamp .icon { font-size:2rem; }
-    .stamp .label { font-size:0.75rem; }
-    .header-body h1 { font-size:1.8rem; }
-    .study-timer { font-size:2rem; }
-    .meet-card .meet-timer { font-size:1.5rem; }
-    .quick-grid { grid-template-columns: 1fr 1fr; }
-    .modal { padding:16px; max-width:100%; }
-    nav button { font-size:0.7rem; padding:5px 8px; }
-  }
-  @media (max-width: 375px) {
-    .quick-grid { grid-template-columns: 1fr 1fr; gap:6px; }
-    .quick-card { padding:8px; }
-    .quick-card .qc-icon { font-size:1.4rem; }
-    .wrap { padding: 12px 8px 40px; }
-  }
+  .needs-list{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:480px){ .needs-list{ grid-template-columns:1fr; } }
+  .needs-person{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px; box-shadow:3px 3px 0 var(--ink); }
+  .needs-person h4{ font-family:'Bungee', cursive; font-size:0.9rem; margin:0 0 8px; color:var(--pink-deep); }
+  .needs-item{ display:flex; align-items:center; gap:8px; padding:4px 0; font-size:0.9rem; border-bottom:1px solid #f0e8f5; }
+  .needs-item:last-child{ border-bottom:none; }
+  .needs-item input[type="checkbox"]{ width:18px; height:18px; accent-color:var(--pink); cursor:pointer; }
+  .needs-item .completed{ text-decoration:line-through; color:#9c8aa8; }
+  .needs-item .delete-need{ margin-left:auto; background:none; border:none; cursor:pointer; font-size:1rem; color:#9c8aa8; touch-action:manipulation; }
+  .needs-add-form{ display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+  .needs-add-form input{ flex:1; min-width:80px; border:2px solid var(--ink); border-radius:6px; padding:6px 10px; font-family:'Baloo 2',sans-serif; font-size:0.85rem; background:#fff; }
+  .needs-add-form button{ background:var(--yellow); border:2px solid var(--ink); border-radius:6px; padding:6px 12px; font-family:'Baloo 2',sans-serif; font-weight:700; cursor:pointer; touch-action:manipulation; }
+  .meet-card{ background:#fff; border:3px solid var(--ink); border-radius:10px; padding:16px; text-align:center; box-shadow:4px 4px 0 var(--ink); }
+  .meet-card .meet-location{ font-family:'Bungee', cursive; font-size:1.2rem; color:var(--pink-deep); }
+  .meet-card .meet-timer{ font-family:'Bungee', cursive; font-size:2rem; padding:12px 0; color:var(--ink); }
+  .meet-card .meet-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+  .meet-card .meet-actions button{ padding:10px 20px; border:3px solid var(--ink); border-radius:8px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:0.9rem; cursor:pointer; box-shadow:3px 3px 0 var(--ink); touch-action:manipulation; min-height:44px; }
+  .meet-card .meet-actions .accept-meet{ background:var(--green); }
+  .meet-card .meet-actions .decline-meet{ background:#fecaca; }
+  .meet-card .meet-actions .cancel-meet{ background:#fecaca; }
+  .ourlist-category{ margin-bottom:16px; }
+  .ourlist-category h4{ font-family:'Bungee', cursive; font-size:0.9rem; color:var(--pink-deep); margin:0 0 8px; border-bottom:2px solid var(--pink); padding-bottom:4px; }
+  .ourlist-item{ display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px solid #f0e8f5; font-size:0.9rem; flex-wrap:wrap; }
+  .ourlist-item .state-badge{ font-family:'VT323', monospace; font-size:0.7rem; padding:2px 8px; border-radius:999px; border:2px solid var(--ink); }
+  .ourlist-item .state-badge.someday{ background:#e0d5e8; }
+  .ourlist-item .state-badge.planned{ background:#fde68a; }
+  .ourlist-item .state-badge.done{ background:var(--green); color:#fff; }
+  .ourlist-item .ol-actions{ margin-left:auto; display:flex; gap:4px; flex-wrap:wrap; }
+  .ourlist-item .ol-actions button{ background:none; border:2px solid var(--ink); border-radius:4px; padding:2px 8px; font-family:'Baloo 2',sans-serif; font-weight:600; font-size:0.7rem; cursor:pointer; touch-action:manipulation; }
+  .ourlist-item .ol-actions .state-btn{ background:#f0e8f5; }
+  .ourlist-item .ol-actions .delete-ol{ background:#fecaca; }
+  .quick-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+  .quick-card{ background:#fff; border:3px solid var(--ink); border-radius:8px; padding:12px; text-align:center; box-shadow:3px 3px 0 var(--ink); cursor:pointer; transition:all .12s ease; touch-action:manipulation; }
+  .quick-card:active{ transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
+  .quick-card .qc-icon{ font-size:1.8rem; display:block; }
+  .quick-card .qc-label{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.8rem; margin-top:4px; }
+  .quick-card .qc-sub{ font-family:'VT323',monospace; font-size:0.7rem; color:#7a6683; }
+  .study-session-card{ background:#fff; border:3px solid var(--ink); border-radius:10px; padding:16px; margin-bottom:12px; box-shadow:4px 4px 0 var(--ink); }
+  .study-session-card .subject{ font-family:'Bungee', cursive; font-size:1.2rem; color:var(--pink-deep); }
+  .study-session-card .participants{ font-family:'VT323', monospace; font-size:0.9rem; color:#5b4566; }
+  .study-session-card .duration{ font-family:'VT323', monospace; font-size:0.9rem; }
+  .study-timer{ font-family:'Bungee', cursive; font-size:2.5rem; text-align:center; padding:16px 0; color:var(--pink-deep); }
+  .study-encourage{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:12px 0; }
+  .study-encourage button{ background:#fff; border:2px solid var(--ink); border-radius:999px; padding:6px 14px; font-family:'Baloo 2', sans-serif; font-weight:700; font-size:0.8rem; cursor:pointer; touch-action:manipulation; box-shadow:2px 2px 0 var(--ink); transition:all .12s ease; }
+  .study-encourage button:active{ transform:translate(2px,2px); box-shadow:none; }
+  .study-encourage button.encourage-sent{ background:var(--green); color:#fff; }
+  .study-history-item{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px 12px; margin-bottom:8px; box-shadow:2px 2px 0 var(--ink); }
+  .study-history-item .sh-subject{ font-weight:700; }
+  .study-history-item .sh-meta{ font-family:'VT323',monospace; font-size:0.8rem; color:#7a6683; }
+  @media (max-width:480px){ .roll{ grid-template-columns:repeat(auto-fill, minmax(110px,1fr)); gap:12px; } .stamp{ width:140px; height:140px; } .stamp .icon{ font-size:2rem; } .stamp .label{ font-size:0.75rem; } .header-body h1{ font-size:1.8rem; } .study-timer{ font-size:2rem; } .meet-card .meet-timer{ font-size:1.5rem; } .quick-grid{ grid-template-columns:1fr 1fr; } .modal{ padding:16px; max-width:100%; } nav button{ font-size:0.65rem; padding:4px 6px; } }
+  @media (max-width:375px){ .quick-grid{ grid-template-columns:1fr 1fr; gap:6px; } .quick-card{ padding:8px; } .quick-card .qc-icon{ font-size:1.4rem; } .wrap{ padding:12px 8px 40px; } }
 </style>
 </head>
 <body>
@@ -672,7 +327,6 @@
 
   <!-- HOME -->
   <section class="view active" id="view-home">
-
     <div class="window">
       <div class="titlebar"><span class="tname">📆 today.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
       <div class="wbody">
@@ -680,30 +334,12 @@
         <div class="today-sub" id="greeting">another day of us.</div>
         <div class="today-row" id="partnerStatusRow" style="display:none;"></div>
         <div class="today-row" id="archiveNudgeRow" style="display:none;"></div>
-        
         <div class="quick-grid">
-          <div class="quick-card" onclick="navigateTo('study')">
-            <span class="qc-icon">📚</span>
-            <span class="qc-label">study together</span>
-            <span class="qc-sub" id="studyQuickStatus">idle</span>
-          </div>
-          <div class="quick-card" onclick="navigateTo('meet')">
-            <span class="qc-icon">🏃</span>
-            <span class="qc-label">meet me</span>
-            <span class="qc-sub" id="meetQuickStatus">—</span>
-          </div>
-          <div class="quick-card" onclick="navigateTo('needs')">
-            <span class="qc-icon">🎒</span>
-            <span class="qc-label">what do i need?</span>
-            <span class="qc-sub" id="needsQuickStatus">—</span>
-          </div>
-          <div class="quick-card" onclick="navigateTo('ourlist')">
-            <span class="qc-icon">📦</span>
-            <span class="qc-label">our list</span>
-            <span class="qc-sub" id="ourlistQuickStatus">—</span>
-          </div>
+          <div class="quick-card" onclick="navigateTo('study')"><span class="qc-icon">📚</span><span class="qc-label">study together</span><span class="qc-sub" id="studyQuickStatus">idle</span></div>
+          <div class="quick-card" onclick="navigateTo('meet')"><span class="qc-icon">🏃</span><span class="qc-label">meet me</span><span class="qc-sub" id="meetQuickStatus">—</span></div>
+          <div class="quick-card" onclick="navigateTo('needs')"><span class="qc-icon">🎒</span><span class="qc-label">what do i need?</span><span class="qc-sub" id="needsQuickStatus">—</span></div>
+          <div class="quick-card" onclick="navigateTo('ourlist')"><span class="qc-icon">📦</span><span class="qc-label">our list</span><span class="qc-sub" id="ourlistQuickStatus">—</span></div>
         </div>
-
         <span class="win-label" style="margin-top:14px; display:block;">set your status</span>
         <div class="status-chips" id="statusChips">
           <button class="status-chip" data-v="free for 15 min">free 15 min</button>
@@ -760,20 +396,15 @@
     </div>
   </section>
 
-  <!-- STUDY TOGETHER -->
+  <!-- STUDY -->
   <section class="view" id="view-study">
     <div class="window">
       <div class="titlebar"><span class="tname">📚 study_together.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
       <div class="wbody">
         <div id="studyStatus" class="empty-note" style="margin-bottom:12px;">Ready to study?</div>
-        
         <div id="studySetup" style="display:block;">
-          <div class="field">
-            <label>what are you studying?</label>
-            <input type="text" id="studySubject" placeholder="e.g., Anatomy, Physiology, Assignment..." style="width:100%; background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-size:1rem;">
-          </div>
-          <div class="field">
-            <label>duration</label>
+          <div class="field"><label>what are you studying?</label><input type="text" id="studySubject" placeholder="e.g., Anatomy, Physiology, Assignment..." style="width:100%; background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-size:1rem;"></div>
+          <div class="field"><label>duration</label>
             <div style="display:flex; gap:8px; flex-wrap:wrap;">
               <button class="chip study-duration-chip" data-dur="25">25 min</button>
               <button class="chip study-duration-chip" data-dur="50">50 min</button>
@@ -784,15 +415,11 @@
           </div>
           <button id="startStudyBtn" class="go-btn" style="margin-top:12px; width:100%;">start study session ♡</button>
         </div>
-
         <div id="studyActive" style="display:none;">
-          <div style="text-align:center; font-family:'Bungee',cursive; font-size:1.1rem; color:var(--pink-deep);">
-            📚 <span id="studyParticipants">SHONNA + POTTI</span>
-          </div>
+          <div style="text-align:center; font-family:'Bungee',cursive; font-size:1.1rem; color:var(--pink-deep);">📚 <span id="studyParticipants">SHONNA + POTTI</span></div>
           <div style="text-align:center; font-family:'VT323',monospace; font-size:0.9rem; color:#5b4566;">studying</div>
           <div class="study-timer" id="studyTimerDisplay">00:00</div>
           <div id="studySubjectDisplay" style="text-align:center; font-size:1rem;"></div>
-          
           <div class="study-encourage" id="studyEncourage">
             <button data-msg="♡ You got this">♡ You got this</button>
             <button data-msg="🫂 I'm here">🫂 I'm here</button>
@@ -800,64 +427,43 @@
             <button data-msg="☕ Break soon">☕ Break soon</button>
           </div>
           <div id="encourageFeed" style="font-family:'VT323',monospace; font-size:0.9rem; color:#7a6683; text-align:center; margin-top:8px; min-height:24px;"></div>
-          <button id="endStudyBtn" style="margin-top:12px; width:100%; background:#fecaca; border:3px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-weight:700; cursor:pointer; touch-action: manipulation;">end session</button>
+          <button id="endStudyBtn" style="margin-top:12px; width:100%; background:#fecaca; border:3px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-weight:700; cursor:pointer; touch-action:manipulation;">end session</button>
         </div>
-
         <div id="studyComplete" style="display:none;">
           <div style="text-align:center; font-family:'Bungee',cursive; font-size:1.2rem; color:var(--pink-deep);">SESSION COMPLETE ♡</div>
           <div style="text-align:center; font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin:4px 0 12px;">"You survived."</div>
           <div id="studySummary" style="background:#fff; border:2px solid var(--ink); border-radius:8px; padding:12px; box-shadow:2px 2px 0 var(--ink); margin-bottom:12px;"></div>
           <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-            <button id="studyAgainBtn" style="background:var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">start again</button>
-            <button id="studyDoneBtn" style="background:#fff; border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">done</button>
+            <button id="studyAgainBtn" style="background:var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action:manipulation;">start again</button>
+            <button id="studyDoneBtn" style="background:#fff; border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action:manipulation;">done</button>
           </div>
         </div>
-
-        <div style="margin-top:20px;">
-          <span class="win-label">study history</span>
-          <div id="studyHistory"><p class="empty-note">no study sessions yet.</p></div>
-        </div>
+        <div style="margin-top:20px;"><span class="win-label">study history</span><div id="studyHistory"><p class="empty-note">no study sessions yet.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- WHAT DO I NEED -->
+  <!-- NEEDS -->
   <section class="view" id="view-needs">
     <div class="window">
       <div class="titlebar"><span class="tname">🎒 what_do_i_need.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
       <div class="wbody">
         <div class="needs-list" id="needsContainer">
-          <div class="needs-person" id="needsPotti">
-            <h4>POTTI NEEDS</h4>
-            <div id="needsPottiList"></div>
-            <div class="needs-add-form">
-              <input type="text" id="needsPottiInput" placeholder="add item...">
-              <button onclick="addNeed('POTTI')">+</button>
-            </div>
-          </div>
-          <div class="needs-person" id="needsShonna">
-            <h4>SHONNA NEEDS</h4>
-            <div id="needsShonnaList"></div>
-            <div class="needs-add-form">
-              <input type="text" id="needsShonnaInput" placeholder="add item...">
-              <button onclick="addNeed('SHONNA')">+</button>
-            </div>
-          </div>
+          <div class="needs-person" id="needsPotti"><h4>POTTI NEEDS</h4><div id="needsPottiList"></div><div class="needs-add-form"><input type="text" id="needsPottiInput" placeholder="add item..."><button onclick="addNeed('POTTI')">+</button></div></div>
+          <div class="needs-person" id="needsShonna"><h4>SHONNA NEEDS</h4><div id="needsShonnaList"></div><div class="needs-add-form"><input type="text" id="needsShonnaInput" placeholder="add item..."><button onclick="addNeed('SHONNA')">+</button></div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MEET ME -->
+  <!-- MEET -->
   <section class="view" id="view-meet">
     <div class="window">
       <div class="titlebar"><span class="tname">🏃 meet_me.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
       <div class="wbody">
-        <div id="meetStatus"></div>
-        
+        <div id="meetStatus" style="text-align:center; font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin-bottom:12px;">Ready to meet? ♡</div>
         <div id="meetSetup" style="display:block;">
-          <div class="field">
-            <label>when?</label>
+          <div class="field"><label>when?</label>
             <div style="display:flex; gap:8px; flex-wrap:wrap;">
               <button class="chip meet-time-chip" data-time="now">NOW</button>
               <button class="chip meet-time-chip" data-time="10">IN 10 MIN</button>
@@ -866,8 +472,7 @@
             </div>
             <input type="time" id="meetCustomTime" style="display:none; margin-top:8px; width:100%; background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-size:1rem;">
           </div>
-          <div class="field">
-            <label>where?</label>
+          <div class="field"><label>where?</label>
             <div style="display:flex; gap:8px; flex-wrap:wrap;">
               <button class="chip meet-location-chip" data-loc="Common Room">🏠 Common Room</button>
               <button class="chip meet-location-chip" data-loc="Circle">⭕ Circle</button>
@@ -880,7 +485,6 @@
           </div>
           <button id="sendMeetBtn" class="go-btn" style="margin-top:12px; width:100%;">send to <span id="meetTargetName">POTTI</span> ♡</button>
         </div>
-
         <div id="meetActive" style="display:none;">
           <div class="meet-card">
             <div style="font-family:'VT323',monospace; font-size:0.9rem; color:#5b4566;"><span id="meetRequester">Someone</span> wants to see you.</div>
@@ -891,28 +495,20 @@
               <button class="accept-meet" id="meetAcceptBtn">I'M COMING ♡</button>
               <button class="decline-meet" id="meetDeclineBtn">CAN'T RIGHT NOW</button>
             </div>
-            <div id="meetCancelArea" style="display:none;">
-              <button class="cancel-meet" id="meetCancelBtn">cancel</button>
-            </div>
+            <div id="meetCancelArea" style="display:none;"><button class="cancel-meet" id="meetCancelBtn">cancel</button></div>
           </div>
         </div>
-
         <div id="meetComplete" style="display:none;">
           <div class="meet-card">
             <div style="font-family:'Bungee',cursive; font-size:1.2rem; color:var(--green);">GO. <span id="meetCompleteWho">SHE'S</span> WAITING. 🫵</div>
-            <div style="font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin:8px 0;">
-              <span id="meetCompleteLoc">📍 Location</span>
-            </div>
-            <button id="meetCompleteDone" style="background:var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">did you meet? ♡</button>
+            <div style="font-family:'VT323',monospace; font-size:1rem; color:#5b4566; margin:8px 0;"><span id="meetCompleteLoc">📍 Location</span></div>
+            <button id="meetCompleteDone" style="background:var(--yellow); border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action:manipulation;">did you meet? ♡</button>
           </div>
         </div>
-
         <div id="meetDeclined" style="display:none;">
           <div class="meet-card">
-            <div style="font-family:'VT323',monospace; font-size:1.1rem; color:#5b4566;">
-              <span id="meetDeclinedWho">POTTI</span> can't make it right now.
-            </div>
-            <button id="meetAskFree" style="margin-top:12px; background:var(--lav); border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">ask when she's free</button>
+            <div style="font-family:'VT323',monospace; font-size:1.1rem; color:#5b4566;"><span id="meetDeclinedWho">POTTI</span> can't make it right now.</div>
+            <button id="meetAskFree" style="margin-top:12px; background:var(--lav); border:3px solid var(--ink); border-radius:8px; padding:10px 20px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action:manipulation;">ask when she's free</button>
           </div>
         </div>
       </div>
@@ -924,8 +520,7 @@
     <div class="window">
       <div class="titlebar"><span class="tname">📦 our_list.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
       <div class="wbody">
-        <div class="field">
-          <label>add something to our list</label>
+        <div class="field"><label>add something to our list</label>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <input type="text" id="olInput" placeholder="e.g., Try that café" style="flex:1; min-width:120px; background:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-size:0.95rem;">
             <select id="olCategory" style="border:2px solid var(--ink); border-radius:8px; padding:10px; font-family:'Baloo 2',sans-serif; font-size:0.9rem; background:#fff;">
@@ -934,10 +529,10 @@
               <option value="THINGS">🎁 THINGS</option>
               <option value="EXPERIENCES">✨ EXPERIENCES</option>
             </select>
-            <button id="olAddBtn" style="background:var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:10px 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">add</button>
+            <button id="olAddBtn" style="background:var(--yellow); border:2px solid var(--ink); border-radius:8px; padding:10px 16px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action:manipulation;">add</button>
           </div>
         </div>
-        <div id="olContainer"></div>
+        <div id="olContainer"><p class="empty-note">nothing here yet. add something you want to do together. ♡</p></div>
       </div>
     </div>
   </section>
@@ -956,7 +551,7 @@
           <button class="filter-btn" data-f="SHONNA">shonna</button>
           <button class="filter-btn" data-f="POTTI">potti</button>
         </div>
-        <div class="roll" id="rollGrid"></div>
+        <div class="roll" id="rollGrid"><p class="empty-note">no memories yet. add the first one.</p></div>
       </div>
     </div>
   </section>
@@ -966,24 +561,21 @@
     <div class="window">
       <div class="titlebar"><span class="tname">🌙 tonight.exe</span><div class="dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
       <div class="wbody">
-        <div class="picker-group">
-          <span class="gl">⏱ how much time</span>
+        <div class="picker-group"><span class="gl">⏱ how much time</span>
           <div class="chip-row" id="timeChips">
             <button class="chip" data-v="short">15 min</button>
             <button class="chip" data-v="med">30–60 min</button>
             <button class="chip" data-v="long">1–2 hrs</button>
           </div>
         </div>
-        <div class="picker-group">
-          <span class="gl">📍 can you meet?</span>
+        <div class="picker-group"><span class="gl">📍 can you meet?</span>
           <div class="chip-row" id="meetChips">
             <button class="chip" data-v="meet">can meet</button>
             <button class="chip" data-v="call">call only</button>
             <button class="chip" data-v="text">text only</button>
           </div>
         </div>
-        <div class="picker-group">
-          <span class="gl">💭 mood</span>
+        <div class="picker-group"><span class="gl">💭 mood</span>
           <div class="chip-row" id="moodChips">
             <button class="chip" data-v="romantic">💗 affectionate</button>
             <button class="chip" data-v="tired">🥱 tired</button>
@@ -1048,55 +640,36 @@
   <div class="clock" id="clock">00:00</div>
 </div>
 
-<!-- MODAL: Add memory -->
+<!-- MODALS -->
 <div class="modal-bg" id="addModalBg">
-  <div class="modal">
-    <div class="modal-wrap">
-      <button class="close-x" id="closeAdd">×</button>
-      <h3>add to the archive</h3>
-      <div class="field"><label>photo</label><input type="file" id="photoFile" accept="image/*"></div>
-      <div class="field"><label>date</label><input type="date" id="memDate"></div>
-      <div class="field"><label>caption</label><input type="text" id="memCap" placeholder="that stupid evening"></div>
-      <div class="field">
-        <label>added by</label>
-        <select id="memWho"><option value="SHONNA">Shonna</option><option value="POTTI">Potti</option></select>
-      </div>
-      <div class="modal-actions">
-        <button class="cancel" id="cancelAdd">cancel</button>
-        <button class="save" id="saveAdd">save memory</button>
-      </div>
-      <div class="status" id="addStatus"></div>
-    </div>
-  </div>
+  <div class="modal"><div class="modal-wrap"><button class="close-x" id="closeAdd">×</button><h3>add to the archive</h3>
+    <div class="field"><label>photo</label><input type="file" id="photoFile" accept="image/*"></div>
+    <div class="field"><label>date</label><input type="date" id="memDate"></div>
+    <div class="field"><label>caption</label><input type="text" id="memCap" placeholder="that stupid evening"></div>
+    <div class="field"><label>added by</label><select id="memWho"><option value="SHONNA">Shonna</option><option value="POTTI">Potti</option></select></div>
+    <div class="modal-actions"><button class="cancel" id="cancelAdd">cancel</button><button class="save" id="saveAdd">save memory</button></div>
+    <div class="status" id="addStatus"></div>
+  </div></div>
 </div>
 
-<!-- MODAL: secret -->
 <div class="modal-bg secret-modal" id="secretModalBg">
-  <div class="modal">
-    <div class="modal-wrap">
-      <button class="close-x" id="closeSecret">×</button>
-      <h3 id="secretTitle">you found it.</h3>
-      <p id="secretText">...</p>
-    </div>
-  </div>
+  <div class="modal"><div class="modal-wrap"><button class="close-x" id="closeSecret">×</button><h3 id="secretTitle">you found it.</h3><p id="secretText">...</p></div></div>
 </div>
 
-<!-- MODAL: meet complete -->
 <div class="modal-bg" id="meetCompleteModal">
-  <div class="modal">
-    <div class="modal-wrap">
-      <button class="close-x" id="closeMeetComplete">×</button>
-      <h3>did you meet?</h3>
-      <div style="display:flex; gap:12px; justify-content:center; margin:16px 0;">
-        <button id="meetYesSave" style="background:var(--green); border:3px solid var(--ink); border-radius:8px; padding:12px 24px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">YES ♡</button>
-        <button id="meetNoSave" style="background:#fecaca; border:3px solid var(--ink); border-radius:8px; padding:12px 24px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action: manipulation;">not yet</button>
-      </div>
+  <div class="modal"><div class="modal-wrap"><button class="close-x" id="closeMeetComplete">×</button><h3>did you meet?</h3>
+    <div style="display:flex; gap:12px; justify-content:center; margin:16px 0;">
+      <button id="meetYesSave" style="background:var(--green); border:3px solid var(--ink); border-radius:8px; padding:12px 24px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action:manipulation;">YES ♡</button>
+      <button id="meetNoSave" style="background:#fecaca; border:3px solid var(--ink); border-radius:8px; padding:12px 24px; font-family:'Baloo 2',sans-serif; font-weight:800; cursor:pointer; touch-action:manipulation;">not yet</button>
     </div>
-  </div>
+  </div></div>
 </div>
 
 <script>
-// ---------- PASSCODE ----------
+// ===== COMPLETE JAVASCRIPT =====
+// All functions are self-contained and use correct table names.
+
+// PASSCODE
 const PASSCODE = "2704";
 function tryUnlock(){
   const val = document.getElementById('passInput').value.trim();
@@ -1110,7 +683,7 @@ function tryUnlock(){
 document.getElementById('passSubmit').addEventListener('click', tryUnlock);
 document.getElementById('passInput').addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock(); });
 
-// ---------- SUPABASE SETUP ----------
+// SUPABASE
 const SUPABASE_URL = "https://gnnryoxxodlnguloivba.supabase.co";
 const SUPABASE_KEY = "sb_publishable_S3JO0ptzUrhBZLKwW03_BA_cdFv9HBm";
 let sb = null;
@@ -1120,394 +693,178 @@ const OTHER = w => w === 'SHONNA' ? 'POTTI' : 'SHONNA';
 function initSupabase(){
   try{
     sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    console.log('✅ Supabase connected successfully');
+    console.log('✅ Supabase connected');
     return true;
   } catch(e){
-    console.error('❌ Supabase failed to load:', e);
-    showConnectionError();
+    console.error('❌ Supabase failed:', e);
     return false;
   }
 }
 
-function showConnectionError(){
-  const statusEl = document.getElementById('missStatus');
-  if(statusEl) {
-    statusEl.textContent = "⚠️ Database not connected. Check console for setup instructions.";
-    statusEl.style.color = '#ef4444';
-  }
-}
-
-// ---------- NOTIFICATIONS ----------
+// NOTIFICATIONS (simplified)
 let notificationsEnabled = false;
-let notificationPermission = 'default';
-let lastNotificationTimes = {};
-let notificationQueue = [];
-let isProcessingQueue = false;
-
 const notificationsSupported = 'Notification' in window;
+if(localStorage.getItem('sp_notifications') === 'enabled') notificationsEnabled = true;
 
-if(localStorage.getItem('sp_notifications') === 'enabled') {
-  notificationsEnabled = true;
-}
-
-if(notificationsEnabled && notificationsSupported && Notification.permission === 'default') {
-  Notification.requestPermission();
-}
-
-function updateNotifToggle() {
+function updateNotifToggle(){
   const toggle = document.getElementById('notifToggle');
-  if(notificationsEnabled && notificationsSupported && Notification.permission === 'granted') {
+  if(notificationsEnabled && notificationsSupported && Notification.permission === 'granted'){
     toggle.textContent = '🔔 notifications: on';
     toggle.classList.add('enabled');
   } else {
     toggle.textContent = '🔔 notifications: off';
     toggle.classList.remove('enabled');
-    if(notificationsEnabled) {
-      notificationsEnabled = false;
-      localStorage.setItem('sp_notifications', 'disabled');
-    }
   }
 }
-
-async function enableNotifications() {
-  if(!notificationsSupported) {
-    alert('Notifications not supported on this device/browser');
-    return false;
-  }
-  
-  try {
-    let permission = Notification.permission;
-    if(permission === 'default') {
-      permission = await Notification.requestPermission();
-    }
-    if(permission === 'granted') {
-      notificationsEnabled = true;
-      localStorage.setItem('sp_notifications', 'enabled');
-      updateNotifToggle();
-      try {
-        new Notification('💌 Notifications enabled!', {
-          body: 'You\'ll now get notified about new stuff.',
-          icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">💕</text></svg>'
-        });
-      } catch(e) {}
-      return true;
-    } else {
-      alert('Permission denied. You can enable notifications in your browser settings.');
-      return false;
-    }
-  } catch(e) {
-    console.error('Error requesting notification permission:', e);
-    return false;
-  }
-}
-
-function disableNotifications() {
-  notificationsEnabled = false;
-  localStorage.setItem('sp_notifications', 'disabled');
-  updateNotifToggle();
-}
-
-document.getElementById('notifToggle').addEventListener('click', async () => {
-  if(notificationsEnabled && Notification.permission === 'granted') {
-    disableNotifications();
+document.getElementById('notifToggle').addEventListener('click', async function(){
+  if(notificationsEnabled && Notification.permission === 'granted'){
+    notificationsEnabled = false;
+    localStorage.setItem('sp_notifications', 'disabled');
+    updateNotifToggle();
   } else {
-    await enableNotifications();
+    if(notificationsSupported){
+      const perm = await Notification.requestPermission();
+      if(perm === 'granted'){
+        notificationsEnabled = true;
+        localStorage.setItem('sp_notifications', 'enabled');
+        updateNotifToggle();
+      }
+    }
   }
 });
 
-function sendNotification(title, body, tag = null) {
-  console.log('📢 Notification attempt:', title, body);
-  
-  if(!notificationsEnabled) {
-    console.log('⚠️ Notifications disabled');
-    return;
-  }
-  if(!notificationsSupported) {
-    console.log('⚠️ Notifications not supported');
-    return;
-  }
-  if(Notification.permission !== 'granted') {
-    console.log('⚠️ Notification permission not granted:', Notification.permission);
-    return;
-  }
-  
-  const now = Date.now();
-  const key = tag || title;
-  if(lastNotificationTimes[key] && (now - lastNotificationTimes[key] < 30000)) {
-    console.log('⏳ Notification throttled:', key);
-    return;
-  }
-  lastNotificationTimes[key] = now;
-  
-  try {
-    const options = {
-      body: body || '',
-      icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">💕</text></svg>',
-      tag: tag || title,
-      renotify: true,
-      requireInteraction: false,
-      silent: false
-    };
-    
-    const notification = new Notification(title, options);
-    notification.onclick = function() {
-      window.focus();
-      this.close();
-    };
-    
-    console.log('✅ Notification sent:', title);
-  } catch(e) {
-    console.error('❌ Error sending notification:', e);
-  }
+function sendNotification(title, body, tag){
+  if(!notificationsEnabled || !notificationsSupported || Notification.permission !== 'granted') return;
+  try{
+    new Notification(title, { body, tag });
+  } catch(e){}
 }
 
-// ---------- DAYS COUNTER ----------
+// DAYS COUNTER
 function updateDaysCounter(){
-  const startDate = new Date('2026-08-10');
-  const today = new Date();
-  const diffTime = Math.abs(today - startDate);
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  document.getElementById('daysCount').textContent = diffDays;
+  const start = new Date('2026-08-10');
+  const now = new Date();
+  const diff = Math.floor((now - start) / (1000*60*60*24));
+  document.getElementById('daysCount').textContent = diff;
 }
 
-// ---------- IDENTITY ----------
+// IDENTITY
 function applyWhoUI(){
   if(currentWho){
     document.getElementById('whoPicker').style.display = 'none';
     document.getElementById('whoLocked').style.display = 'block';
     document.getElementById('whoLockedName').textContent = currentWho;
-    const caption = document.getElementById('missCaption');
-    const target = OTHER(currentWho);
-    if(currentWho === 'SHONNA'){
-      caption.textContent = "press it. he'll know. ⋆˚꒰ঌ ໒꒱˚⋆";
-    } else {
-      caption.textContent = "press it. she'll know. ⋆˚꒰ঌ ໒꒱˚⋆";
-    }
-    document.getElementById('meetTargetName').textContent = target;
+    document.getElementById('meetTargetName').textContent = OTHER(currentWho);
   } else {
     document.getElementById('whoPicker').style.display = 'flex';
     document.getElementById('whoLocked').style.display = 'none';
-    document.getElementById('missCaption').textContent = "press it. she'll know. ⋆˚꒰ঌ ໒꒱˚⋆";
     document.getElementById('meetTargetName').textContent = 'POTTI';
   }
 }
-
 document.querySelectorAll('.who-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    currentWho = btn.dataset.who;
+  btn.addEventListener('click', function(){
+    currentWho = this.dataset.who;
     localStorage.setItem('sp_who', currentWho);
     applyWhoUI();
     refreshAll();
   });
 });
-
-document.getElementById('whoResetLink').addEventListener('click', ()=>{
+document.getElementById('whoResetLink').addEventListener('click', function(){
   localStorage.removeItem('sp_who');
   currentWho = null;
   applyWhoUI();
 });
 
-// ---------- NAVIGATION ----------
-function navigateTo(view) {
-  const navBtn = document.querySelector(`nav button[data-view="${view}"]`);
-  if(navBtn) {
-    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    navBtn.classList.add('active');
-  }
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  const targetView = document.getElementById('view-' + view);
-  if(targetView) {
-    targetView.classList.add('active');
-  }
-  
-  // Load data for the view
+// NAVIGATION
+function navigateTo(view){
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  const btn = document.querySelector(`nav button[data-view="${view}"]`);
+  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  const el = document.getElementById('view-'+view);
+  if(el) el.classList.add('active');
   if(view === 'archive') loadArchive();
   if(view === 'study') loadStudyHistory();
   if(view === 'needs') loadNeeds();
   if(view === 'ourlist') loadOurList();
   if(view === 'home') refreshAll();
   if(view === 'meet') checkMeetStatus();
+  if(view === 'tasks') loadTasks();
+  if(view === 'things') loadThings();
 }
 window.navigateTo = navigateTo;
-
 document.querySelectorAll('nav button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    navigateTo(btn.dataset.view);
+  btn.addEventListener('click', function(){
+    navigateTo(this.dataset.view);
   });
 });
 
-// ---------- CLOCK ----------
+// CLOCK
 function tickClock(){
   const d = new Date();
   document.getElementById('clock').textContent = d.toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
 }
 tickClock(); setInterval(tickClock, 1000);
 
-function escapeHtml(str){
-  if(!str) return '';
-  const d = document.createElement('div');
-  d.textContent = str;
-  return d.innerHTML;
-}
+function escapeHtml(str){ if(!str) return ''; const d=document.createElement('div'); d.textContent=str; return d.innerHTML; }
 
-// ---------- TRACK LAST SEEN DATA ----------
-let lastPingId = null;
-let lastMemoryId = null;
-let lastPlanId = null;
-let lastTaskId = null;
-let lastMeetId = null;
-let lastStudyId = null;
-
-// ---------- I MISS YOU ----------
+// I MISS YOU
 let isSubmittingMiss = false;
-document.getElementById('missBtn').addEventListener('click', async ()=>{
+document.getElementById('missBtn').addEventListener('click', async function(){
   const statusEl = document.getElementById('missStatus');
-  if(isSubmittingMiss) return;
-  if(!sb){ 
-    statusEl.textContent = "❌ Database not connected. Check console.";
-    statusEl.style.color = '#ef4444';
-    return; 
-  }
-  if(!currentWho){ 
-    statusEl.textContent = "pick shonna or potti first"; 
-    return; 
-  }
-  
+  if(isSubmittingMiss || !sb || !currentWho) return;
   isSubmittingMiss = true;
-  statusEl.textContent = "sending...";
-  statusEl.style.color = '';
-  
-  try {
-    const target = OTHER(currentWho);
-    const { data, error } = await sb.from('pings').insert({ 
-      from_name: currentWho, 
+  statusEl.textContent = 'sending...';
+  try{
+    const { error } = await sb.from('pings').insert({
+      from_name: currentWho,
       message: `${currentWho} misses you.`,
       type: 'miss'
     });
-    if(error){ 
-      console.error('❌ Insert error:', error);
-      statusEl.textContent = "couldn't send — check console for details"; 
-      statusEl.style.color = '#ef4444';
-      isSubmittingMiss = false;
-      return;
-    }
-    statusEl.textContent = "sent ♡";
-    statusEl.style.color = '';
+    if(error) throw error;
+    statusEl.textContent = 'sent ♡';
+    sendNotification('💌 Miss You!', `${currentWho} misses you!`, 'miss');
     await loadPings();
-    if(currentWho === 'SHONNA') {
-      sendNotification('💌 Miss You!', 'Shonna misses you!', 'miss-you');
-    } else {
-      sendNotification('💌 Miss You!', 'Potti misses you!', 'miss-you');
-    }
-    setTimeout(()=>{ statusEl.textContent=""; }, 3000);
-  } catch(e) {
-    console.error('❌ Unexpected error:', e);
-    statusEl.textContent = "unexpected error — check console";
-    statusEl.style.color = '#ef4444';
+    setTimeout(()=>{ statusEl.textContent=''; }, 3000);
+  } catch(e){
+    statusEl.textContent = 'error';
+    console.error(e);
   }
   isSubmittingMiss = false;
 });
 
-// Reply button
-document.getElementById('replyBtn').addEventListener('click', async ()=>{
+document.getElementById('replyBtn').addEventListener('click', async function(){
   if(!sb || !currentWho) return;
-  try {
-    const { data, error } = await sb.from('pings').insert({ 
-      from_name: currentWho, 
+  try{
+    await sb.from('pings').insert({
+      from_name: currentWho,
       message: `${currentWho} sends a hug back! 🤗`,
       type: 'reply'
     });
-    if(!error) {
-      document.getElementById('replyZone').classList.remove('show');
-      await loadPings();
-      if(currentWho === 'SHONNA') {
-        sendNotification('🤗 Hug Back!', 'Shonna sent a hug!', 'hug-back');
-      } else {
-        sendNotification('🤗 Hug Back!', 'Potti sent a hug!', 'hug-back');
-      }
-    }
-  } catch(e) {
-    console.error('Error sending reply:', e);
-  }
+    document.getElementById('replyZone').classList.remove('show');
+    await loadPings();
+    sendNotification('🤗 Hug Back!', `${currentWho} sent a hug!`, 'reply');
+  } catch(e){ console.error(e); }
 });
 
 async function loadPings(){
   if(!sb) return;
   const list = document.getElementById('pingList');
   if(!list) return;
-  try {
+  try{
     const { data, error } = await sb.from('pings').select('*').order('created_at', {ascending:false}).limit(12);
-    if(error){ 
-      console.error('Error loading pings:', error);
-      list.innerHTML = `<p class="empty-note">Error loading messages. Check console.</p>`; 
-      return; 
-    }
-    if(!data || data.length===0){ 
-      list.innerHTML = `<p class="empty-note">nothing yet — be the first to say it.</p>`; 
-      return; 
-    }
-    
-    if(data[0] && data[0].id !== lastPingId) {
-      const newPings = data.filter(p => p.id !== lastPingId && p.from_name !== currentWho);
-      if(newPings.length > 0 && lastPingId !== null) {
-        const latestPing = newPings[0];
-        if(latestPing.type === 'miss') {
-          sendNotification('💌 Miss You!', `${latestPing.from_name} misses you!`, 'miss-you');
-        } else if(latestPing.type === 'reply') {
-          sendNotification('🤗 Hug Back!', `${latestPing.from_name} sent a hug!`, 'hug-back');
-        } else {
-          sendNotification('💌 New Message', `${latestPing.from_name}: ${latestPing.message}`, 'new-message');
-        }
-      }
-      lastPingId = data[0].id;
-    }
-    
-    list.innerHTML = data.map(p=>{
-      const t = new Date(/[Zz+]|-\d\d:\d\d$/.test(p.created_at) ? p.created_at : p.created_at + 'Z');
-      const timeStr = t.toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
-      const replyIndicator = p.type === 'reply' ? '🤗' : '';
-      return `<div class="ping">
-        <span class="who">${p.from_name}</span> ${escapeHtml(p.message)}
-        ${replyIndicator ? `<span class="reply-indicator">${replyIndicator}</span>` : ''}
-        <span class="time">${timeStr}</span>
-      </div>`;
-    }).join('');
-
-    checkForMissYou(data);
-  } catch(e) {
-    console.error('Unexpected error loading pings:', e);
-  }
+    if(error) throw error;
+    if(!data || data.length===0){ list.innerHTML = '<p class="empty-note">nothing yet — be the first to say it.</p>'; return; }
+    list.innerHTML = data.map(p => `<div class="ping"><span class="who">${p.from_name}</span> ${escapeHtml(p.message)}<span class="time">${new Date(p.created_at).toLocaleString()}</span></div>`).join('');
+  } catch(e){ console.error(e); }
 }
 
-function checkForMissYou(pings){
-  if(!currentWho) return;
-  const other = OTHER(currentWho);
-  const latestMiss = pings.find(p => p.from_name === other && p.type === 'miss');
-  if(latestMiss){
-    const missIndex = pings.indexOf(latestMiss);
-    const hasReply = pings.slice(0, missIndex).some(p => p.from_name === currentWho && p.type === 'reply');
-    if(!hasReply){
-      const replyZone = document.getElementById('replyZone');
-      if(replyZone) {
-        replyZone.classList.add('show');
-        document.getElementById('replyMessage').textContent = `${other} misses you!`;
-      }
-    }
-  }
-}
-
-// ---------- TASKS ----------
+// TASKS
 let taskTimers = {};
-
-function cleanupTaskTimers() {
-  Object.values(taskTimers).forEach(timer => clearInterval(timer));
-  taskTimers = {};
-}
-
 const taskAddBtn = document.getElementById('taskAdd');
 if(taskAddBtn) taskAddBtn.addEventListener('click', addTask);
-const taskInput = document.getElementById('taskInput');
-if(taskInput) taskInput.addEventListener('keydown', e=>{ if(e.key==='Enter') addTask(); });
+const taskInputEl = document.getElementById('taskInput');
+if(taskInputEl) taskInputEl.addEventListener('keydown', e=>{ if(e.key==='Enter') addTask(); });
 
 async function addTask(){
   if(!sb || !currentWho) return;
@@ -1515,246 +872,129 @@ async function addTask(){
   const timerSelect = document.getElementById('taskTimer');
   if(!input || !timerSelect) return;
   const content = input.value.trim();
-  const timerMinutes = parseInt(timerSelect.value);
-  
+  const minutes = parseInt(timerSelect.value);
   if(!content) return;
-  
   const assignedTo = OTHER(currentWho);
-  const deadline = new Date(Date.now() + timerMinutes * 60000).toISOString();
-  
-  const { data, error } = await sb.from('tasks').insert({
-    task: content,
-    assigned_by: currentWho,
-    assigned_to: assignedTo,
-    deadline: deadline,
-    status: 'pending',
-    created_at: new Date().toISOString()
-  });
-  
-  if(!error){
+  const deadline = new Date(Date.now() + minutes*60000).toISOString();
+  try{
+    await sb.from('tasks').insert({
+      task: content,
+      assigned_by: currentWho,
+      assigned_to: assignedTo,
+      deadline,
+      status: 'pending'
+    });
     input.value = '';
     loadTasks();
-    sendNotification('⏰ New Task!', `${currentWho} assigned you: ${content}`, 'new-task');
-  }
+    sendNotification('⏰ New Task!', `${currentWho} assigned you: ${content}`, 'task');
+  } catch(e){ console.error(e); }
 }
 
 async function loadTasks(){
   if(!sb || !currentWho) return;
   const list = document.getElementById('tasksList');
   if(!list) return;
-  const { data, error } = await sb.from('tasks')
-    .select('*')
-    .or(`assigned_to.eq.${currentWho},assigned_by.eq.${currentWho}`)
-    .order('created_at', {ascending:false});
-  
-  if(error || !data || data.length===0){ 
-    list.innerHTML = `<p class="empty-note">no tasks yet. assign something!</p>`; 
-    return; 
-  }
-  
-  list.innerHTML = data.map(task => {
-    const isAssignedToMe = task.assigned_to === currentWho;
-    const timeLeft = new Date(task.deadline) - new Date();
-    const isExpired = timeLeft < 0;
-    const isUrgent = timeLeft > 0 && timeLeft < 60000;
-    const isLongTerm = timeLeft > 3600000;
-    
-    if(isAssignedToMe && !isExpired && task.status === 'pending'){
-      clearInterval(taskTimers[task.id]);
-      taskTimers[task.id] = setInterval(() => updateTaskTimer(task.id), isLongTerm ? 60000 : 1000);
-    }
-    
-    return `
-      <div class="task-item" id="task-${task.id}">
-        <div class="task-header">
-          <span class="task-title">${escapeHtml(task.task)}</span>
-          <span class="task-who">from ${task.assigned_by} → ${task.assigned_to}</span>
+  try{
+    const { data, error } = await sb.from('tasks').select('*')
+      .or(`assigned_to.eq.${currentWho},assigned_by.eq.${currentWho}`)
+      .order('created_at', {ascending:false});
+    if(error) throw error;
+    if(!data || data.length===0){ list.innerHTML = '<p class="empty-note">no tasks yet. assign something!</p>'; return; }
+    list.innerHTML = data.map(task => {
+      const isMine = task.assigned_to === currentWho;
+      const timeLeft = new Date(task.deadline) - new Date();
+      const isUrgent = timeLeft > 0 && timeLeft < 60000;
+      const isLong = timeLeft > 3600000;
+      let timerHtml = '';
+      if(isMine && task.status === 'pending' && timeLeft > 0){
+        timerHtml = `<div class="task-timer ${isUrgent?'urgent':''} ${isLong?'long-term':''}">${formatTime(timeLeft)}</div>`;
+      }
+      if(isMine && task.status === 'pending' && timeLeft < 0){
+        timerHtml = `<div class="task-timer urgent">time's up!</div>`;
+      }
+      if(task.status === 'completed') timerHtml = '<div style="color:var(--green);font-weight:700;">✓ completed!</div>';
+      return `
+        <div class="task-item" id="task-${task.id}">
+          <div class="task-header"><span class="task-title">${escapeHtml(task.task)}</span><span class="task-who">from ${task.assigned_by} → ${task.assigned_to}</span></div>
+          ${timerHtml}
+          ${task.status === 'pending' && isMine ? `<div class="task-actions"><button class="complete-btn" onclick="completeTask('${task.id}')">✓ done</button></div>` : ''}
+          ${task.assigned_by === currentWho ? `<div class="task-actions"><button class="delete-btn" onclick="deleteTask('${task.id}')">delete</button></div>` : ''}
         </div>
-        ${task.status === 'pending' && isAssignedToMe ? `
-          <div class="task-timer ${isUrgent ? 'urgent' : ''} ${isLongTerm ? 'long-term' : ''}" id="timer-${task.id}">
-            ${formatTime(timeLeft)}
-          </div>
-          ${!isLongTerm ? `
-            <div class="task-progress">
-              <div class="task-progress-bar" id="progress-${task.id}" style="width: ${calculateProgress(task.deadline, task.created_at)}%"></div>
-            </div>
-          ` : ''}
-        ` : ''}
-        ${task.status === 'completed' ? `<div style="color: var(--green); font-weight:700;">✓ completed!</div>` : ''}
-        ${task.status === 'pending' && isAssignedToMe ? `
-          <div class="task-actions">
-            <button class="complete-btn" onclick="completeTask('${task.id}')">✓ done</button>
-          </div>
-        ` : ''}
-        ${task.assigned_by === currentWho ? `
-          <div class="task-actions">
-            <button class="delete-btn" onclick="deleteTask('${task.id}')">delete</button>
-          </div>
-        ` : ''}
-      </div>
-    `;
-  }).join('');
+      `;
+    }).join('');
+  } catch(e){ console.error(e); }
 }
 
 function formatTime(ms){
   if(ms < 0) return "time's up!";
-  
-  const seconds = Math.floor(ms / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  const weeks = Math.floor(days / 7);
-  
-  if(weeks > 0) {
-    const remainingDays = days % 7;
-    const remainingHours = hours % 24;
-    return `${weeks}w ${remainingDays}d ${remainingHours}h`;
-  }
-  if(days > 0) {
-    const remainingHours = hours % 24;
-    const remainingMinutes = minutes % 60;
-    return `${days}d ${remainingHours}h ${remainingMinutes}m`;
-  }
-  if(hours > 0) {
-    const remainingMinutes = minutes % 60;
-    const remainingSeconds = seconds % 60;
-    return `${hours}h ${remainingMinutes}m ${remainingSeconds}s`;
-  }
-  if(minutes > 0) {
-    const remainingSeconds = seconds % 60;
-    return `${minutes}m ${remainingSeconds}s`;
-  }
-  return `${seconds}s`;
+  const sec = Math.floor(ms/1000), min = Math.floor(sec/60), hr = Math.floor(min/60), d = Math.floor(hr/24);
+  if(d>0) return `${d}d ${hr%24}h`;
+  if(hr>0) return `${hr}h ${min%60}m`;
+  if(min>0) return `${min}m ${sec%60}s`;
+  return `${sec}s`;
 }
 
-function calculateProgress(deadline, createdAt){
-  const total = new Date(deadline) - new Date(createdAt);
-  const remaining = new Date(deadline) - new Date();
-  const progress = ((total - remaining) / total) * 100;
-  return Math.min(100, Math.max(0, progress));
-}
-
-function updateTaskTimer(taskId){
-  const timerEl = document.getElementById(`timer-${taskId}`);
-  if(!timerEl) return;
-  
-  sb.from('tasks').select('*').eq('id', taskId).single().then(({ data }) => {
-    if(data){
-      const timeLeft = new Date(data.deadline) - new Date();
-      if(timeLeft < 0){
-        timerEl.textContent = "time's up!";
-        timerEl.classList.add('urgent');
-        clearInterval(taskTimers[taskId]);
-        sendNotification('⏰ Time\'s Up!', `Task "${data.task}" time is up!`, `task-timeout-${taskId}`);
-      } else {
-        timerEl.textContent = formatTime(timeLeft);
-        if(timeLeft < 60000) {
-          timerEl.classList.add('urgent');
-          sendNotification('⚠️ Task Almost Due!', `Less than 1 minute left for: ${data.task}`, `task-urgent-${taskId}`);
-        }
-      }
-      const progressEl = document.getElementById(`progress-${taskId}`);
-      if(progressEl){
-        progressEl.style.width = `${calculateProgress(data.deadline, data.created_at)}%`;
-      }
-    }
-  });
-}
-
-async function completeTask(taskId){
+async function completeTask(id){
   if(!sb) return;
-  await sb.from('tasks').update({ status: 'completed' }).eq('id', taskId);
+  await sb.from('tasks').update({ status: 'completed' }).eq('id', id);
   loadTasks();
 }
-
-async function deleteTask(taskId){
+async function deleteTask(id){
   if(!sb) return;
-  await sb.from('tasks').delete().eq('id', taskId);
+  await sb.from('tasks').delete().eq('id', id);
   loadTasks();
 }
-
 window.completeTask = completeTask;
 window.deleteTask = deleteTask;
 
-// ---------- TODAY WIDGET ----------
+// TODAY
 function renderTodayDate(){
   const d = new Date();
-  const options = { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' };
-  document.getElementById('todayDate').textContent = d.toLocaleDateString('en-IN', options).toUpperCase();
-  
-  const hour = d.getHours();
-  let greeting = 'another day of us.';
-  if(hour < 12) greeting = 'good morning, you two. ♡';
-  else if(hour < 17) greeting = 'good afternoon, my loves. ♡';
-  else if(hour < 21) greeting = 'good evening, almost night. ♡';
-  else greeting = 'late night, but we\'re still here. ♡';
-  document.getElementById('greeting').textContent = greeting;
+  document.getElementById('todayDate').textContent = d.toLocaleDateString('en-IN', {day:'2-digit', month:'long', year:'numeric'}).toUpperCase();
+  const h = d.getHours();
+  document.getElementById('greeting').textContent = h<12 ? 'good morning, you two. ♡' : h<17 ? 'good afternoon, my loves. ♡' : h<21 ? 'good evening, almost night. ♡' : 'late night, but we\'re still here. ♡';
 }
 
 async function loadStatus(){
   if(!sb) return;
-  const { data, error } = await sb.from('status').select('*');
+  const { data } = await sb.from('status').select('*');
   const row = document.getElementById('partnerStatusRow');
-  if(error || !data){ 
-    if(row) row.style.display = 'none';
-  }
-  else {
-    const mine = currentWho;
-    const partnerName = mine ? OTHER(mine) : null;
-    const partnerRow = data.find(r => r.who === partnerName);
-    if(row) {
-      if(partnerRow && partnerRow.message){
-        row.style.display = 'block';
-        row.innerHTML = `<span class="lbl">🌙 tonight</span>${escapeHtml(partnerName)} is ${escapeHtml(partnerRow.message)}.`;
-      } else { row.style.display = 'none'; }
-    }
-    const mineRow = data.find(r => r.who === mine);
-    document.querySelectorAll('.status-chip').forEach(c=>{
-      c.classList.toggle('sel', !!mineRow && mineRow.message === c.dataset.v);
-    });
-  }
+  if(!row) return;
+  if(!data || !currentWho){ row.style.display='none'; return; }
+  const partner = data.find(r=>r.who === OTHER(currentWho));
+  if(partner && partner.message){
+    row.style.display='block';
+    row.innerHTML = `<span class="lbl">🌙 tonight</span>${OTHER(currentWho)} is ${escapeHtml(partner.message)}.`;
+  } else row.style.display='none';
+  document.querySelectorAll('.status-chip').forEach(c=>{
+    c.classList.toggle('sel', !!data.find(r=>r.who===currentWho && r.message===c.dataset.v));
+  });
 }
-
 document.querySelectorAll('.status-chip').forEach(chip=>{
-  chip.addEventListener('click', async ()=>{
-    if(!sb || !currentWho){ return; }
-    await sb.from('status').upsert({ who: currentWho, message: chip.dataset.v, updated_at: new Date().toISOString() });
+  chip.addEventListener('click', async function(){
+    if(!sb || !currentWho) return;
+    await sb.from('status').upsert({ who: currentWho, message: this.dataset.v, updated_at: new Date().toISOString() });
     loadStatus();
   });
 });
 
 async function loadLatestMemoryNudge(){
-  if(!sb) return;
+  if(!sb || !currentWho) return;
   const row = document.getElementById('archiveNudgeRow');
   if(!row) return;
-  if(!currentWho){ row.style.display = 'none'; return; }
-  const { data, error } = await sb.from('memories').select('*').order('created_at', {ascending:false}).limit(1);
-  if(error || !data || data.length===0){ row.style.display = 'none'; return; }
-  const latest = data[0];
-  
-  if(latest.id !== lastMemoryId) {
-    if(latest.added_by && latest.added_by !== currentWho && lastMemoryId !== null) {
-      sendNotification('📷 New Memory!', `${latest.added_by} added a new memory: "${latest.caption || 'untitled'}"`, 'new-memory');
-    }
-    lastMemoryId = latest.id;
-  }
-  
-  if(latest.added_by && latest.added_by !== currentWho){
-    row.style.display = 'block';
-    row.innerHTML = `<span class="lbl">💌 a little thing for you</span>${escapeHtml(latest.added_by)} left something in the archive: "${escapeHtml(latest.caption||'')}"`;
-  } else {
-    row.style.display = 'none';
-  }
+  const { data } = await sb.from('memories').select('*').order('created_at', {ascending:false}).limit(1);
+  if(!data || data.length===0 || data[0].added_by === currentWho){ row.style.display='none'; return; }
+  row.style.display='block';
+  row.innerHTML = `<span class="lbl">💌 a little thing for you</span>${escapeHtml(data[0].added_by)} left something in the archive: "${escapeHtml(data[0].caption||'')}"`;
 }
 
-// ---------- ARCHIVE ----------
-let archiveFilter = "ALL";
-
+// ARCHIVE
+let archiveFilter = 'ALL';
 document.querySelectorAll('.filter-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
+  btn.addEventListener('click', function(){
     document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    archiveFilter = btn.dataset.f;
+    this.classList.add('active');
+    archiveFilter = this.dataset.f;
     loadArchive();
   });
 });
@@ -1764,163 +1004,133 @@ async function loadArchive(){
   const grid = document.getElementById('rollGrid');
   if(!grid) return;
   let query = sb.from('memories').select('*').order('memory_date', {ascending:false});
-  if(archiveFilter !== "ALL") query = query.eq('added_by', archiveFilter);
+  if(archiveFilter !== 'ALL') query = query.eq('added_by', archiveFilter);
   const { data, error } = await query;
-  if(error){
-    grid.innerHTML = `<p class="empty-note">archive not connected yet — run the setup SQL in Supabase.</p>`;
-    document.getElementById('archiveCount').textContent = "0 memories";
+  if(error || !data || data.length===0){
+    grid.innerHTML = '<p class="empty-note">no memories yet. add the first one.</p>';
+    document.getElementById('archiveCount').textContent = '0 memories';
     return;
   }
   document.getElementById('archiveCount').textContent = `${data.length} ${data.length===1?'memory':'memories'}`;
-  if(data.length===0){ grid.innerHTML = `<p class="empty-note">no memories yet. add the first one.</p>`; return; }
-  grid.innerHTML = data.map(m=>{
-    const dateStr = m.memory_date ? new Date(m.memory_date).toLocaleDateString(undefined,{day:'2-digit',month:'short',year:'numeric'}) : '';
-    return `<div class="polaroid">
-      <img src="${m.photo_url || ''}" alt="" loading="lazy">
-      <div class="cap">${escapeHtml(m.caption || '')}</div>
-      <div class="meta">${dateStr} · ${m.added_by || ''}</div>
-    </div>`;
-  }).join('');
+  grid.innerHTML = data.map(m => `
+    <div class="polaroid">
+      <img src="${m.photo_url||''}" alt="">
+      <div class="cap">${escapeHtml(m.caption||'')}</div>
+      <div class="meta">${m.memory_date ? new Date(m.memory_date).toLocaleDateString() : ''} · ${m.added_by||''}</div>
+    </div>
+  `).join('');
 }
 
-const addModalBg = document.getElementById('addModalBg');
-if(addModalBg) {
-  document.getElementById('openAdd').addEventListener('click', ()=>{
-    addModalBg.classList.add('show');
-    document.getElementById('memWho').value = currentWho || 'SHONNA';
-  });
-  document.getElementById('closeAdd').addEventListener('click', ()=> addModalBg.classList.remove('show'));
-  document.getElementById('cancelAdd').addEventListener('click', ()=> addModalBg.classList.remove('show'));
-}
-
-document.getElementById('saveAdd').addEventListener('click', async ()=>{
+document.getElementById('openAdd').addEventListener('click', function(){
+  document.getElementById('addModalBg').classList.add('show');
+  document.getElementById('memWho').value = currentWho || 'SHONNA';
+});
+document.getElementById('closeAdd').addEventListener('click', function(){
+  document.getElementById('addModalBg').classList.remove('show');
+});
+document.getElementById('cancelAdd').addEventListener('click', function(){
+  document.getElementById('addModalBg').classList.remove('show');
+});
+document.getElementById('saveAdd').addEventListener('click', async function(){
   const statusEl = document.getElementById('addStatus');
-  if(!sb){ statusEl.textContent = "not connected — check your internet"; return; }
+  if(!sb){ statusEl.textContent = 'not connected'; return; }
   const fileInput = document.getElementById('photoFile');
   const date = document.getElementById('memDate').value;
   const caption = document.getElementById('memCap').value;
   const who = document.getElementById('memWho').value;
-
-  if(!fileInput.files[0]){ statusEl.textContent = "pick a photo first"; return; }
-  
+  if(!fileInput.files[0]){ statusEl.textContent = 'pick a photo'; return; }
   const file = fileInput.files[0];
-  const MAX_SIZE = 5 * 1024 * 1024;
-  const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-  if(!ALLOWED_TYPES.includes(file.type)) {
-    statusEl.textContent = "Please upload a JPEG, PNG, GIF, or WEBP image";
-    return;
-  }
-  if(file.size > MAX_SIZE) {
-    statusEl.textContent = "Image too large. Max 5MB.";
-    return;
-  }
-  
-  statusEl.textContent = "uploading...";
-
   const path = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.]/g,'_')}`;
-
+  statusEl.textContent = 'uploading...';
   const { error: upErr } = await sb.storage.from('memories').upload(path, file);
-  if(upErr){ statusEl.textContent = "upload failed — check storage bucket setup"; console.error(upErr); return; }
-
+  if(upErr){ statusEl.textContent = 'upload failed'; console.error(upErr); return; }
   const { data: urlData } = sb.storage.from('memories').getPublicUrl(path);
   const photo_url = urlData.publicUrl;
-
   const { error: insErr } = await sb.from('memories').insert({
     photo_url, caption, added_by: who, memory_date: date || new Date().toISOString().slice(0,10)
   });
-  if(insErr){ statusEl.textContent = "couldn't save — check table setup"; console.error(insErr); return; }
-
-  statusEl.textContent = "saved ♡";
+  if(insErr){ statusEl.textContent = 'save failed'; console.error(insErr); return; }
+  statusEl.textContent = 'saved ♡';
   setTimeout(()=>{
-    addModalBg.classList.remove('show');
-    statusEl.textContent = "";
-    fileInput.value = ""; document.getElementById('memCap').value = ""; document.getElementById('memDate').value = "";
+    document.getElementById('addModalBg').classList.remove('show');
+    statusEl.textContent = '';
+    fileInput.value = '';
+    document.getElementById('memCap').value = '';
+    document.getElementById('memDate').value = '';
     loadArchive();
-    loadLatestMemoryNudge();
   }, 700);
 });
 
-// ---------- TONIGHT ----------
+// TONIGHT
 let picked = { time:null, meet:null, mood:null };
-
-const timeChips = document.querySelectorAll('#timeChips .chip');
-const meetChips = document.querySelectorAll('#meetChips .chip');
-const moodChips = document.querySelectorAll('#moodChips .chip');
-
-timeChips.forEach(c=>c.addEventListener('click', ()=>selectChip('time', c)));
-meetChips.forEach(c=>c.addEventListener('click', ()=>selectChip('meet', c)));
-moodChips.forEach(c=>c.addEventListener('click', ()=>selectChip('mood', c)));
+document.querySelectorAll('#timeChips .chip').forEach(c=>c.addEventListener('click', function(){ selectChip('time', this); }));
+document.querySelectorAll('#meetChips .chip').forEach(c=>c.addEventListener('click', function(){ selectChip('meet', this); }));
+document.querySelectorAll('#moodChips .chip').forEach(c=>c.addEventListener('click', function(){ selectChip('mood', this); }));
 
 function selectChip(group, chip){
-  const container = document.getElementById(`${group}Chips`);
-  if(container) {
-    container.querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));
-  }
+  document.querySelectorAll(`#${group}Chips .chip`).forEach(c=>c.classList.remove('sel'));
   chip.classList.add('sel');
   picked[group] = chip.dataset.v;
 }
 
 const PLANS = [
-  {meet:'meet', time:'short', mood:'romantic', title:'Two-Minute Hug', desc:'Meet up, sit close, no phones. Just hold on to each other for a bit before you both have to go.', tags:['low-key','romantic']},
-  {meet:'meet', time:'short', mood:'tired', title:'Silent Snack Run', desc:'Grab something quick from the nearest stall and eat it together sitting somewhere. Talking optional.', tags:['snacks','low-effort']},
-  {meet:'meet', time:'short', mood:'playful', title:'One-Minute Dare', desc:'Take turns giving each other a silly one-minute dare on the spot. Loser buys chai.', tags:['fun','quick']},
-  {meet:'meet', time:'short', mood:'talk', title:'Bench Debrief', desc:'Find a bench and each get 5 uninterrupted minutes to talk about whatever is actually on your mind.', tags:['deep','low-key']},
-  {meet:'meet', time:'short', mood:'chill', title:'Sit and Talk', desc:'Find a bench. No phones for 15 minutes. Just talk.', tags:['low-key']},
-  {meet:'meet', time:'med', mood:'romantic', title:'Sunset Bench', desc:'Find a spot with a view, sit close, and just watch the evening happen together.', tags:['romantic','view']},
-  {meet:'meet', time:'med', mood:'tired', title:'Ice Cream, No Agenda', desc:'Get ice cream, sit somewhere quiet, and let the conversation go wherever it wants.', tags:['snacks','low-effort']},
+  {meet:'meet', time:'short', mood:'romantic', title:'Two-Minute Hug', desc:'Meet up, sit close, no phones. Just hold on to each other for a bit.', tags:['low-key','romantic']},
+  {meet:'meet', time:'short', mood:'tired', title:'Silent Snack Run', desc:'Grab something quick and eat together. Talking optional.', tags:['snacks','low-effort']},
+  {meet:'meet', time:'short', mood:'playful', title:'One-Minute Dare', desc:'Take turns giving silly dares. Loser buys chai.', tags:['fun','quick']},
+  {meet:'meet', time:'short', mood:'talk', title:'Bench Debrief', desc:'Find a bench and each get 5 uninterrupted minutes to talk.', tags:['deep','low-key']},
+  {meet:'meet', time:'short', mood:'chill', title:'Sit and Talk', desc:'Find a bench. No phones. Just talk.', tags:['low-key']},
+  {meet:'meet', time:'med', mood:'romantic', title:'Sunset Bench', desc:'Find a spot with a view, sit close, and watch the evening.', tags:['romantic','view']},
+  {meet:'meet', time:'med', mood:'tired', title:'Ice Cream, No Agenda', desc:'Get ice cream and let the conversation flow.', tags:['snacks','low-effort']},
   {meet:'meet', time:'med', mood:'playful', title:'Photo Challenge', desc:'Walk somewhere new and take a photo every time something makes you laugh.', tags:['walk','photos']},
-  {meet:'meet', time:'med', mood:'talk', title:'The Long Way Back', desc:'Take the longest possible route back to the hostel and use the extra time to actually talk.', tags:['walk','deep']},
-  {meet:'meet', time:'med', mood:'chill', title:'Canteen Hangout', desc:'No plan, no destination — just sit at the canteen and exist near each other for a while.', tags:['low-key']},
-  {meet:'meet', time:'long', mood:'romantic', title:'Campus Walk', desc:'Go for a walk, get snacks, take 10 random pictures, sit somewhere and just talk.', tags:['walk','snacks','photos']},
-  {meet:'meet', time:'long', mood:'tired', title:'Movie and Do Nothing', desc:'Pick something easy to watch together and dont feel obligated to do anything else.', tags:['movie','low-effort']},
-  {meet:'meet', time:'long', mood:'playful', title:'Explore Somewhere New', desc:'Pick a part of campus or town neither of you has properly explored and just wander.', tags:['explore','fun']},
-  {meet:'meet', time:'long', mood:'talk', title:'Full Debrief', desc:'Get food, sit somewhere with no time pressure, and actually catch up on everything youve been meaning to say.', tags:['deep','food']},
-  {meet:'meet', time:'long', mood:'chill', title:'Study Date, Sort Of', desc:'Bring your books, sit together, and let studying be the excuse to just be near each other.', tags:['study','low-key']},
-  {meet:'call', time:'short', mood:'romantic', title:'One Song, One Call', desc:'Pick a song that reminds you of each other, play it together on call, say nothing until it ends.', tags:['music','romantic']},
-  {meet:'call', time:'short', mood:'tired', title:'Same Song', desc:'Both put on the same song and stay on call until it ends. No talking required.', tags:['music','low-effort']},
-  {meet:'call', time:'short', mood:'playful', title:'Rapid Fire', desc:'Set a 5-minute timer and fire random would-you-rather questions at each other.', tags:['call','fun']},
-  {meet:'call', time:'short', mood:'talk', title:'Best Part of Today', desc:'Call and each share the best and worst five minutes of your day, no matter how small.', tags:['call','check-in']},
-  {meet:'call', time:'short', mood:'chill', title:'Goodnight Call', desc:'Tell each other about your day, then just stay on the line until one of you falls asleep.', tags:['call','wind-down']},
-  {meet:'call', time:'med', mood:'romantic', title:'Watch the Same Sunset', desc:'Get on call, each go somewhere with a view, and watch the sunset together apart.', tags:['call','romantic']},
-  {meet:'call', time:'med', mood:'tired', title:'Low-Effort Call', desc:'Call, put each other on speaker, and each go about your own small tasks while staying on the line.', tags:['call','low-effort']},
-  {meet:'call', time:'med', mood:'playful', title:'Guess the Story', desc:'One of you describes a random memory badly and the other has to guess what actually happened.', tags:['call','fun']},
-  {meet:'call', time:'med', mood:'talk', title:'20 Questions: Us Edition', desc:"Call for 30 minutes and take turns asking questions you've never asked each other. No skipping more than one.", tags:['call','deep']},
-  {meet:'call', time:'med', mood:'chill', title:'Background Call', desc:'Call and just do your own separate things, studying, scrolling, lying down, with each other on speaker.', tags:['call','low-key']},
-  {meet:'call', time:'long', mood:'romantic', title:'"Open When..." Letters', desc:'Write each other a letter to open on call, then read them out loud together.', tags:['letters','call']},
-  {meet:'call', time:'long', mood:'tired', title:'Fall Asleep on Call', desc:'Put on something soft in the background and just stay on the line until you both drift off.', tags:['call','wind-down']},
-  {meet:'call', time:'long', mood:'playful', title:'Watch Party', desc:'Start the same show or video at the same time on call and react to it together.', tags:['call','fun']},
-  {meet:'call', time:'long', mood:'talk', title:'No-Topic-Off-Limits Call', desc:'One long call, no set topic, just keep talking until you run out of things to say.', tags:['call','deep']},
-  {meet:'call', time:'long', mood:'chill', title:'Study Together on Call', desc:'Stay on call in silence while you both study separately, checking in every so often.', tags:['call','study']},
-  {meet:'text', time:'short', mood:'romantic', title:'One Nice Thing', desc:'Send each other one specific thing you appreciate about the other, right now.', tags:['text','romantic']},
-  {meet:'text', time:'short', mood:'tired', title:'Show Me Your Day', desc:'Both send 3 photos from today and explain one of them.', tags:['photos','text']},
-  {meet:'text', time:'short', mood:'playful', title:'Emoji Story', desc:'Tell each other about your day using only emojis. First one to break and use words loses.', tags:['text','fun']},
-  {meet:'text', time:'short', mood:'talk', title:'Three Questions', desc:'Each send the other one real question you actually want an answer to. No small talk.', tags:['text','deep']},
-  {meet:'text', time:'short', mood:'chill', title:'Song of the Day', desc:'Each send a song that matches your mood right now, no explanation needed.', tags:['music','text']},
-  {meet:'text', time:'med', mood:'romantic', title:'Memory Exchange', desc:'Each send your favorite memory of the two of you so far, and why it stuck.', tags:['text','romantic']},
-  {meet:'text', time:'med', mood:'tired', title:'Slow Texting', desc:'No pressure to reply fast, just keep a lazy back-and-forth going about nothing in particular.', tags:['text','low-effort']},
-  {meet:'text', time:'med', mood:'playful', title:'Chaotic Idea Swap', desc:"Each of you sends your most unhinged idea for a future date. Vote on which one you're actually doing.", tags:['text','fun']},
-  {meet:'text', time:'med', mood:'talk', title:'Would You Rather: Deep Cut', desc:'Text a round of would-you-rather questions that actually reveal something about each other.', tags:['text','deep']},
-  {meet:'text', time:'med', mood:'chill', title:'Playlist Building', desc:'Build a shared playlist together over text, one song each, no explanations required.', tags:['music','text']},
-  {meet:'text', time:'long', mood:'romantic', title:'Letter, Sent Slowly', desc:'Write out how you feel right now in one long message, and send it only when its finished.', tags:['text','romantic']},
-  {meet:'text', time:'long', mood:'tired', title:'Async Evening', desc:'Text on and off through the evening with zero obligation to reply immediately.', tags:['text','low-effort']},
-  {meet:'text', time:'long', mood:'playful', title:'Story Chain', desc:'Write a ridiculous story together, one sentence at a time, over text.', tags:['text','fun']},
-  {meet:'text', time:'long', mood:'talk', title:'Voice Note Marathon', desc:'Trade voice notes back and forth all evening instead of texting.', tags:['voice','text']},
-  {meet:'text', time:'long', mood:'chill', title:'Day in Review', desc:'Text through your whole day at the end of it, hour by hour, like narrating it to each other.', tags:['text','low-key']},
+  {meet:'meet', time:'med', mood:'talk', title:'The Long Way Back', desc:'Take the longest route and talk.', tags:['walk','deep']},
+  {meet:'meet', time:'med', mood:'chill', title:'Canteen Hangout', desc:'Just exist near each other.', tags:['low-key']},
+  {meet:'meet', time:'long', mood:'romantic', title:'Campus Walk', desc:'Walk, get snacks, take pictures, sit and talk.', tags:['walk','snacks','photos']},
+  {meet:'meet', time:'long', mood:'tired', title:'Movie and Do Nothing', desc:'Watch something easy together.', tags:['movie','low-effort']},
+  {meet:'meet', time:'long', mood:'playful', title:'Explore Somewhere New', desc:'Wander somewhere you haven\'t been.', tags:['explore','fun']},
+  {meet:'meet', time:'long', mood:'talk', title:'Full Debrief', desc:'Get food and catch up on everything.', tags:['deep','food']},
+  {meet:'meet', time:'long', mood:'chill', title:'Study Date, Sort Of', desc:'Bring books and just be near each other.', tags:['study','low-key']},
+  {meet:'call', time:'short', mood:'romantic', title:'One Song, One Call', desc:'Pick a song and play it together on call.', tags:['music','romantic']},
+  {meet:'call', time:'short', mood:'tired', title:'Same Song', desc:'Both put on the same song on call.', tags:['music','low-effort']},
+  {meet:'call', time:'short', mood:'playful', title:'Rapid Fire', desc:'Would-you-rather questions for 5 minutes.', tags:['call','fun']},
+  {meet:'call', time:'short', mood:'talk', title:'Best Part of Today', desc:'Share the best and worst of your day.', tags:['call','check-in']},
+  {meet:'call', time:'short', mood:'chill', title:'Goodnight Call', desc:'Stay on the line until one falls asleep.', tags:['call','wind-down']},
+  {meet:'call', time:'med', mood:'romantic', title:'Watch the Same Sunset', desc:'Call and watch the sunset together apart.', tags:['call','romantic']},
+  {meet:'call', time:'med', mood:'tired', title:'Low-Effort Call', desc:'Stay on speaker while doing chores.', tags:['call','low-effort']},
+  {meet:'call', time:'med', mood:'playful', title:'Guess the Story', desc:'Describe a memory badly and guess.', tags:['call','fun']},
+  {meet:'call', time:'med', mood:'talk', title:'20 Questions: Us Edition', desc:'Ask each other questions you\'ve never asked.', tags:['call','deep']},
+  {meet:'call', time:'med', mood:'chill', title:'Background Call', desc:'Just exist on call together.', tags:['call','low-key']},
+  {meet:'call', time:'long', mood:'romantic', title:'"Open When..." Letters', desc:'Write letters and read them on call.', tags:['letters','call']},
+  {meet:'call', time:'long', mood:'tired', title:'Fall Asleep on Call', desc:'Stay on the line until you both drift off.', tags:['call','wind-down']},
+  {meet:'call', time:'long', mood:'playful', title:'Watch Party', desc:'Start the same show at the same time.', tags:['call','fun']},
+  {meet:'call', time:'long', mood:'talk', title:'No-Topic-Off-Limits Call', desc:'Talk about anything.', tags:['call','deep']},
+  {meet:'call', time:'long', mood:'chill', title:'Study Together on Call', desc:'Study in silence together on call.', tags:['call','study']},
+  {meet:'text', time:'short', mood:'romantic', title:'One Nice Thing', desc:'Send one specific appreciation.', tags:['text','romantic']},
+  {meet:'text', time:'short', mood:'tired', title:'Show Me Your Day', desc:'Send 3 photos and explain one.', tags:['photos','text']},
+  {meet:'text', time:'short', mood:'playful', title:'Emoji Story', desc:'Tell your day using only emojis.', tags:['text','fun']},
+  {meet:'text', time:'short', mood:'talk', title:'Three Questions', desc:'Send one real question you want answered.', tags:['text','deep']},
+  {meet:'text', time:'short', mood:'chill', title:'Song of the Day', desc:'Send a song that matches your mood.', tags:['music','text']},
+  {meet:'text', time:'med', mood:'romantic', title:'Memory Exchange', desc:'Send your favorite memory of you two.', tags:['text','romantic']},
+  {meet:'text', time:'med', mood:'tired', title:'Slow Texting', desc:'Lazy back-and-forth about nothing.', tags:['text','low-effort']},
+  {meet:'text', time:'med', mood:'playful', title:'Chaotic Idea Swap', desc:'Send unhinged date ideas and vote.', tags:['text','fun']},
+  {meet:'text', time:'med', mood:'talk', title:'Would You Rather: Deep Cut', desc:'Questions that reveal something real.', tags:['text','deep']},
+  {meet:'text', time:'med', mood:'chill', title:'Playlist Building', desc:'Build a shared playlist together.', tags:['music','text']},
+  {meet:'text', time:'long', mood:'romantic', title:'Letter, Sent Slowly', desc:'Write out how you feel and send it.', tags:['text','romantic']},
+  {meet:'text', time:'long', mood:'tired', title:'Async Evening', desc:'Text with zero reply pressure.', tags:['text','low-effort']},
+  {meet:'text', time:'long', mood:'playful', title:'Story Chain', desc:'Write a ridiculous story together.', tags:['text','fun']},
+  {meet:'text', time:'long', mood:'talk', title:'Voice Note Marathon', desc:'Trade voice notes all evening.', tags:['voice','text']},
+  {meet:'text', time:'long', mood:'chill', title:'Day in Review', desc:'Text through your whole day hour by hour.', tags:['text','low-key']}
 ];
 
-document.getElementById('genBtn').addEventListener('click', renderPlan);
-
-async function renderPlan(){
+document.getElementById('genBtn').addEventListener('click', async function(){
   const result = document.getElementById('cardResult');
   if(!picked.time || !picked.meet || !picked.mood){
-    result.innerHTML = `<p class="empty-note">pick a time, availability, and mood first</p>`;
+    result.innerHTML = '<p class="empty-note">pick a time, availability, and mood first</p>';
     return;
   }
   let matches = PLANS.filter(p => p.time===picked.time && p.meet===picked.meet && p.mood===picked.mood);
   if(matches.length===0) matches = PLANS.filter(p => p.meet===picked.meet && p.mood===picked.mood);
   if(matches.length===0) matches = PLANS.filter(p => p.meet===picked.meet);
   if(matches.length===0) matches = PLANS;
-
   const plan = matches[Math.floor(Math.random()*matches.length)];
   result.innerHTML = `
     <div class="card">
@@ -1933,30 +1143,28 @@ async function renderPlan(){
         <button class="reroll" id="rerollPlan">reroll</button>
       </div>
     </div>`;
-  document.getElementById('rerollPlan').addEventListener('click', renderPlan);
-  document.getElementById('acceptPlan').addEventListener('click', async ()=>{
-    document.getElementById('acceptPlan').textContent = "you're doing this ♡";
+  document.getElementById('rerollPlan').addEventListener('click', function(){ document.getElementById('genBtn').click(); });
+  document.getElementById('acceptPlan').addEventListener('click', async function(){
+    this.textContent = "you're doing this ♡";
     await sb.from('tonight_plan').upsert({ id:1, status:'accepted' });
     loadTonightPlan();
   });
-
   await sb.from('tonight_plan').upsert({
-    id: 1, title: plan.title, description: plan.desc, tags: plan.tags.join(','),
+    id:1, title: plan.title, description: plan.desc, tags: plan.tags.join(','),
     time_bucket: picked.time, meet_type: picked.meet, mood: picked.mood,
     generated_by: currentWho || 'someone', status: 'pending'
   });
   loadTonightPlan();
-}
+});
 
 async function loadTonightPlan(){
   if(!sb) return;
   const win = document.getElementById('planWindow');
   const mini = document.getElementById('planMini');
   if(!win || !mini) return;
-  const { data, error } = await sb.from('tonight_plan').select('*').eq('id',1).maybeSingle();
-  if(error || !data || !data.title){ win.style.display = 'none'; return; }
-  
-  win.style.display = 'block';
+  const { data } = await sb.from('tonight_plan').select('*').eq('id',1).maybeSingle();
+  if(!data || !data.title){ win.style.display='none'; return; }
+  win.style.display='block';
   const isAccepted = data.status === 'accepted';
   mini.innerHTML = `
     <div class="plan-mini">
@@ -1967,24 +1175,18 @@ async function loadTonightPlan(){
       ${isAccepted ? '' : `<button class="accept-mini" id="acceptMini">accept ♡</button>`}
     </div>`;
   if(!isAccepted){
-    document.getElementById('acceptMini').addEventListener('click', async ()=>{
+    document.getElementById('acceptMini').addEventListener('click', async function(){
       await sb.from('tonight_plan').upsert({ id:1, status:'accepted' });
       loadTonightPlan();
-      sendNotification('🌙 Plan Accepted!', 'The tonight plan has been accepted!', 'plan-accepted');
     });
   }
 }
 
-// ---------- LITTLE THINGS ----------
-const thingAdd = document.getElementById('thingAdd');
-const thingInput = document.getElementById('thingInput');
-
-if (thingAdd) {
-    thingAdd.addEventListener('click', addThing);
-}
-if (thingInput) {
-    thingInput.addEventListener('keydown', e=>{ if(e.key==='Enter') addThing(); });
-}
+// LITTLE THINGS
+const thingAddBtn = document.getElementById('thingAdd');
+if(thingAddBtn) thingAddBtn.addEventListener('click', addThing);
+const thingInputEl = document.getElementById('thingInput');
+if(thingInputEl) thingInputEl.addEventListener('keydown', e=>{ if(e.key==='Enter') addThing(); });
 
 async function addThing(){
   if(!sb) return;
@@ -2001,119 +1203,79 @@ async function loadThings(){
   const list = document.getElementById('thingsList');
   if(!list) return;
   const { data, error } = await sb.from('little_things').select('*').order('created_at', {ascending:false}).limit(60);
-  if(error){ list.innerHTML = `<p class="empty-note">not connected yet — run the setup SQL in Supabase.</p>`; return; }
-  if(!data || data.length===0){ list.innerHTML = `<p class="empty-note">nothing here yet.</p>`; return; }
-  list.innerHTML = data.map(t=>`<div class="thing">${escapeHtml(t.content)}<span class="by">— ${escapeHtml(t.added_by||'')}</span></div>`).join('');
+  if(error || !data || data.length===0){ list.innerHTML = '<p class="empty-note">nothing here yet.</p>'; return; }
+  list.innerHTML = data.map(t => `<div class="thing">${escapeHtml(t.content)}<span class="by">— ${escapeHtml(t.added_by||'')}</span></div>`).join('');
 }
 
-// ---------- SECRET PAGE ----------
+// SECRET HEART
 let secretClicks = 0;
-document.getElementById('secretHeart').addEventListener('click', async ()=>{
+document.getElementById('secretHeart').addEventListener('click', async function(){
   secretClicks++;
   if(secretClicks >= 5){
     secretClicks = 0;
     const bg = document.getElementById('secretModalBg');
     if(sb){
-      const { data, error } = await sb.from('secrets').select('*');
-      if(!error && data && data.length>0){
-        const pick = data[Math.floor(Math.random()*data.length)];
-        document.getElementById('secretText').textContent = pick.content;
-      } else {
-        document.getElementById('secretText').textContent = "shh. this spot is reserved for something cute — add rows to the secrets table.";
-      }
+      const { data } = await sb.from('secrets').select('*');
+      document.getElementById('secretText').textContent = data && data.length>0 ? data[Math.floor(Math.random()*data.length)].content : 'shh. this spot is reserved for something cute.';
     } else {
-      document.getElementById('secretText').textContent = "shh. this spot is reserved for something cute.";
+      document.getElementById('secretText').textContent = 'shh. this spot is reserved for something cute.';
     }
     bg.classList.add('show');
   }
 });
-document.getElementById('closeSecret').addEventListener('click', ()=> document.getElementById('secretModalBg').classList.remove('show'));
+document.getElementById('closeSecret').addEventListener('click', function(){
+  document.getElementById('secretModalBg').classList.remove('show');
+});
 
-// ============================================================
-// 1. STUDY TOGETHER
-// ============================================================
-let studyTimerInterval = null;
-let studySeconds = 0;
-let studyTotalSeconds = 0;
-let studySessionId = null;
-let studyActive = false;
+// STUDY
+let studyTimerInterval = null, studySeconds = 0, studyTotalSeconds = 0, studySessionId = null, studyActive = false;
 
 document.querySelectorAll('.study-duration-chip').forEach(chip => {
-  chip.addEventListener('click', function() {
-    document.querySelectorAll('.study-duration-chip').forEach(c => c.classList.remove('sel'));
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('.study-duration-chip').forEach(c=>c.classList.remove('sel'));
     this.classList.add('sel');
-    const dur = this.dataset.dur;
-    const customInput = document.getElementById('studyCustomDuration');
-    if(dur === 'custom') {
-      if(customInput) customInput.style.display = 'block';
-    } else {
-      if(customInput) customInput.style.display = 'none';
-    }
+    document.getElementById('studyCustomDuration').style.display = this.dataset.dur === 'custom' ? 'block' : 'none';
   });
 });
 
 document.getElementById('startStudyBtn').addEventListener('click', startStudy);
 
-async function startStudy() {
-  if(!sb || !currentWho) {
-    alert('Please select who you are first.');
-    return;
-  }
-  
+async function startStudy(){
+  if(!sb || !currentWho){ alert('Please select who you are.'); return; }
   const subject = document.getElementById('studySubject').value.trim();
-  if(!subject) {
-    alert('Please enter what you\'re studying.');
-    return;
-  }
-  
+  if(!subject){ alert('Enter what you\'re studying.'); return; }
   let duration = 25;
-  const selectedChip = document.querySelector('.study-duration-chip.sel');
-  if(selectedChip) {
-    if(selectedChip.dataset.dur === 'custom') {
-      const customVal = parseInt(document.getElementById('studyCustomDuration').value);
-      if(customVal && customVal > 0) duration = customVal;
-      else { alert('Please enter a valid duration in minutes.'); return; }
-    } else {
-      duration = parseInt(selectedChip.dataset.dur);
-    }
+  const sel = document.querySelector('.study-duration-chip.sel');
+  if(sel){
+    if(sel.dataset.dur === 'custom'){
+      const v = parseInt(document.getElementById('studyCustomDuration').value);
+      if(v && v>0) duration = v;
+      else { alert('Enter valid duration.'); return; }
+    } else duration = parseInt(sel.dataset.dur);
   }
-  
   const target = OTHER(currentWho);
   const { data, error } = await sb.from('study_sessions').insert({
-    subject: subject,
-    duration_minutes: duration,
-    created_by: currentWho,
-    status: 'pending',
-    participants: [currentWho],
-    created_at: new Date().toISOString()
+    subject, duration_minutes: duration,
+    created_by: currentWho, status: 'pending', participants: [currentWho]
   }).select().single();
-  
-  if(error) {
-    console.error('Error creating study session:', error);
-    alert('Could not start study session. Check console.');
-    return;
-  }
-  
+  if(error){ alert('Could not start study session.'); return; }
   studySessionId = data.id;
   document.getElementById('studyStatus').textContent = `📚 Waiting for ${target} to accept...`;
   document.getElementById('studySetup').style.display = 'none';
-  
-  sendNotification('📚 Study Invitation!', `${currentWho} wants to study "${subject}" with you.`, 'study-invite');
-  
+  sendNotification('📚 Study Invitation!', `${currentWho} wants to study "${subject}" with you.`, 'study');
   checkStudyAcceptance(studySessionId);
 }
 
-async function checkStudyAcceptance(sessionId) {
-  const checkInterval = setInterval(async () => {
+async function checkStudyAcceptance(sessionId){
+  const interval = setInterval(async ()=>{
     if(!sb) return;
-    const { data, error } = await sb.from('study_sessions').select('*').eq('id', sessionId).single();
-    if(error || !data) return;
-    
-    if(data.status === 'accepted') {
-      clearInterval(checkInterval);
+    const { data } = await sb.from('study_sessions').select('*').eq('id', sessionId).single();
+    if(!data) return;
+    if(data.status === 'accepted'){
+      clearInterval(interval);
       startStudyTimer(data);
-    } else if(data.status === 'declined') {
-      clearInterval(checkInterval);
+    } else if(data.status === 'declined'){
+      clearInterval(interval);
       document.getElementById('studyStatus').textContent = '❌ Session declined.';
       document.getElementById('studySetup').style.display = 'block';
       studySessionId = null;
@@ -2121,405 +1283,245 @@ async function checkStudyAcceptance(sessionId) {
   }, 3000);
 }
 
-async function startStudyTimer(sessionData) {
+async function startStudyTimer(sessionData){
   studyActive = true;
   studyTotalSeconds = sessionData.duration_minutes * 60;
   studySeconds = 0;
-  
   document.getElementById('studySetup').style.display = 'none';
   document.getElementById('studyActive').style.display = 'block';
   document.getElementById('studyComplete').style.display = 'none';
   document.getElementById('studyStatus').textContent = '📚 Session in progress...';
-  
-  const subject = sessionData.subject;
-  document.getElementById('studySubjectDisplay').textContent = `📖 ${subject}`;
+  document.getElementById('studySubjectDisplay').textContent = `📖 ${sessionData.subject}`;
   document.getElementById('studyParticipants').textContent = `${currentWho} + ${OTHER(currentWho)}`;
-  
-  await sb.from('study_sessions').update({ 
-    status: 'active', 
-    started_at: new Date().toISOString(),
-    participants: [currentWho, OTHER(currentWho)]
-  }).eq('id', studySessionId);
-  
-  studyTimerInterval = setInterval(() => {
+  await sb.from('study_sessions').update({ status: 'active', started_at: new Date().toISOString(), participants: [currentWho, OTHER(currentWho)] }).eq('id', studySessionId);
+  studyTimerInterval = setInterval(()=>{
     studySeconds++;
     const remaining = studyTotalSeconds - studySeconds;
-    if(remaining <= 0) {
-      clearInterval(studyTimerInterval);
-      completeStudy();
-      return;
-    }
-    updateStudyDisplay(remaining);
+    if(remaining <= 0){ clearInterval(studyTimerInterval); completeStudy(); return; }
+    const mins = Math.floor(remaining/60), secs = remaining%60;
+    document.getElementById('studyTimerDisplay').textContent = `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
   }, 1000);
-  
   setupStudyEncouragement();
 }
 
-function updateStudyDisplay(seconds) {
-  const mins = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-  document.getElementById('studyTimerDisplay').textContent = 
-    `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-}
-
-async function completeStudy() {
+async function completeStudy(){
   studyActive = false;
-  if(studyTimerInterval) {
-    clearInterval(studyTimerInterval);
-    studyTimerInterval = null;
-  }
-  
+  if(studyTimerInterval){ clearInterval(studyTimerInterval); studyTimerInterval = null; }
   document.getElementById('studyActive').style.display = 'none';
   document.getElementById('studyComplete').style.display = 'block';
   document.getElementById('studyStatus').textContent = '✅ Session complete!';
-  
   const { data } = await sb.from('study_sessions').select('*').eq('id', studySessionId).single();
-  if(data) {
+  if(data){
     document.getElementById('studySummary').innerHTML = `
       <div><strong>📖 ${escapeHtml(data.subject)}</strong></div>
-      <div style="font-family:'VT323',monospace; color:#5b4566;">
-        ${data.duration_minutes} minutes · ${currentWho} + ${OTHER(currentWho)}
-      </div>
-      <div style="font-family:'VT323',monospace; font-size:0.8rem; color:#7a6683;">
-        ${new Date().toLocaleString()}
-      </div>
+      <div style="font-family:'VT323',monospace;color:#5b4566;">${data.duration_minutes} minutes · ${currentWho} + ${OTHER(currentWho)}</div>
+      <div style="font-family:'VT323',monospace;font-size:0.8rem;color:#7a6683;">${new Date().toLocaleString()}</div>
     `;
-    
-    await sb.from('study_sessions').update({ 
-      status: 'completed', 
-      completed_at: new Date().toISOString()
-    }).eq('id', studySessionId);
-    
+    await sb.from('study_sessions').update({ status: 'completed', completed_at: new Date().toISOString() }).eq('id', studySessionId);
     loadStudyHistory();
   }
-  
   sendNotification('📚 Study Complete!', 'You survived! ♡', 'study-complete');
 }
 
-document.getElementById('studyAgainBtn').addEventListener('click', () => {
+document.getElementById('studyAgainBtn').addEventListener('click', function(){
   document.getElementById('studyComplete').style.display = 'none';
   document.getElementById('studySetup').style.display = 'block';
   document.getElementById('studySubject').value = '';
   document.getElementById('studyCustomDuration').style.display = 'none';
-  document.querySelectorAll('.study-duration-chip').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll('.study-duration-chip').forEach(c=>c.classList.remove('sel'));
   studySessionId = null;
 });
-
-document.getElementById('studyDoneBtn').addEventListener('click', () => {
+document.getElementById('studyDoneBtn').addEventListener('click', function(){
   document.getElementById('studyComplete').style.display = 'none';
   document.getElementById('studySetup').style.display = 'block';
   document.getElementById('studySubject').value = '';
-  document.querySelectorAll('.study-duration-chip').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll('.study-duration-chip').forEach(c=>c.classList.remove('sel'));
   studySessionId = null;
 });
-
-document.getElementById('endStudyBtn').addEventListener('click', () => {
-  if(confirm('End the study session early?')) {
+document.getElementById('endStudyBtn').addEventListener('click', function(){
+  if(confirm('End the study session early?')){
     clearInterval(studyTimerInterval);
     studyTimerInterval = null;
     studyActive = false;
     document.getElementById('studyActive').style.display = 'none';
     document.getElementById('studySetup').style.display = 'block';
     document.getElementById('studyStatus').textContent = '⏹️ Session ended early.';
-    if(studySessionId) {
-      sb.from('study_sessions').update({ status: 'cancelled' }).eq('id', studySessionId);
-    }
+    if(studySessionId) sb.from('study_sessions').update({ status: 'cancelled' }).eq('id', studySessionId);
     studySessionId = null;
   }
 });
 
-function setupStudyEncouragement() {
-  document.querySelectorAll('#studyEncourage button').forEach(btn => {
+function setupStudyEncouragement(){
+  document.querySelectorAll('#studyEncourage button').forEach(btn=>{
     btn.removeEventListener('click', sendEncouragement);
     btn.addEventListener('click', sendEncouragement);
   });
-  
-  if(sb) {
-    try {
+  if(sb){
+    try{
       sb.channel('study-encourage')
-        .on('postgres_changes', {event:'INSERT', schema:'public', table:'study_encouragements'}, (payload) => {
+        .on('postgres_changes', {event:'INSERT', schema:'public', table:'study_encouragements'}, payload=>{
           const msg = payload.new;
-          if(msg.target === currentWho && msg.session_id === studySessionId) {
-            const feed = document.getElementById('encourageFeed');
-            feed.innerHTML = `✨ ${msg.from} says: "${msg.message}"`;
-            setTimeout(() => feed.innerHTML = '', 5000);
-            sendNotification('📚 Encouragement!', `${msg.from} says: "${msg.message}"`, 'study-encourage');
+          if(msg.target === currentWho && msg.session_id === studySessionId){
+            document.getElementById('encourageFeed').innerHTML = `✨ ${msg.from} says: "${msg.message}"`;
+            setTimeout(()=>document.getElementById('encourageFeed').innerHTML='', 5000);
+            sendNotification('📚 Encouragement!', `${msg.from} says: "${msg.message}"`, 'encourage');
           }
         })
         .subscribe();
-    } catch(e) {
-      console.error('Error subscribing to encouragements:', e);
-    }
+    } catch(e){ console.error(e); }
   }
 }
 
-async function sendEncouragement(e) {
+async function sendEncouragement(e){
   if(!sb || !studySessionId || !currentWho) return;
   const msg = this.dataset.msg;
   const target = OTHER(currentWho);
-  
-  const { error } = await sb.from('study_encouragements').insert({
-    session_id: studySessionId,
-    from: currentWho,
-    target: target,
-    message: msg,
-    created_at: new Date().toISOString()
+  await sb.from('study_encouragements').insert({
+    session_id: studySessionId, from: currentWho, target, message: msg
   });
-  
-  if(!error) {
-    this.classList.add('encourage-sent');
-    setTimeout(() => this.classList.remove('encourage-sent'), 2000);
-    const feed = document.getElementById('encourageFeed');
-    feed.innerHTML = `✨ You encouraged ${target}!`;
-    setTimeout(() => feed.innerHTML = '', 3000);
-  }
+  this.classList.add('encourage-sent');
+  setTimeout(()=>this.classList.remove('encourage-sent'), 2000);
+  document.getElementById('encourageFeed').innerHTML = `✨ You encouraged ${target}!`;
+  setTimeout(()=>document.getElementById('encourageFeed').innerHTML='', 3000);
 }
 
-async function loadStudyHistory() {
+async function loadStudyHistory(){
   if(!sb) return;
   const container = document.getElementById('studyHistory');
   if(!container) return;
-  const { data, error } = await sb.from('study_sessions')
-    .select('*')
-    .eq('status', 'completed')
-    .order('completed_at', {ascending: false})
-    .limit(20);
-  
-  if(error || !data || data.length === 0) {
-    container.innerHTML = `<p class="empty-note">no study sessions yet.</p>`;
-    return;
-  }
-  
-  const totalSessions = data.length;
-  const totalMinutes = data.reduce((sum, s) => sum + (s.duration_minutes || 0), 0);
-  const hours = Math.floor(totalMinutes / 60);
-  const mins = totalMinutes % 60;
-  
-  let html = `<div style="font-family:'VT323',monospace; font-size:0.9rem; color:#5b4566; margin-bottom:10px;">
-    ${totalSessions} sessions · ${hours}h ${mins}m together
-  </div>`;
-  
+  const { data } = await sb.from('study_sessions').select('*').eq('status','completed').order('completed_at', {ascending:false}).limit(20);
+  if(!data || data.length===0){ container.innerHTML = '<p class="empty-note">no study sessions yet.</p>'; return; }
+  const total = data.length, mins = data.reduce((s,d)=>s+(d.duration_minutes||0),0);
+  const h = Math.floor(mins/60), m = mins%60;
+  let html = `<div style="font-family:'VT323',monospace;font-size:0.9rem;color:#5b4566;margin-bottom:10px;">${total} sessions · ${h}h ${m}m together</div>`;
   const months = {};
-  data.forEach(s => {
-    if(s.completed_at) {
+  data.forEach(s=>{
+    if(s.completed_at){
       const d = new Date(s.completed_at);
       const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
       if(!months[key]) months[key] = [];
       months[key].push(s);
     }
   });
-  
-  for(const [month, sessions] of Object.entries(months)) {
+  for(const [month, sessions] of Object.entries(months)){
     const [year, monthNum] = month.split('-');
     const monthName = new Date(parseInt(year), parseInt(monthNum)-1, 1).toLocaleString('default', {month:'long'});
-    html += `<div style="font-family:'Bungee',cursive; font-size:0.9rem; color:var(--pink-deep); margin-top:12px;">${monthName} ${year}</div>`;
-    sessions.forEach(s => {
+    html += `<div style="font-family:'Bungee',cursive;font-size:0.9rem;color:var(--pink-deep);margin-top:12px;">${monthName} ${year}</div>`;
+    sessions.forEach(s=>{
       const d = new Date(s.completed_at);
-      const day = d.getDate();
-      html += `<div class="study-history-item">
-        <div class="sh-subject">📚 ${escapeHtml(s.subject)}</div>
-        <div class="sh-meta">${day} ${monthName} · ${s.duration_minutes} minutes · ${s.participants ? s.participants.join(' + ') : '—'}</div>
-      </div>`;
+      html += `<div class="study-history-item"><div class="sh-subject">📚 ${escapeHtml(s.subject)}</div><div class="sh-meta">${d.getDate()} ${monthName} · ${s.duration_minutes} minutes · ${s.participants ? s.participants.join(' + ') : '—'}</div></div>`;
     });
   }
-  
   container.innerHTML = html;
-  
-  document.getElementById('studyQuickStatus').textContent = 
-    `${totalSessions} sessions · ${hours}h ${mins}m`;
+  document.getElementById('studyQuickStatus').textContent = `${total} sessions · ${h}h ${m}m`;
 }
 
-// ============================================================
-// 2. WHAT DO I NEED
-// ============================================================
-async function loadNeeds() {
+// NEEDS
+async function loadNeeds(){
   if(!sb) return;
-  
-  const { data, error } = await sb.from('needs_items')
-    .select('*')
-    .order('created_at', {ascending: true});
-  
-  if(error) {
-    console.error('Error loading needs:', error);
-    return;
-  }
-  
-  const pottiItems = data?.filter(i => i.person === 'POTTI') || [];
-  const shonnaItems = data?.filter(i => i.person === 'SHONNA') || [];
-  
-  renderNeedsList('needsPottiList', pottiItems, 'POTTI');
-  renderNeedsList('needsShonnaList', shonnaItems, 'SHONNA');
-  
-  const total = (pottiItems.length + shonnaItems.length);
-  const pending = data?.filter(i => !i.completed).length || 0;
-  document.getElementById('needsQuickStatus').textContent = 
-    pending > 0 ? `${pending} things waiting` : 'all done! 🎉';
+  const { data } = await sb.from('needs_items').select('*').order('created_at', {ascending:true});
+  if(!data) return;
+  const potti = data.filter(i=>i.person==='POTTI');
+  const shonna = data.filter(i=>i.person==='SHONNA');
+  renderNeeds('needsPottiList', potti);
+  renderNeeds('needsShonnaList', shonna);
+  const pending = data.filter(i=>!i.completed).length;
+  document.getElementById('needsQuickStatus').textContent = pending > 0 ? `${pending} things waiting` : 'all done! 🎉';
 }
 
-function renderNeedsList(containerId, items, person) {
+function renderNeeds(containerId, items){
   const container = document.getElementById(containerId);
   if(!container) return;
-  
-  if(!items || items.length === 0) {
-    container.innerHTML = `<div style="color:#9c8aa8; font-family:'VT323',monospace; font-size:0.85rem;">nothing yet</div>`;
-    return;
-  }
-  
+  if(!items || items.length===0){ container.innerHTML = '<div style="color:#9c8aa8;font-family:\'VT323\',monospace;font-size:0.85rem;">nothing yet</div>'; return; }
   container.innerHTML = items.map(item => `
     <div class="needs-item">
-      <input type="checkbox" ${item.completed ? 'checked' : ''} 
-        onchange="toggleNeed('${item.id}', this.checked)">
+      <input type="checkbox" ${item.completed ? 'checked' : ''} onchange="toggleNeed('${item.id}', this.checked)">
       <span class="${item.completed ? 'completed' : ''}">${escapeHtml(item.item)}</span>
       <button class="delete-need" onclick="deleteNeed('${item.id}')">×</button>
     </div>
   `).join('');
 }
 
-async function addNeed(person) {
+async function addNeed(person){
   if(!sb || !currentWho) return;
   const input = document.getElementById(`needs${person}Input`);
   if(!input) return;
   const item = input.value.trim();
   if(!item) return;
-  
-  const { error } = await sb.from('needs_items').insert({
-    item: item,
-    person: person,
-    added_by: currentWho,
-    completed: false,
-    created_at: new Date().toISOString()
-  });
-  
-  if(!error) {
-    input.value = '';
-    loadNeeds();
-    if(currentWho !== person) {
-      sendNotification('🎒 New Need!', `${currentWho} added "${item}" for ${person}`, 'new-need');
-    }
-  }
+  await sb.from('needs_items').insert({ item, person, added_by: currentWho, completed: false });
+  input.value = '';
+  loadNeeds();
 }
 window.addNeed = addNeed;
 
-async function toggleNeed(id, checked) {
+async function toggleNeed(id, checked){
   if(!sb) return;
   await sb.from('needs_items').update({ completed: checked }).eq('id', id);
-  if(checked) {
+  if(checked){
     const { data } = await sb.from('needs_items').select('*').eq('id', id).single();
-    if(data) {
-      sendNotification('✅ Item Done!', `${data.person} completed: "${data.item}"`, 'need-done');
-    }
+    if(data) sendNotification('✅ Item Done!', `${data.person} completed: "${data.item}"`, 'need-done');
   }
   loadNeeds();
 }
 window.toggleNeed = toggleNeed;
 
-async function deleteNeed(id) {
+async function deleteNeed(id){
   if(!sb) return;
   await sb.from('needs_items').delete().eq('id', id);
   loadNeeds();
 }
 window.deleteNeed = deleteNeed;
 
-// ============================================================
-// 3. MEET ME
-// ============================================================
-let meetData = null;
-let meetTimerInterval = null;
+// MEET
+let meetData = null, meetTimerInterval = null;
 
-document.querySelectorAll('.meet-time-chip').forEach(chip => {
-  chip.addEventListener('click', function() {
-    document.querySelectorAll('.meet-time-chip').forEach(c => c.classList.remove('sel'));
+document.querySelectorAll('.meet-time-chip').forEach(chip=>{
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('.meet-time-chip').forEach(c=>c.classList.remove('sel'));
     this.classList.add('sel');
-    const customInput = document.getElementById('meetCustomTime');
-    if(this.dataset.time === 'custom') {
-      if(customInput) customInput.style.display = 'block';
-    } else {
-      if(customInput) customInput.style.display = 'none';
-    }
+    document.getElementById('meetCustomTime').style.display = this.dataset.time === 'custom' ? 'block' : 'none';
   });
 });
-
-document.querySelectorAll('.meet-location-chip').forEach(chip => {
-  chip.addEventListener('click', function() {
-    document.querySelectorAll('.meet-location-chip').forEach(c => c.classList.remove('sel'));
+document.querySelectorAll('.meet-location-chip').forEach(chip=>{
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('.meet-location-chip').forEach(c=>c.classList.remove('sel'));
     this.classList.add('sel');
-    const customInput = document.getElementById('meetCustomLocation');
-    if(this.dataset.loc === 'custom') {
-      if(customInput) customInput.style.display = 'block';
-    } else {
-      if(customInput) customInput.style.display = 'none';
-    }
+    document.getElementById('meetCustomLocation').style.display = this.dataset.loc === 'custom' ? 'block' : 'none';
   });
 });
 
 document.getElementById('sendMeetBtn').addEventListener('click', sendMeetRequest);
 
-async function sendMeetRequest() {
-  if(!sb || !currentWho) {
-    alert('Please select who you are first.');
-    return;
+async function sendMeetRequest(){
+  if(!sb || !currentWho){ alert('Please select who you are.'); return; }
+  const timeChip = document.querySelector('.meet-time-chip.sel');
+  const locChip = document.querySelector('.meet-location-chip.sel');
+  if(!timeChip || !locChip){ alert('Select time and location.'); return; }
+  let timeValue = timeChip.dataset.time;
+  if(timeValue === 'custom'){
+    timeValue = document.getElementById('meetCustomTime').value;
+    if(!timeValue){ alert('Enter custom time.'); return; }
   }
-  
-  let timeValue = null;
-  const selectedTime = document.querySelector('.meet-time-chip.sel');
-  if(selectedTime) {
-    if(selectedTime.dataset.time === 'custom') {
-      const custom = document.getElementById('meetCustomTime').value;
-      if(!custom) { alert('Please select a time.'); return; }
-      timeValue = custom;
-    } else {
-      timeValue = selectedTime.dataset.time;
-    }
-  } else {
-    alert('Please select a time.');
-    return;
+  let locationValue = locChip.dataset.loc;
+  if(locationValue === 'custom'){
+    locationValue = document.getElementById('meetCustomLocation').value.trim();
+    if(!locationValue){ alert('Enter custom location.'); return; }
   }
-  
-  let locationValue = null;
-  const selectedLoc = document.querySelector('.meet-location-chip.sel');
-  if(selectedLoc) {
-    if(selectedLoc.dataset.loc === 'custom') {
-      const custom = document.getElementById('meetCustomLocation').value.trim();
-      if(!custom) { alert('Please enter a location.'); return; }
-      locationValue = custom;
-    } else {
-      locationValue = selectedLoc.dataset.loc;
-    }
-  } else {
-    alert('Please select a location.');
-    return;
-  }
-  
   const target = OTHER(currentWho);
-  
   let meetTime = new Date();
-  if(timeValue === 'now') {
-    meetTime.setMinutes(meetTime.getMinutes() + 1);
-  } else if(timeValue === '10') {
-    meetTime.setMinutes(meetTime.getMinutes() + 10);
-  } else if(timeValue === '30') {
-    meetTime.setMinutes(meetTime.getMinutes() + 30);
-  } else if(timeValue.includes(':')) {
-    const [hours, mins] = timeValue.split(':').map(Number);
-    meetTime.setHours(hours, mins, 0, 0);
-    if(meetTime < new Date()) meetTime.setDate(meetTime.getDate() + 1);
+  if(timeValue === 'now') meetTime.setMinutes(meetTime.getMinutes()+1);
+  else if(timeValue === '10') meetTime.setMinutes(meetTime.getMinutes()+10);
+  else if(timeValue === '30') meetTime.setMinutes(meetTime.getMinutes()+30);
+  else if(timeValue.includes(':')){
+    const [h,m] = timeValue.split(':').map(Number);
+    meetTime.setHours(h,m,0,0);
+    if(meetTime < new Date()) meetTime.setDate(meetTime.getDate()+1);
   }
-  
   const { data, error } = await sb.from('meet_requests').insert({
-    requester: currentWho,
-    target: target,
-    location: locationValue,
-    meet_time: meetTime.toISOString(),
-    status: 'pending',
-    created_at: new Date().toISOString()
+    requester: currentWho, target, location: locationValue,
+    meet_time: meetTime.toISOString(), status: 'pending'
   }).select().single();
-  
-  if(error) {
-    console.error('Error sending meet request:', error);
-    alert('Could not send meet request.');
-    return;
-  }
-  
+  if(error){ alert('Could not send meet request: '+error.message); return; }
   meetData = data;
   document.getElementById('meetSetup').style.display = 'none';
   document.getElementById('meetActive').style.display = 'block';
@@ -2529,37 +1531,31 @@ async function sendMeetRequest() {
   document.getElementById('meetActions').style.display = 'flex';
   document.getElementById('meetCancelArea').style.display = 'none';
   document.getElementById('meetStatus').textContent = `⏳ Waiting for ${target} to respond...`;
-  
   sendNotification('🏃 Meet Request!', `${currentWho} wants to meet you at ${locationValue}`, 'meet-request');
-  
   checkMeetResponse(data.id);
 }
 
-function formatMeetTime(date) {
-  const now = new Date();
-  const diff = Math.floor((date - now) / 60000);
+function formatMeetTime(date){
+  const diff = Math.floor((date - new Date()) / 60000);
   if(diff <= 0) return 'now';
   if(diff < 60) return `${diff} minutes`;
-  const hours = Math.floor(diff / 60);
-  const mins = diff % 60;
-  if(hours < 24) return `${hours}h ${mins}m`;
-  return date.toLocaleString();
+  const h = Math.floor(diff/60), m = diff%60;
+  return `${h}h ${m}m`;
 }
 
-async function checkMeetResponse(requestId) {
-  const checkInterval = setInterval(async () => {
+async function checkMeetResponse(requestId){
+  const interval = setInterval(async ()=>{
     if(!sb) return;
-    const { data, error } = await sb.from('meet_requests').select('*').eq('id', requestId).single();
-    if(error || !data) return;
-    
-    if(data.status === 'accepted') {
-      clearInterval(checkInterval);
+    const { data } = await sb.from('meet_requests').select('*').eq('id', requestId).single();
+    if(!data) return;
+    if(data.status === 'accepted'){
+      clearInterval(interval);
       startMeetTimer(data);
-    } else if(data.status === 'declined') {
-      clearInterval(checkInterval);
+    } else if(data.status === 'declined'){
+      clearInterval(interval);
       showMeetDeclined(data);
-    } else if(data.status === 'cancelled') {
-      clearInterval(checkInterval);
+    } else if(data.status === 'cancelled'){
+      clearInterval(interval);
       document.getElementById('meetSetup').style.display = 'block';
       document.getElementById('meetActive').style.display = 'none';
       document.getElementById('meetStatus').textContent = '❌ Request cancelled.';
@@ -2568,46 +1564,30 @@ async function checkMeetResponse(requestId) {
   }, 3000);
 }
 
-function startMeetTimer(requestData) {
+function startMeetTimer(requestData){
   meetData = requestData;
   document.getElementById('meetStatus').textContent = '✅ Accepted!';
   document.getElementById('meetActions').style.display = 'none';
   document.getElementById('meetCancelArea').style.display = 'block';
-  
   const meetTime = new Date(requestData.meet_time);
-  const target = OTHER(currentWho);
-  
-  meetTimerInterval = setInterval(() => {
-    const now = new Date();
-    const diff = Math.floor((meetTime - now) / 1000);
-    
-    if(diff <= 0) {
-      clearInterval(meetTimerInterval);
-      meetTimerInterval = null;
-      showMeetComplete();
-      return;
-    }
-    
-    const mins = Math.floor(diff / 60);
-    const secs = diff % 60;
-    document.getElementById('meetTimerDisplay').textContent = 
-      `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  meetTimerInterval = setInterval(()=>{
+    const diff = Math.floor((meetTime - new Date()) / 1000);
+    if(diff <= 0){ clearInterval(meetTimerInterval); meetTimerInterval=null; showMeetComplete(); return; }
+    const mins = Math.floor(diff/60), secs = diff%60;
+    document.getElementById('meetTimerDisplay').textContent = `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
   }, 1000);
-  
   sendNotification('🏃 Meeting Confirmed!', `${requestData.requester} is coming! See you at ${requestData.location}`, 'meet-accepted');
 }
 
-function showMeetComplete() {
+function showMeetComplete(){
   document.getElementById('meetActive').style.display = 'none';
   document.getElementById('meetComplete').style.display = 'block';
-  const target = OTHER(currentWho);
-  document.getElementById('meetCompleteWho').textContent = target === 'SHONNA' ? 'SHE\'S' : 'HE\'S';
+  document.getElementById('meetCompleteWho').textContent = OTHER(currentWho) === 'SHONNA' ? 'SHE\'S' : 'HE\'S';
   document.getElementById('meetCompleteLoc').textContent = `📍 ${meetData.location}`;
-  
   sendNotification('🏃 GO!', `Time to meet! ${meetData.location}`, 'meet-go');
 }
 
-document.getElementById('meetCancelBtn').addEventListener('click', async () => {
+document.getElementById('meetCancelBtn').addEventListener('click', async function(){
   if(!meetData || !sb) return;
   await sb.from('meet_requests').update({ status: 'cancelled' }).eq('id', meetData.id);
   clearInterval(meetTimerInterval);
@@ -2618,215 +1598,165 @@ document.getElementById('meetCancelBtn').addEventListener('click', async () => {
   meetData = null;
 });
 
-document.getElementById('meetAcceptBtn').addEventListener('click', async () => {
+document.getElementById('meetAcceptBtn').addEventListener('click', async function(){
   if(!meetData || !sb || !currentWho) return;
   await sb.from('meet_requests').update({ status: 'accepted' }).eq('id', meetData.id);
 });
 
-document.getElementById('meetDeclineBtn').addEventListener('click', async () => {
+document.getElementById('meetDeclineBtn').addEventListener('click', async function(){
   if(!meetData || !sb || !currentWho) return;
   await sb.from('meet_requests').update({ status: 'declined' }).eq('id', meetData.id);
 });
 
-function showMeetDeclined(data) {
+function showMeetDeclined(data){
   document.getElementById('meetActive').style.display = 'none';
   document.getElementById('meetDeclined').style.display = 'block';
   document.getElementById('meetDeclinedWho').textContent = data.requester;
-  
   sendNotification('❌ Meeting Declined', `${data.requester} can't make it right now.`, 'meet-declined');
 }
 
-document.getElementById('meetAskFree').addEventListener('click', () => {
+document.getElementById('meetAskFree').addEventListener('click', function(){
   document.getElementById('meetDeclined').style.display = 'none';
   document.getElementById('meetSetup').style.display = 'block';
   document.getElementById('meetStatus').textContent = '💬 Check their status on the home page.';
 });
 
-document.getElementById('meetCompleteDone').addEventListener('click', () => {
+document.getElementById('meetCompleteDone').addEventListener('click', function(){
   document.getElementById('meetCompleteModal').classList.add('show');
 });
 
-document.getElementById('meetYesSave').addEventListener('click', async () => {
+document.getElementById('meetYesSave').addEventListener('click', async function(){
   if(!meetData || !sb) return;
-  const { error } = await sb.from('memories').insert({
+  await sb.from('memories').insert({
     caption: `Met at ${meetData.location} ♡`,
     added_by: currentWho || 'SHONNA',
-    memory_date: new Date().toISOString().slice(0,10),
-    photo_url: ''
+    memory_date: new Date().toISOString().slice(0,10)
   });
-  if(!error) {
-    await sb.from('meet_requests').update({ status: 'completed' }).eq('id', meetData.id);
-    document.getElementById('meetCompleteModal').classList.remove('show');
-    document.getElementById('meetComplete').style.display = 'none';
-    document.getElementById('meetSetup').style.display = 'block';
-    document.getElementById('meetStatus').textContent = '📸 Saved to archive! ♡';
-    meetData = null;
-    loadArchive();
-    sendNotification('📸 Memory Saved!', 'Your meeting was saved to the archive.', 'meet-saved');
-  }
+  await sb.from('meet_requests').update({ status: 'completed' }).eq('id', meetData.id);
+  document.getElementById('meetCompleteModal').classList.remove('show');
+  document.getElementById('meetComplete').style.display = 'none';
+  document.getElementById('meetSetup').style.display = 'block';
+  document.getElementById('meetStatus').textContent = '📸 Saved to archive! ♡';
+  meetData = null;
+  loadArchive();
+  sendNotification('📸 Memory Saved!', 'Your meeting was saved to the archive.', 'meet-saved');
 });
 
-document.getElementById('meetNoSave').addEventListener('click', () => {
+document.getElementById('meetNoSave').addEventListener('click', function(){
   document.getElementById('meetCompleteModal').classList.remove('show');
   document.getElementById('meetComplete').style.display = 'none';
   document.getElementById('meetSetup').style.display = 'block';
   meetData = null;
 });
 
-document.getElementById('closeMeetComplete').addEventListener('click', () => {
+document.getElementById('closeMeetComplete').addEventListener('click', function(){
   document.getElementById('meetCompleteModal').classList.remove('show');
 });
 
-async function checkMeetStatus() {
+async function checkMeetStatus(){
   if(!sb || !currentWho) return;
-  
-  const { data, error } = await sb.from('meet_requests')
-    .select('*')
-    .eq('target', currentWho)
-    .eq('status', 'pending')
-    .order('created_at', {ascending: false})
-    .limit(1);
-  
-  if(data && data.length > 0) {
-    const request = data[0];
-    meetData = request;
+  // Check for pending requests directed to current user
+  const { data } = await sb.from('meet_requests').select('*')
+    .eq('target', currentWho).eq('status', 'pending')
+    .order('created_at', {ascending:false}).limit(1);
+  if(data && data.length>0){
+    const req = data[0];
+    meetData = req;
     document.getElementById('meetSetup').style.display = 'none';
     document.getElementById('meetActive').style.display = 'block';
-    document.getElementById('meetRequester').textContent = request.requester;
-    document.getElementById('meetLocationDisplay').textContent = `📍 ${request.location}`;
-    const meetTime = new Date(request.meet_time);
-    document.getElementById('meetTimeDisplay').textContent = formatMeetTime(meetTime);
+    document.getElementById('meetRequester').textContent = req.requester;
+    document.getElementById('meetLocationDisplay').textContent = `📍 ${req.location}`;
+    document.getElementById('meetTimeDisplay').textContent = formatMeetTime(new Date(req.meet_time));
     document.getElementById('meetActions').style.display = 'flex';
     document.getElementById('meetCancelArea').style.display = 'none';
-    document.getElementById('meetStatus').textContent = `📩 ${request.requester} wants to meet you!`;
+    document.getElementById('meetStatus').textContent = `📩 ${req.requester} wants to meet you!`;
     return;
   }
-  
-  const { data: activeData } = await sb.from('meet_requests')
-    .select('*')
+  // Check for active accepted meet
+  const { data: active } = await sb.from('meet_requests').select('*')
     .eq('status', 'accepted')
     .or(`requester.eq.${currentWho},target.eq.${currentWho}`)
-    .order('created_at', {ascending: false})
-    .limit(1);
-  
-  if(activeData && activeData.length > 0) {
-    const request = activeData[0];
-    const meetTime = new Date(request.meet_time);
-    if(meetTime > new Date()) {
-      meetData = request;
+    .order('created_at', {ascending:false}).limit(1);
+  if(active && active.length>0){
+    const req = active[0];
+    const meetTime = new Date(req.meet_time);
+    if(meetTime > new Date()){
+      meetData = req;
       document.getElementById('meetSetup').style.display = 'none';
       document.getElementById('meetActive').style.display = 'block';
-      document.getElementById('meetRequester').textContent = request.requester;
-      document.getElementById('meetLocationDisplay').textContent = `📍 ${request.location}`;
+      document.getElementById('meetRequester').textContent = req.requester;
+      document.getElementById('meetLocationDisplay').textContent = `📍 ${req.location}`;
       document.getElementById('meetTimeDisplay').textContent = formatMeetTime(meetTime);
       document.getElementById('meetActions').style.display = 'none';
       document.getElementById('meetCancelArea').style.display = 'block';
       document.getElementById('meetStatus').textContent = '⏳ Meeting in progress...';
-      
       if(meetTimerInterval) clearInterval(meetTimerInterval);
-      meetTimerInterval = setInterval(() => {
-        const now = new Date();
-        const diff = Math.floor((meetTime - now) / 1000);
-        if(diff <= 0) {
-          clearInterval(meetTimerInterval);
-          meetTimerInterval = null;
-          showMeetComplete();
-          return;
-        }
-        const mins = Math.floor(diff / 60);
-        const secs = diff % 60;
-        document.getElementById('meetTimerDisplay').textContent = 
-          `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      meetTimerInterval = setInterval(()=>{
+        const diff = Math.floor((meetTime - new Date()) / 1000);
+        if(diff <= 0){ clearInterval(meetTimerInterval); meetTimerInterval=null; showMeetComplete(); return; }
+        const mins = Math.floor(diff/60), secs = diff%60;
+        document.getElementById('meetTimerDisplay').textContent = `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
       }, 1000);
-      
       return;
     }
   }
-  
+  // Default
   document.getElementById('meetSetup').style.display = 'block';
   document.getElementById('meetActive').style.display = 'none';
   document.getElementById('meetComplete').style.display = 'none';
   document.getElementById('meetDeclined').style.display = 'none';
   document.getElementById('meetStatus').textContent = 'Ready to meet? ♡';
-  
   document.getElementById('meetQuickStatus').textContent = 'ready';
 }
 
-// ============================================================
-// 4. OUR LIST
-// ============================================================
+// OUR LIST
 document.getElementById('olAddBtn').addEventListener('click', addOurListItem);
-document.getElementById('olInput').addEventListener('keydown', e => {
-  if(e.key === 'Enter') addOurListItem();
-});
+document.getElementById('olInput').addEventListener('keydown', e=>{ if(e.key==='Enter') addOurListItem(); });
 
-async function addOurListItem() {
+async function addOurListItem(){
   if(!sb || !currentWho) return;
   const input = document.getElementById('olInput');
-  const category = document.getElementById('olCategory');
-  if(!input || !category) return;
+  const cat = document.getElementById('olCategory');
   const item = input.value.trim();
   if(!item) return;
-  
-  const { error } = await sb.from('our_list').insert({
-    item: item,
-    category: category.value,
-    state: 'someday',
-    added_by: currentWho,
-    created_at: new Date().toISOString()
-  });
-  
-  if(!error) {
-    input.value = '';
-    loadOurList();
-    sendNotification('📦 New List Item!', `${currentWho} added "${item}" to our list`, 'new-list');
-  }
+  await sb.from('our_list').insert({ item, category: cat.value, state: 'someday', added_by: currentWho });
+  input.value = '';
+  loadOurList();
+  sendNotification('📦 New List Item!', `${currentWho} added "${item}" to our list`, 'list');
 }
 
-async function loadOurList() {
+async function loadOurList(){
   if(!sb) return;
   const container = document.getElementById('olContainer');
   if(!container) return;
-  const { data, error } = await sb.from('our_list')
-    .select('*')
-    .order('created_at', {ascending: false});
-  
-  if(error || !data || data.length === 0) {
-    container.innerHTML = `<p class="empty-note">nothing here yet. add something you want to do together. ♡</p>`;
+  const { data, error } = await sb.from('our_list').select('*').order('created_at', {ascending:false});
+  if(error || !data || data.length===0){
+    container.innerHTML = '<p class="empty-note">nothing here yet. add something you want to do together. ♡</p>';
     document.getElementById('ourlistQuickStatus').textContent = 'empty';
     return;
   }
-  
-  const categories = {};
-  data.forEach(item => {
-    if(!categories[item.category]) categories[item.category] = [];
-    categories[item.category].push(item);
+  const cats = {};
+  data.forEach(item=>{
+    if(!cats[item.category]) cats[item.category] = [];
+    cats[item.category].push(item);
   });
-  
   let html = '';
-  for(const [cat, items] of Object.entries(categories)) {
-    const catLabel = {
-      'PLACES': '📍 PLACES',
-      'FOOD': '🍜 FOOD',
-      'THINGS': '🎁 THINGS',
-      'EXPERIENCES': '✨ EXPERIENCES'
-    }[cat] || cat;
-    
-    html += `<div class="ourlist-category"><h4>${catLabel}</h4>`;
-    const sortedItems = items.sort((a,b) => {
-      const order = { 'someday':0, 'planned':1, 'done':2 };
+  for(const [cat, items] of Object.entries(cats)){
+    const label = { 'PLACES':'📍 PLACES', 'FOOD':'🍜 FOOD', 'THINGS':'🎁 THINGS', 'EXPERIENCES':'✨ EXPERIENCES' }[cat] || cat;
+    html += `<div class="ourlist-category"><h4>${label}</h4>`;
+    items.sort((a,b)=> {
+      const order = { someday:0, planned:1, done:2 };
       return order[a.state] - order[b.state];
-    });
-    sortedItems.forEach(item => {
-      const isDone = item.state === 'done';
+    }).forEach(item=>{
+      const done = item.state === 'done';
       html += `
         <div class="ourlist-item">
-          <span class="${isDone ? 'completed' : ''}">${escapeHtml(item.item)}</span>
+          <span class="${done?'completed':''}">${escapeHtml(item.item)}</span>
           <span class="state-badge ${item.state}">${item.state}</span>
           <div class="ol-actions">
-            ${!isDone ? `<button class="state-btn" onclick="changeOurListState('${item.id}', 'planned')">plan</button>` : ''}
-            ${!isDone ? `<button class="state-btn" onclick="changeOurListState('${item.id}', 'done')">done</button>` : ''}
-            ${isDone ? `<button class="state-btn" onclick="changeOurListState('${item.id}', 'someday')">↩️</button>` : ''}
+            ${!done ? `<button class="state-btn" onclick="changeOurListState('${item.id}','planned')">plan</button>` : ''}
+            ${!done ? `<button class="state-btn" onclick="changeOurListState('${item.id}','done')">done</button>` : ''}
+            ${done ? `<button class="state-btn" onclick="changeOurListState('${item.id}','someday')">↩️</button>` : ''}
             <button class="delete-ol" onclick="deleteOurListItem('${item.id}')">×</button>
           </div>
         </div>
@@ -2834,53 +1764,43 @@ async function loadOurList() {
     });
     html += `</div>`;
   }
-  
   container.innerHTML = html;
-  
-  const pending = data.filter(i => i.state !== 'done').length;
-  const done = data.filter(i => i.state === 'done').length;
-  document.getElementById('ourlistQuickStatus').textContent = 
-    `${pending} pending · ${done} done`;
+  const pending = data.filter(i=>i.state!=='done').length;
+  const done = data.filter(i=>i.state==='done').length;
+  document.getElementById('ourlistQuickStatus').textContent = `${pending} pending · ${done} done`;
 }
 
-async function changeOurListState(id, newState) {
+async function changeOurListState(id, newState){
   if(!sb) return;
   await sb.from('our_list').update({ state: newState }).eq('id', id);
-  
-  if(newState === 'done') {
+  if(newState === 'done'){
     const { data } = await sb.from('our_list').select('*').eq('id', id).single();
-    if(data) {
-      sendNotification('🎉 Done!', `You completed: "${data.item}"`, 'list-done');
-      if(confirm(`You did it! ♡\n"${data.item}"\n\nAdd to archive?`)) {
-        await sb.from('memories').insert({
-          caption: `Completed: ${data.item}`,
-          added_by: currentWho || 'SHONNA',
-          memory_date: new Date().toISOString().slice(0,10),
-          photo_url: ''
-        });
-        loadArchive();
-        sendNotification('📸 Archived!', `"${data.item}" saved to archive.`, 'archive-saved');
-      }
+    if(data && confirm(`You did it! ♡\n"${data.item}"\n\nAdd to archive?`)){
+      await sb.from('memories').insert({
+        caption: `Completed: ${data.item}`,
+        added_by: currentWho || 'SHONNA',
+        memory_date: new Date().toISOString().slice(0,10)
+      });
+      loadArchive();
+      sendNotification('📸 Archived!', `"${data.item}" saved to archive.`, 'archive-saved');
     }
   }
   loadOurList();
 }
 window.changeOurListState = changeOurListState;
 
-async function deleteOurListItem(id) {
+async function deleteOurListItem(id){
   if(!sb || !confirm('Delete this item?')) return;
   await sb.from('our_list').delete().eq('id', id);
   loadOurList();
 }
 window.deleteOurListItem = deleteOurListItem;
 
-// ============================================================
-// 5. REFRESH / REALTIME
-// ============================================================
+// REFRESH
 function refreshAll(){
   renderTodayDate();
   updateDaysCounter();
-  if(sb) {
+  if(sb){
     loadPings();
     loadTonightPlan();
     loadStatus();
@@ -2898,14 +1818,13 @@ function refreshAll(){
 let pollingStarted = false;
 function startApp(){
   const connected = initSupabase();
-  
   const savedWho = localStorage.getItem('sp_who');
   if(savedWho){ currentWho = savedWho; }
   applyWhoUI();
   updateNotifToggle();
   refreshAll();
 
-  if(notificationsSupported && Notification.permission === 'granted') {
+  if(notificationsSupported && Notification.permission === 'granted'){
     notificationsEnabled = true;
     localStorage.setItem('sp_notifications', 'enabled');
     updateNotifToggle();
@@ -2913,76 +1832,53 @@ function startApp(){
 
   if(!pollingStarted && connected){
     pollingStarted = true;
-
-    try {
+    try{
       sb.channel('sp-live')
-        .on('postgres_changes', {event:'*', schema:'public', table:'pings'}, ()=> loadPings())
-        .on('postgres_changes', {event:'*', schema:'public', table:'memories'}, ()=> {
+        .on('postgres_changes', {event:'*', schema:'public', table:'pings'}, ()=>loadPings())
+        .on('postgres_changes', {event:'*', schema:'public', table:'memories'}, ()=>{
           loadLatestMemoryNudge();
           if(document.getElementById('view-archive')?.classList.contains('active')) loadArchive();
         })
-        .on('postgres_changes', {event:'*', schema:'public', table:'tonight_plan'}, ()=> loadTonightPlan())
-        .on('postgres_changes', {event:'*', schema:'public', table:'status'}, ()=> loadStatus())
-        .on('postgres_changes', {event:'*', schema:'public', table:'little_things'}, ()=> {
+        .on('postgres_changes', {event:'*', schema:'public', table:'tonight_plan'}, ()=>loadTonightPlan())
+        .on('postgres_changes', {event:'*', schema:'public', table:'status'}, ()=>loadStatus())
+        .on('postgres_changes', {event:'*', schema:'public', table:'little_things'}, ()=>{
           if(document.getElementById('view-things')?.classList.contains('active')) loadThings();
         })
-        .on('postgres_changes', {event:'*', schema:'public', table:'tasks'}, ()=> {
+        .on('postgres_changes', {event:'*', schema:'public', table:'tasks'}, ()=>{
           if(document.getElementById('view-tasks')?.classList.contains('active')) loadTasks();
         })
-        .on('postgres_changes', {event:'*', schema:'public', table:'study_sessions'}, ()=> {
+        .on('postgres_changes', {event:'*', schema:'public', table:'study_sessions'}, ()=>{
           if(document.getElementById('view-study')?.classList.contains('active')) loadStudyHistory();
         })
-        .on('postgres_changes', {event:'*', schema:'public', table:'needs_items'}, ()=> {
+        .on('postgres_changes', {event:'*', schema:'public', table:'needs_items'}, ()=>{
           if(document.getElementById('view-needs')?.classList.contains('active')) loadNeeds();
         })
-        .on('postgres_changes', {event:'*', schema:'public', table:'meet_requests'}, ()=> {
+        .on('postgres_changes', {event:'*', schema:'public', table:'meet_requests'}, ()=>{
           if(document.getElementById('view-meet')?.classList.contains('active')) checkMeetStatus();
         })
-        .on('postgres_changes', {event:'*', schema:'public', table:'our_list'}, ()=> {
+        .on('postgres_changes', {event:'*', schema:'public', table:'our_list'}, ()=>{
           if(document.getElementById('view-ourlist')?.classList.contains('active')) loadOurList();
         })
         .subscribe();
-    } catch(e) {
-      console.error('Realtime subscription failed, using polling only:', e);
-    }
+    } catch(e){ console.error('Realtime error:', e); }
 
-    setInterval(() => {
-      if(document.getElementById('view-meet')?.classList.contains('active')) {
-        checkMeetStatus();
-      }
+    setInterval(()=>{
+      if(document.getElementById('view-meet')?.classList.contains('active')) checkMeetStatus();
     }, 5000);
-    
-    setInterval(() => {
-      if(document.getElementById('view-study')?.classList.contains('active')) {
-        loadStudyHistory();
-      }
+    setInterval(()=>{
+      if(document.getElementById('view-study')?.classList.contains('active')) loadStudyHistory();
     }, 10000);
-
     setInterval(refreshAll, 6000);
-
-    document.addEventListener('visibilitychange', ()=>{ 
-      if(!document.hidden) refreshAll(); 
-    });
-    
+    document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refreshAll(); });
     setInterval(updateDaysCounter, 60000);
   }
 }
 
-if(document.readyState === 'loading') {
+if(document.readyState === 'loading'){
   document.addEventListener('DOMContentLoaded', startApp);
 } else {
   startApp();
 }
-  // Re-attach meet button listener (safety)
-document.addEventListener('DOMContentLoaded', function() {
-    const meetBtn = document.getElementById('sendMeetBtn');
-    if (meetBtn) {
-        meetBtn.addEventListener('click', sendMeetRequest);
-        console.log('Meet button attached');
-    } else {
-        console.error('sendMeetBtn not found!');
-    }
-});
 </script>
 </body>
 </html>
